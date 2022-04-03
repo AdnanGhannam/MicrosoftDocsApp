@@ -7,6 +7,8 @@ using MicrosoftDocs.Domain.Interfaces;
 using MicrosoftDocs.Infrastructure.Data;
 using MediatR;
 using System.Reflection;
+using AutoMapper;
+using MicrosoftDocs.Web.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,13 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
 builder.Services.AddControllers();
 
 builder.Services.AddTransient<IDomainEventDispatcher, MediatrDomainEventDispatcher>();
+
+
+builder.Services.AddSingleton(provider => new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new MappingProfile());
+}).CreateMapper());
+
 
 builder.Services.AddMediatR(
     typeof(Program).Assembly,
