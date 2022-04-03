@@ -1,4 +1,5 @@
 ﻿using MicrosoftDocs.Domain.Entities.AppUserAggregate;
+using MicrosoftDocs.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 
-public partial class Article : Section
+public partial class Article : Section, IAggregateRoot
 {
     public string? FullTitle { get; protected set; }
 

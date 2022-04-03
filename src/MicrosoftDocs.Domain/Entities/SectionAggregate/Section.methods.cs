@@ -12,12 +12,14 @@ public partial class Section
     protected Section() { }
     
     public Section(string title,
-        string creatorId)
+        string creatorId,
+        Language language)
     {
         Title = title;
         CreatorId = creatorId;
+        Language = language;
     }
 
-    public Section(string title, AppUser creator) 
-        : this(title, creator.Id) { }
+    public Section(string title, AppUser creator, Language language) 
+        : this(title, creator.Id, language) { }
 }
