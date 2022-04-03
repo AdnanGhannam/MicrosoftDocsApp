@@ -12,7 +12,7 @@ using MicrosoftDocs.Domain.Interfaces;
 
 namespace MicrosoftDocs.Domain.Entities.AppUserAggregate;
 
-public partial class AppUser : IdentityUser, IAggregateRoot, IEntityBase
+public partial class AppUser : IdentityUser, IAggregateRoot
 {
     public DateTime CreationTime { get; set; }
 

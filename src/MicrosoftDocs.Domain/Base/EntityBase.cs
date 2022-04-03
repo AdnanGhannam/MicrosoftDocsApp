@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Domain.Base;
 
-public abstract class EntityBase : IEntityBase
+public abstract class EntityBase<T>
 {
     public EntityBase()
     {
-        Id = Guid.NewGuid().ToString();
         CreationTime = DateTime.Now;
     }
 
-
     [Key]
-    public string Id { get; set; }
+    public T Id { get; protected set; }
 
-    public DateTime CreationTime { get; set; }
+    public DateTime CreationTime { get; protected set; }
+
+
 
     // Domain Event
     [NotMapped]
@@ -34,5 +34,13 @@ public abstract class EntityBase : IEntityBase
     public void PublishEvent(IDomainEvent @event)
     {
         _domainEvents.Enqueue(@event);
+    }
+}
+
+public abstract class EntityBase: EntityBase<string>
+{
+    public EntityBase() : base()
+    {
+        Id = Guid.NewGuid().ToString();
     }
 }

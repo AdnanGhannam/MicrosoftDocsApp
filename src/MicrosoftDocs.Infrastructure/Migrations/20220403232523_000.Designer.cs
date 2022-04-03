@@ -12,7 +12,7 @@ using MicrosoftDocs.Infrastructure.Data;
 namespace MicrosoftDocs.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220403191711_000")]
+    [Migration("20220403232523_000")]
     partial class _000
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
