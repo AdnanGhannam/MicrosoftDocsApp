@@ -19,8 +19,6 @@ public partial class Article : Section
 
     public string Points { get; protected set; }
 
-    public Language Language { get; protected set; }
-
     public string CreatorId { get; protected set; }
 
 

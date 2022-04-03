@@ -14,6 +14,6 @@ public partial class Language : EntityBase
     public string Version { get; protected set; } = "1.0";
 
 
-    private List<Article> _articles = new();
-    public IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
+    private List<Section> _sections = new();
+    public IReadOnlyCollection<Section> Sections => _sections.AsReadOnly();
 }

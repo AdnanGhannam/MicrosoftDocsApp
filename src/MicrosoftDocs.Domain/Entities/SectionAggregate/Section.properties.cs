@@ -13,6 +13,8 @@ public partial class Section : EntityBase, IAggregateRoot
 {
     public string Title { get; protected set; }
 
+    public Language Language { get; protected set; }
+
 
     private List<Section> _sections = new();
     public IReadOnlyCollection<Section> Sections => _sections.AsReadOnly();

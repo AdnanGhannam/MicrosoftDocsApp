@@ -1,4 +1,5 @@
 ﻿using MicrosoftDocs.Domain.Base;
+using MicrosoftDocs.Domain.Entities.AppUserAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
