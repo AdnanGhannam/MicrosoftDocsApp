@@ -13,6 +13,7 @@ public partial class Section : EntityBase, IAggregateRoot
 {
     public string Title { get; protected set; }
 
+    public string LanguageId { get; protected set; }
     public Language Language { get; protected set; }
 
 

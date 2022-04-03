@@ -7,12 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MicrosoftDocs.Application\MicrosoftDocs.Application.csproj" />
     <ProjectReference Include="..\MicrosoftDocs.Client\MicrosoftDocs.Client.csproj" />
+    <ProjectReference Include="..\MicrosoftDocs.Infrastructure\MicrosoftDocs.Infrastructure.csproj" />
     <ProjectReference Include="..\MicrosoftDocs.Shared\MicrosoftDocs.Shared.csproj" />
   </ItemGroup>
 

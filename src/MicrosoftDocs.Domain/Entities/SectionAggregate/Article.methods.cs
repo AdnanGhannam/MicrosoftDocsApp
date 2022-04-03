@@ -15,10 +15,11 @@ public partial class Article
         string creatorId,
         string content,
         string points,
-        Language language,
         string? fullTitle = null,
-        IEnumerable<AppUser>? contributors = null) : base(title, creatorId, language)
+        IEnumerable<AppUser>? contributors = null) 
     {
+        Title = title;
+        CreatorId = creatorId;
         Content = content;
         Points = points;
         FullTitle = fullTitle;
@@ -33,10 +34,9 @@ public partial class Article
         AppUser creator,
         string content,
         string points,
-        Language language,
         string? fullTitle = null,
         IEnumerable<AppUser>? contributors = null)
-        : this(title, creator.Id, content, points, language, fullTitle, contributors) { }
+        : this(title, creator.Id, content, points, fullTitle, contributors) { }
 
     public void AddContributors(AppUser contributors)
     {
