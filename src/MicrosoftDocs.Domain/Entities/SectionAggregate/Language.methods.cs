@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicrosoftDocs.Shared;
+namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 
-internal class Class1
+public partial class Language
 {
 }
