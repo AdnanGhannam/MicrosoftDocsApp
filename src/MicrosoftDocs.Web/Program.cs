@@ -57,7 +57,8 @@ using var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
 var userManager = scope.ServiceProvider.GetService<UserManager<AppUser>>();
 var roleManager = scope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
-await AppDbContextSeed.SeedAsync(dbContext, userManager, roleManager);
+var logger = scope.ServiceProvider.GetService<ILoggerFactory>();
+await AppDbContextSeed.SeedAsync(dbContext, userManager, roleManager, logger);
 
 
 // Configure the HTTP request pipeline.

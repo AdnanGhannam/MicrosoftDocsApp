@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MicrosoftDocs.Domain.Entities.AppUserAggregate;
 using MicrosoftDocs.Domain.Entities.SectionAggregate;
 using MicrosoftDocs.Domain.Enums;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Infrastructure.Data;
 
-public static class AppDbContextSeed
+public class AppDbContextSeed
 {
     const string adminUserName = "Admin";
     const string contributorUserName = "Adnan";
@@ -20,18 +21,22 @@ public static class AppDbContextSeed
 
     public static async Task SeedAsync(AppDbContext? context,
         UserManager<AppUser>? userManager,
-        RoleManager<IdentityRole>? roleManager)
+        RoleManager<IdentityRole>? roleManager,
+        ILoggerFactory? loggerFactory)
     {
+        var logger = loggerFactory?.CreateLogger<AppDbContextSeed>();
+
         try
         {
-            if(context is null || userManager is null || roleManager is null)
+            if(context is null || userManager is null || roleManager is null || logger is null)
             {
                 throw new ArgumentNullException(
                     nameof(context), 
-                    "One of the following or more is null: context, userManager, roleManager");
+                    "One of the following or more is null: context, userManager, roleManager, loggerFactory");
             }
 
-            // Add Users
+            #region Add Users and Roles
+
             if (!await context.Users.AnyAsync())
             {
                 // Add Roles
@@ -40,6 +45,8 @@ public static class AppDbContextSeed
                     await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
                     await roleManager.CreateAsync(new IdentityRole(Roles.Contributor.ToString()));
                     await roleManager.CreateAsync(new IdentityRole(Roles.NormalUser.ToString()));
+
+                    logger.LogInformation("Added Roles To Database");
                 }
 
                 // Admin user 
@@ -56,9 +63,14 @@ public static class AppDbContextSeed
                 var normalUser = new AppUser(normalUserName, $"{ normalUserName }@mail.co");
                 await userManager.CreateAsync(normalUser, "123");
                 await userManager.AddToRoleAsync(normalUser, Roles.NormalUser.ToString());
+
+                logger.LogInformation("Added Users To Database");
             }
 
-            // Add Sections
+            #endregion
+
+            #region Add Sections and a Language and an Article
+
             if (!await context.Sections.AnyAsync())
             {
                 // Get Admin User
@@ -107,7 +119,13 @@ public static class AppDbContextSeed
                 secondarySection.AddArticle(firstArticle);
 
                 await context.SaveChangesAsync();
+
+                logger.LogInformation("Added Sections and a Language and an Article To Database");
             }
+
+            #endregion
+
+            #region Add Interaction
 
             if (!await context.Interactions.AnyAsync())
             {
@@ -125,7 +143,13 @@ public static class AppDbContextSeed
                 article.AddInteraction(interaction);
 
                 await context.SaveChangesAsync();
+
+                logger.LogInformation("Added Interaction To Database");
             }
+
+            #endregion
+
+            #region Add Collection
 
             if (!await context.Collections.AnyAsync())
             {
@@ -144,7 +168,13 @@ public static class AppDbContextSeed
                 collection.AddArticle(article);
 
                 await context.SaveChangesAsync();
+
+                logger.LogInformation("Added Interaction To Database");
             }
+
+            #endregion
+
+            #region Add Feedback
 
             if (!await context.Feedbacks.AnyAsync())
             {
@@ -162,11 +192,17 @@ public static class AppDbContextSeed
                 article.AddFeedback(feedback);
 
                 await context.SaveChangesAsync();
+
+                logger.LogInformation("Added Feedback To Database");
             }
+
+            #endregion
         }
-        catch (Exception ex)
+        catch (Exception exp)
         {
-            Console.WriteLine(ex.Message);
+            if (logger is null) throw;
+
+            logger.LogError(exp.Message);
         }
     }
 }
