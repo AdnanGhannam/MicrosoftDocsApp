@@ -1,16 +1,14 @@
-﻿@inherits LayoutComponentBase
+﻿@using MicrosoftDocs.Client.Shared.LogoComponent;
+@using MicrosoftDocs.Client.Shared.NavbarComponent;
+@inherits LayoutComponentBase
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
+    <div class="page__nav-bar-box">
+        <Navbar />
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
+        <article class="page__article">
             @Body
         </article>
     </main>
