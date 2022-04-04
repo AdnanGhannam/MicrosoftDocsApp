@@ -12,10 +12,14 @@ public partial class Language
 
     public Language(string name,
         string version,
-        Section section)
+        Section? section = null)
     {
         Name = name;
         Version = version;
-        _sections.Add(section);
+
+        if(section != null)
+        {
+            _sections.Add(section);
+        }
     }
 }

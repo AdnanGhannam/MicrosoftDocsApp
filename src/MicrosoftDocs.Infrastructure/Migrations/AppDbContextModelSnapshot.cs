@@ -34,7 +34,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("ContributorsId");
 
-                    b.ToTable("ContributorsArticles");
+                    b.ToTable("ContributorsArticles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -259,7 +259,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Collections");
+                    b.ToTable("Collections", (string)null);
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Feedback", b =>
@@ -293,7 +293,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Feedbacks");
+                    b.ToTable("Feedbacks", (string)null);
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Interaction", b =>
@@ -321,7 +321,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("InteractorId");
 
-                    b.ToTable("Interactions");
+                    b.ToTable("Interactions", (string)null);
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Language", b =>
@@ -344,7 +344,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Languages");
+                    b.ToTable("Languages", (string)null);
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", b =>
@@ -383,7 +383,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("SectionId");
 
-                    b.ToTable("Sections");
+                    b.ToTable("Sections", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Section");
                 });

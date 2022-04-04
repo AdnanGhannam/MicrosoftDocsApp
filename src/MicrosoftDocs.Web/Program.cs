@@ -16,7 +16,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
 
-builder.Services.AddIdentity<AppUser, IdentityRole>()
+builder.Services.AddIdentity<AppUser, IdentityRole>(config =>
+{
+    config.Password.RequireNonAlphanumeric = false;
+    config.Password.RequireLowercase = false;
+    config.Password.RequireUppercase = false;
+    config.Password.RequireDigit = false;
+    config.Password.RequiredLength = 1;
+})
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
@@ -46,6 +53,12 @@ var app = builder.Build();
 //var service = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 //service.Database.Migrate();
 
+using var scope = app.Services.CreateScope();
+var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
+var userManager = scope.ServiceProvider.GetService<UserManager<AppUser>>();
+var roleManager = scope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+await AppDbContextSeed.SeedAsync(dbContext, userManager, roleManager);
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -62,6 +75,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>

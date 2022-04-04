@@ -15,6 +15,7 @@ public partial class Article
         string creatorId,
         string content,
         string points,
+        Language language,
         string? fullTitle = null,
         IEnumerable<AppUser>? contributors = null) 
     {
@@ -23,6 +24,7 @@ public partial class Article
         Content = content;
         Points = points;
         FullTitle = fullTitle;
+        Language = language;
 
         if(contributors != null)
         {
@@ -34,9 +36,10 @@ public partial class Article
         AppUser creator,
         string content,
         string points,
+        Language language,
         string? fullTitle = null,
         IEnumerable<AppUser>? contributors = null)
-        : this(title, creator.Id, content, points, fullTitle, contributors) { }
+        : this(title, creator.Id, content, points, language, fullTitle, contributors) { }
 
     public void AddContributors(AppUser contributors)
     {

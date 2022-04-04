@@ -18,11 +18,13 @@ public partial class AppUser
         CreationTime = DateTime.Now;
     }
 
-    public void AddCollection(string name)
+    public Collection AddCollection(string name)
     {
         var collection = new Collection(name, owner: this);
 
         _collections.Add(collection);
+
+        return collection;
     }
 
     public void RemoveCollection(Collection collection)
@@ -40,11 +42,13 @@ public partial class AppUser
         _collections.SingleOrDefault(collection).RemoveArticle(article);
     }
 
-    public void AddSection(string title, Language language)
+    public Section AddSection(string title, Language language)
     {
         var section = new Section(title, this, language);
 
         _sections.Add(section);
+
+        return section;
     }
 
     public void RemoveSection(Section section)

@@ -26,11 +26,6 @@ public partial class Article : Section, IAggregateRoot
 
     public string Points { get; protected set; }
 
-    /// <summary>
-    /// Required
-    /// </summary>
-    public string CreatorId { get; protected set; }
-
 
     private List<AppUser> _contributors = new();
     public IReadOnlyCollection<AppUser> Contributors => _contributors.AsReadOnly();

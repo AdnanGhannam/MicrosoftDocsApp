@@ -24,9 +24,6 @@ internal class ArticleConfigurations : IEntityTypeConfiguration<Article>
         builder.Property(e => e.Content)
             .IsRequired();
 
-        builder.Property(e => e.CreatorId)
-            .IsRequired();
-
 
         builder.HasMany(e => e.Feedbacks)
             .WithOne(e => e.Article)
