@@ -22,4 +22,14 @@ public partial class Section
 
     public Section(string title, AppUser creator, Language language) 
         : this(title, creator.Id, language) { }
+
+    public void AddSection(Section section)
+    {
+        _sections.Add(section);
+    }
+
+    public void AddArticle(Article article)
+    {
+        _sections.Add(article);
+    }
 }

@@ -10,6 +10,10 @@ namespace MicrosoftDocs.Domain.Entities.AppUserAggregate;
 
 public partial class Collection : EntityBase
 {
+    /// <summary>
+    /// Required
+    /// Max length is 50
+    /// </summary>
     public string Name { get; protected set; }
 
 

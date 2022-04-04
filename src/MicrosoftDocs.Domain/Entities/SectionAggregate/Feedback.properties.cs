@@ -10,8 +10,15 @@ namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 
 public partial class Feedback : EntityBase
 {
+    /// <summary>
+    /// Required
+    /// Max length is 60
+    /// </summary>
     public string Title { get; protected set; }
 
+    /// <summary>
+    /// Required
+    /// </summary>
     public string Content { get; protected set; }
 
 

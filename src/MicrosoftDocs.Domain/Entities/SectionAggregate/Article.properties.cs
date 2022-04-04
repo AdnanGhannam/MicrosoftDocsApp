@@ -10,16 +10,25 @@ namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 
 public partial class Article : Section, IAggregateRoot
 {
+    /// <summary>
+    /// Max length is 40
+    /// </summary>
     public string? FullTitle { get; protected set; }
 
     public TimeSpan ReadingTime { get; protected set; }
 
     public int ReadTimes { get; protected set; } = 0;
 
+    /// <summary>
+    /// Required
+    /// </summary>
     public string Content { get; protected set; }
 
     public string Points { get; protected set; }
 
+    /// <summary>
+    /// Required
+    /// </summary>
     public string CreatorId { get; protected set; }
 
 

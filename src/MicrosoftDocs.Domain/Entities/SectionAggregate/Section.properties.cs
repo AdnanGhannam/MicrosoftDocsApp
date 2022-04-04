@@ -11,6 +11,9 @@ namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 
 public partial class Section : EntityBase, IAggregateRoot
 {
+    /// <summary>
+    /// Max length is 20
+    /// </summary>
     public string Title { get; protected set; }
 
     public string LanguageId { get; protected set; }
