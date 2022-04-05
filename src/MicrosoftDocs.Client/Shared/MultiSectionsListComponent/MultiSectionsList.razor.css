@@ -1,0 +1,1 @@
+.multi-sections-list{min-width:300px}.multi-sections-list ::deep>li{--padding: .7em;padding:var(--padding) 0}.multi-sections-list ::deep>li.last:not(:last-child){border-bottom:1px solid var(--clr-border);padding-bottom:calc(var(--padding) + .2em)}.multi-sections-list ::deep>li.last+li{padding-top:calc(var(--padding) + .2em)}

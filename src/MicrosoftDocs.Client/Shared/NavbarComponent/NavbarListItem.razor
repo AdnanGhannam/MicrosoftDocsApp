@@ -1,0 +1,16 @@
+﻿<li class="@Class">
+    <NavLink href="@Href" Match="NavLinkMatch.All">
+        @ChildContent
+    </NavLink>
+</li>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Href { get; set; } = "";
+}

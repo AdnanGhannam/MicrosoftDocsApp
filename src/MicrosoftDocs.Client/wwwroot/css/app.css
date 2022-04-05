@@ -4,12 +4,15 @@
     --clr-primary: #75b6e7;
     --clr-secondary: #404040;
     --clr-text: #e6e6e6;
+    --clr-text-light: #fff;
     --clr-text-paragraph: #d2d2d2;
+    --clr-border-box: var(--clr-text-paragraph);
     --clr-highlight: #0b6413;
     --clr-code-block: #2f2f2f;
     --clr-hyperlink: var(--clr-primary);
     --clr-hyperlink-hover: #278cda;
     --clr-hyperlink-visited: #ac7ee1;
+    --clr-border: #404040;
 
     --bg-primary: #171717;
 
@@ -52,6 +55,10 @@ img {
     object-position: center;
 }
 
+img[src=""] {
+    display: none;
+}
+
 svg {
     fill: inherit;
 }
@@ -62,8 +69,8 @@ ul {
 
 ul,
 li {
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
+    padding: 0;
 }
 
 p {
@@ -73,6 +80,7 @@ p {
 a {
     text-decoration: none;
     color: var(--clr-hyperlink);
+    font-weight: 300;
 }
 
 a:hover {
@@ -83,4 +91,27 @@ a:hover {
 a:visited {
     color: var(--clr-hyperlink-visited);
 }
+
+input {
+    font: inherit;
+    color: inherit;
+    outline: none;
+}
+
+input::placeholder {
+    font-weight: 300;
+    opacity: .5;
+
+}
+
+/* Cutsom Classes */
+
+.clickable { cursor: pointer; }
+
+/*
+.focusable:focus-within {
+    outline: 2px dashed var(--clr-text-light);
+    padding: .2em;
+} 
+*/
 

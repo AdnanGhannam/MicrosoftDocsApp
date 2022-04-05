@@ -1,0 +1,1 @@
+.custom-imgbox{width:var(--imgbox-size);height:var(--imgbox-size);border-radius:50%;position:relative;background-color:var(--clr-secondary)}.custom-imgbox__content{position:absolute;left:50%;right:auto;top:50%;bottom:auto;transform:translate(-50%, -50%)}

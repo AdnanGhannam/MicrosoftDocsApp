@@ -1,0 +1,19 @@
+﻿.multi-sections-list {
+    min-width: 300px;
+
+    ::deep > li {
+        --padding: .7em;
+        padding: var(--padding) 0;
+
+        &.last {
+            &:not(:last-child) {
+                border-bottom: 1px solid var(--clr-border);
+                padding-bottom: calc(var(--padding) + .2em);
+            }
+
+            & + li {
+                padding-top: calc(var(--padding) + .2em);
+            }
+        }
+    }
+}

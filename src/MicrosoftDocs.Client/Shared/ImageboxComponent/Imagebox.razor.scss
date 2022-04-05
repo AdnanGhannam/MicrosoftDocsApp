@@ -1,0 +1,13 @@
+﻿@import "../Styles/Mixins.scss";
+
+.custom-imgbox {
+    width: var(--imgbox-size);
+    height: var(--imgbox-size);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--clr-secondary);
+
+    &__content {
+        @include absolute(50%, 50%, auto, auto, -50%, -50%);
+    }
+}

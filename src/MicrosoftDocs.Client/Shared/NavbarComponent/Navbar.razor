@@ -1,9 +1,72 @@
 ﻿@using MicrosoftDocs.Client.Shared.LogoComponent;
+@using MicrosoftDocs.Client.Shared.InputboxComponent;
+@using MicrosoftDocs.Client.Shared.ImageboxComponent;
+@using MicrosoftDocs.Client.Shared.MenuCompenent;
+@using MicrosoftDocs.Client.Shared.MultiSectionsListComponent;
 
 <nav class="nav-bar">
-    <Logo />
+    <div class="nav-bar__left">
+        <Logo />
+
+        <div class="nav-bar__left__list-box">
+            <NavbarList Class="nav-bar__list">
+                <NavbarListItem Href="/" Class="nav-bar__list__item">
+                    Docs
+                </NavbarListItem>
+                <NavbarListItem Href="/documentation" Class="nav-bar__list__item">
+                    Documentation
+                </NavbarListItem>
+                <NavbarListItem Href="/learn" Class="nav-bar__list__item">
+                    Learn
+                </NavbarListItem>
+                <NavbarListItem Href="/questions" Class="nav-bar__list__item">
+                    Q&A
+                </NavbarListItem>
+                <NavbarListItem Href="/code-samples" Class="nav-bar__list__item">
+                    Code Samples
+                </NavbarListItem>
+                <NavbarListItem Href="/shows" Class="nav-bar__list__item">
+                    Shows
+                </NavbarListItem>
+                <NavbarListItem Href="/events" Class="nav-bar__list__item">
+                    Events
+                </NavbarListItem>
+            </NavbarList>
+        </div>
+    </div>
+
+
+
+    <div class="nav-bar__right">
+        <Inputbox Placeholder="Search" />
+        <Menu Visiable="isMenuVisiable">
+            <Button>
+                <Imagebox Character="@('M')" ImageUrl="/images/person.svg" 
+                            OnClick="() => isMenuVisiable = !isMenuVisiable"/>
+            </Button>
+            <ChildContent>
+                <MultiSectionsList>
+                    <MultiSectionsListItem>
+                        <NavLink href="/profile">
+                            Profile
+                        </NavLink>
+                    </MultiSectionsListItem>
+                    <MultiSectionsListItem IsLastInSubList>
+                        <NavLink href="/settings">
+                            Settings
+                        </NavLink>
+                    </MultiSectionsListItem>
+                    <MultiSectionsListItem>
+                        <NavLink href="/signout">
+                            Sign out
+                        </NavLink>
+                    </MultiSectionsListItem>
+                </MultiSectionsList>
+            </ChildContent>
+        </Menu>
+    </div>
 </nav>
 
 @code {
-
+    private bool isMenuVisiable = false;
 }

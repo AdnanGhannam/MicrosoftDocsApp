@@ -1,0 +1,58 @@
+﻿@import "../Styles/Mixins.scss";
+
+.nav-bar {
+    @include flex(space-between);
+    padding: var(--page-padding);
+    border-bottom: 1px solid var(--clr-border);
+
+    &__left {
+        @include flex(center, baseline);
+    }
+
+    &__right {
+        @include flex();
+    }
+
+    ::deep &__list {
+
+        &__item {
+            display: inline-block;
+            padding: 0 .5em;
+
+            &:first-child {
+                $padding: 1.3em;
+                padding: 0 $padding;
+                margin: 0 0 0 $padding;
+                font-size: 1.2em;
+                position: relative;
+
+                &::before {
+                    @include absolute(0px, 0px, auto, 0px);
+                    content: '';
+                    border-left: 2px solid var(--clr-text);
+                }
+
+                a {
+                    font-weight: 600;
+
+                    &.active {
+                        border-bottom-width: 0px;
+                    }
+                }
+            }
+
+            a {
+                color: var(--clr-text-light);
+
+                &:hover {
+                    text-decoration: none;
+                }
+
+                &:hover,
+                &.active {
+                    border-bottom: 2px solid var(--clr-text);
+                }
+            }
+        }
+    }
+}

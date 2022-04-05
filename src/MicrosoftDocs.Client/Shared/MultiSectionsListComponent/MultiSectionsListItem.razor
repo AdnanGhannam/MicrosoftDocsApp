@@ -1,0 +1,14 @@
+﻿<li class="@(Class + (IsLastInSubList ? " last" : ""))">
+    @ChildContent
+</li>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public bool IsLastInSubList { get; set; }
+}

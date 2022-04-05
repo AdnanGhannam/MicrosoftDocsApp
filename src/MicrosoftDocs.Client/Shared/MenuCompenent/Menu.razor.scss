@@ -1,0 +1,43 @@
+﻿@import "../Styles/Mixins.scss";
+
+.custom-menu {
+    position: relative;
+    margin: 0 .5em;
+
+    &.visiable {
+        .custom-menu__content {
+            display: block;
+        }
+
+        &::after {
+            display: inline-block;
+        }
+    }
+    
+    &::after {
+        @include absolute(auto, 100%, 0px, auto);
+        content: '';
+        $size: 10px;
+        width: $size;
+        height: $size;
+        transform: translate(-13px, calc(12px - 50%)) rotate(45deg);
+        background-color: var(--bg-primary);
+        $border: 1px solid var(--clr-border);
+        border-left: $border;
+        border-top: $border;
+        display: none;
+    }
+
+    &__content {
+        @include absolute(auto, 100%, 0px, auto, 0px, 12px);
+        background-color: var(--bg-primary);
+        border: 1px solid var(--clr-border);
+        padding: var(--page-padding);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .4);
+        display: none;
+
+        &.rtl {
+            @include absolute(0px, 100%, auto, auto, 0px, 12px);
+        }
+    }
+}

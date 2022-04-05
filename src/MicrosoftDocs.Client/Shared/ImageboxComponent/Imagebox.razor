@@ -1,0 +1,24 @@
+﻿<div class="custom-imgbox clickable" 
+        style="@($"--imgbox-size: {Size}")" 
+        @onclick="OnClick">
+    @if(Character is not null)
+    {
+        <span class="custom-imgbox__content custom-imgbox__char">@Character</span>
+    }
+
+    <img class="custom-imgbox__content custom-imgbox__img" src="@ImageUrl"/>
+</div>
+
+@code {
+    [Parameter]
+    public string ImageUrl { get; set; } = "";
+
+    [Parameter]
+    public char? Character { get; set; }
+
+    [Parameter]
+    public string Size { get; set; } = "2.6em";
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+}
