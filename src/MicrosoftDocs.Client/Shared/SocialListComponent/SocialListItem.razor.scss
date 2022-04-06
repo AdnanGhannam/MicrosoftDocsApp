@@ -1,0 +1,21 @@
+﻿@import "../Styles/Mixins.scss";
+
+.social-list-item {
+
+    ::deep &__link {
+        @include flex(flex-start);
+        padding: .6em 1em;
+
+        &:hover {
+            background-color: var(--clr-code-block);
+        }
+    }
+
+    &__icon {
+        margin-right: .2em;
+    }
+
+    &__text {
+
+    }
+}

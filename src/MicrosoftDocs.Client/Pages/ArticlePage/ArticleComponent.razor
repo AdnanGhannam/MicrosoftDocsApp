@@ -1,0 +1,51 @@
+﻿@page "/documentation/article";
+@using MicrosoftDocs.Client.Shared.ExpansionListComponent;
+@using MicrosoftDocs.Client.Shared.ArticlesNavigationComponent;
+
+<section class="article-page">
+    <ArticlesNavigation Class="article-page__articles-nav"/>
+    <ArticleBody Title="Create an ASP.NET Core web app with user data protected by authorization"
+                    PublishTime="@(DateTime.Now)" Path="@path" ReadingTime="10" Contributors="contributors"/>
+    <ExpansionList Title="In this article" Links="links" Class="article-page__expansion-list"/>
+</section>
+
+@code {
+    private Dictionary<string, string> links = new();
+
+    private Dictionary<string, string> path = new();
+
+    private List<string> contributors = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        links.Add("#1", "Prerequisites");
+        links.Add("#2", "The starter and completed app");
+        links.Add("#3", "Secure user data");
+        links.Add("#4", "Create owner, manager, and administrator authorization handlers");
+        links.Add("#5", "Register the authorization handlers");
+        links.Add("#6", "Support authorization");
+        links.Add("#7", "Inject the authorization service into the views");
+
+        path.Add("#1", "Docs");
+        path.Add("#2", ".NET");
+        path.Add("#3", "ASP.NET Core");
+        path.Add("#4", "Security and Identity");
+        path.Add("#5", "Authorization");
+
+        contributors.Add("Rick-Anderson");
+        contributors.Add("guardrex");
+        contributors.Add("serpent5");
+        contributors.Add("v-haiboz");
+        contributors.Add("ashotmuradian");
+        contributors.Add("HannesSam");
+        contributors.Add("scottaddie");
+        contributors.Add("AskYous");
+        contributors.Add("CamSoper");
+        contributors.Add("tdykstra");
+        contributors.Add("OblivionSY");
+        contributors.Add("Triwaters");
+        contributors.Add("isaac2004");
+    }
+}

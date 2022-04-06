@@ -1,0 +1,61 @@
+﻿@import "../../Shared/Styles/Mixins.scss";
+
+.article-body {
+    margin: 0 4em;
+
+    &__header {
+        @include flex(space-between);
+        margin-bottom: 1em;
+
+        &__toolbar {
+            @include flex();
+
+            ::deep .mud-button-root {
+                border-radius: 2px;
+                padding: .2em .4em;
+
+                &:hover {
+                    background-color: var(--clr-primary-lighter);
+                }
+            }
+
+            ::deep .menu-content {
+                padding: 0;
+            }
+
+
+            ::deep .mud-icon-root.mud-svg-icon {
+                fill: var(--clr-primary);
+            }
+        }
+    }
+
+    &__content {
+        &__info-box {
+            @include flex(space-between);
+            font-weight: 300;
+
+            .left-box {
+
+                > * {
+                    &::after {
+                        content: " •";
+                    }
+
+                    &:last-child {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            .right-box {
+
+                ::deep .mud-icon-root.mud-svg-icon{
+                    fill: var(--clr-primary);
+                }
+            }
+        }
+    }
+}

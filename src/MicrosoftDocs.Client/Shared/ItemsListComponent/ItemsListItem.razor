@@ -1,7 +1,8 @@
-﻿<li class="@Class">
+﻿<li class="@Class" @onclick="OnClick">
     <NavLink href="@Href" Match="NavLinkMatch.All">
         @ChildContent
     </NavLink>
+    @Icon
 </li>
 
 @code {
@@ -9,8 +10,14 @@
     public string Class { get; set; } = "";
 
     [Parameter]
+    public RenderFragment Icon { get; set; }
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
     public RenderFragment ChildContent { get; set; }
 
     [Parameter]
-    public string Href { get; set; } = "";
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
 }

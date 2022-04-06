@@ -1,0 +1,102 @@
+﻿@inject NavigationManager _navManager;
+
+
+
+<nav class="articles-nav @Class">
+    <strong>Version</strong>
+    <MudSelect T="string"  Variant="Variant.Outlined" AdornmentIcon="@Icons.Filled.KeyboardArrowDown" 
+                AdornmentColor="Color.Inherit"
+                AnchorOrigin="Origin.BottomCenter" Class="articles-nav__select-box" Value="@versions.First()">
+        @foreach(var version in versions)
+        {
+            <MudSelectItem Value="@version"/>
+        }
+    </MudSelect>
+
+    <MudTreeView Items="TreeviewItems" Hover="true" Class="articles-nav__treeview" ExpandOnClick>
+        <ItemTemplate>
+            <MudTreeViewItem Value="context" Items="context.TreeviewItems" Text="@context.Title" 
+                                @onclick="() => Goto(context.Url)"/>
+        </ItemTemplate>
+    </MudTreeView>
+</nav>
+@code {
+    private List<string> versions = new();
+
+    private HashSet<ItemModel> TreeviewItems { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        versions.Add("ASP.NET 6.0");
+        versions.Add("ASP.NET 5.0");
+        versions.Add("ASP.NET 3.1");
+        versions.Add("ASP.NET 3.0");
+        versions.Add("ASP.NET 2.2");
+        versions.Add("ASP.NET 2.1");
+        versions.Add("ASP.NET 2.0");
+        versions.Add("ASP.NET 1.1");
+        versions.Add("ASP.NET 1.0");
+
+
+        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
+        {
+            new("Overview", "/security-and-identity/overview"),
+            new("Authentication", TreeviewItems: new()
+            {
+                new("Overview", "/authentication/overview"),
+                new("Introduction to Identity", "/authentication/intro"),
+            }),
+        }));
+        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
+        {
+            new("Overview", "/security-and-identity/overview"),
+            new("Authentication", TreeviewItems: new()
+            {
+                new("Overview", "/authentication/overview"),
+                new("Introduction to Identity", "/authentication/intro"),
+            }),
+        }));
+        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
+        {
+            new("Overview", "/security-and-identity/overview"),
+            new("Authentication", TreeviewItems: new()
+            {
+                new("Overview", "/authentication/overview"),
+                new("Introduction to Identity", "/authentication/intro"),
+            }),
+        }));
+        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
+        {
+            new("Overview", "/security-and-identity/overview"),
+            new("Authentication", TreeviewItems: new()
+            {
+                new("Overview", "/authentication/overview"),
+                new("Introduction to Identity", "/authentication/intro"),
+            }),
+        }));
+        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
+        {
+            new("Overview", "/security-and-identity/overview"),
+            new("Authentication", TreeviewItems: new()
+            {
+                new("Overview", "/authentication/overview"),
+                new("Introduction to Identity", "/authentication/intro"),
+            }),
+        }));
+    }
+
+    private void Goto(string? url) 
+    {
+        if(url is not null)
+        {
+            _navManager.NavigateTo(url);
+        }
+    }
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    public record ItemModel(string Title, string? Url = null, HashSet<ItemModel>? TreeviewItems = null);
+}

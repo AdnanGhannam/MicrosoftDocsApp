@@ -1,0 +1,16 @@
+﻿.custom-button {
+
+    ::deep &__link {
+        font-weight: 500;
+        color: #000;
+        border-radius: 2px;
+        background-color: var(--clr-primary);
+        padding: calc(var(--page-padding) / 2) calc(var(--page-padding) / 1.5);
+        display: inline-block;
+
+        &:hover {
+            background-color: var(--clr-hyperlink-hover);
+        }
+    }
+}
+

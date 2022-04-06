@@ -1,0 +1,19 @@
+﻿<div class="custom-button @Class" @onclick="OnClick">
+    <NavLink href="@Href" class="custom-button__link">
+        @ChildContent
+    </NavLink>
+</div>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

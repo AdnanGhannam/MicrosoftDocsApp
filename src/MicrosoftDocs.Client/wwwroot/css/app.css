@@ -2,6 +2,7 @@
 
 :root {
     --clr-primary: #75b6e7;
+    --clr-primary-lighter: #004173;
     --clr-secondary: #404040;
     --clr-text: #e6e6e6;
     --clr-text-light: #fff;
@@ -13,11 +14,8 @@
     --clr-hyperlink-hover: #278cda;
     --clr-hyperlink-visited: #ac7ee1;
     --clr-border: #404040;
-
     --bg-primary: #171717;
-
     --page-padding: 16px;
-
     --ff-primary: 'Noto Sans', sans-serif;
 }
 
@@ -81,6 +79,14 @@ a {
     text-decoration: none;
     color: var(--clr-hyperlink);
     font-weight: 300;
+    cursor: pointer;
+}
+
+a.outer-link::after {
+    content: '⎋';
+    display: inline-block;
+    padding-right: .5em;
+    transform: rotate(90deg);
 }
 
 a:hover {
@@ -115,3 +121,27 @@ input::placeholder {
 } 
 */
 
+
+/* Customization for MudComponents */
+
+.mud-icon-root {
+    width: .7em !important;
+}
+
+.mud-icon-root.mud-svg-icon{
+    fill: inherit;
+}
+
+.mud-paper {
+    background-color: var(--bg-primary) !important;
+    color: var(--clr-hyperlink);
+    border-radius: 0px 0px 2px 2px;
+}
+
+.mud-paper .mud-list {
+    border: 1px solid var(--clr-border);
+}
+
+.mud-paper .mud-list .mud-typography {
+    font-size: 1em;
+}

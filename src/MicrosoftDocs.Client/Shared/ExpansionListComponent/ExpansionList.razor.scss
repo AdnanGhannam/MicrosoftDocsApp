@@ -1,0 +1,41 @@
+﻿.expansion-list {
+    $border: 1px solid var(--clr-border);
+    min-width: 320px;
+    max-width: 440px;
+    margin: 0 auto;
+
+    > * {
+        padding: calc(var(--page-padding) / 2) var(--page-padding);
+    }
+
+    &__top {
+        border-radius: 5px 5px 0 0;
+        background-color: var(--clr-code-block);
+        border: $border;
+    }
+
+    &__center {
+        border-right: $border;
+        border-left: $border;
+
+        ::deep &__link {
+            display: block;
+            margin: .5em 0;
+
+            &.hidden {
+                display: none;
+            }
+        }
+    }
+
+    &__bottom {
+        text-align: center;
+        border-radius: 0 0 5px 5px;
+        border: $border;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--clr-code-block);
+        }
+    }
+}

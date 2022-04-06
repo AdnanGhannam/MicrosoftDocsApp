@@ -1,10 +1,10 @@
-﻿<div class="@("custom-menu " + Class + (Visiable ? " visiable" : ""))" 
+﻿<div class="@("custom-menu " + Class + (Visiable ? " visiable" : "") + (RTL ? " rtl" : ""))" 
             @onblur="() => Visiable = false" tabindex="0">
-    <div class="custom-menu__button-box @ButtonClass">
+    <div class="custom-menu__button-box clickable @ButtonClass">
         @Button
     </div>
 
-    <div class="@("custom-menu__content " + (RTL ? " rtl" : "") + $" {ContentClass}")">
+    <div class="@("custom-menu__content " + $" {ContentClass}")">
         @ChildContent
     </div>
 </div>

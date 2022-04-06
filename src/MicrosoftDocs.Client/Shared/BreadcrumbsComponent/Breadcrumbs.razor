@@ -1,0 +1,49 @@
+﻿@using MicrosoftDocs.Client.Shared.MenuCompenent;
+@using MicrosoftDocs.Client.Shared.MultiSectionsListComponent;
+
+
+<div class="custom-breadcrumbs @Class">
+    @if(Items.Count > 3)
+    {
+        <Menu Class="custom-breadcrumbs__menu" Visiable="@breadcrumbsListVisiable" RTL ContentClass="custom-breadcrumbs__menu__content">
+            <Button>
+                <MudIcon Icon="@Icons.Filled.MoreHoriz" @onclick="() => breadcrumbsListVisiable = !breadcrumbsListVisiable"/>
+            </Button>
+            <ChildContent>
+                <MultiSectionsList>
+                    @foreach(var (key, value) in Items)
+                    {
+                        <MultiSectionsListItem>
+                            <NavLink href="@key" class="custom-breadcrumbs__link">
+                                @value
+                            </NavLink>
+                        </MultiSectionsListItem>
+                    }
+                </MultiSectionsList>
+            </ChildContent>
+        </Menu>
+
+        <span class="custom-breadcrumbs__seperator">/</span>
+    }
+
+    @foreach(var (key, value) in Items.Skip(Items.Count - 3))
+    {
+        <NavLink href="@key" class="custom-breadcrumbs__link">
+            @value
+        </NavLink>
+
+        <span class="custom-breadcrumbs__seperator">/</span>
+    }
+
+</div>
+
+@code {
+    private bool breadcrumbsListVisiable;
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public Dictionary<string, string> Items { get; set; } = new();
+}
+

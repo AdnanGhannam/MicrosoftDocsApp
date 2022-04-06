@@ -1,0 +1,54 @@
+﻿@using MicrosoftDocs.Client.Shared.ButtonComponent;
+@using MicrosoftDocs.Client.Shared.ItemsListComponent;
+
+<header class="page-header">
+    <div class="page-header__left">
+        <ItemsList>
+            <ItemsListItem Href="/aspnet">
+                ASP.NET
+            </ItemsListItem>
+            <ItemsListItem>
+                <Icon>
+                    <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
+                </Icon>
+                <ChildContent>
+                    Languages
+                </ChildContent>
+            </ItemsListItem>
+            <ItemsListItem>
+                <Icon>
+                    <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
+                </Icon>
+                <ChildContent>
+                    Workflows
+                </ChildContent>
+            </ItemsListItem>
+            <ItemsListItem>
+                <Icon>
+                    <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
+                </Icon>
+                <ChildContent>
+                    APIs
+                </ChildContent>
+            </ItemsListItem>
+            <ItemsListItem>
+                <Icon>
+                    <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
+                </Icon>
+                <ChildContent>
+                    Resourses
+                </ChildContent>
+            </ItemsListItem>
+        </ItemsList>
+    </div>
+
+    <div class="page-header__right">
+        <Button Href="/download">
+            Download .NET
+        </Button>
+    </div>
+</header>
+
+@code {
+
+}

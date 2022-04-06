@@ -1,0 +1,71 @@
+﻿<nav class="expansion-list @Class">
+    <div class="expansion-list__top">
+        <MudIcon Icon="@Icons.Filled.FormatListBulleted" />
+        @Title
+    </div>
+
+    <div class="expansion-list__center">
+        @foreach (var (id, text) in Links)
+        {
+            @if(count < 3)
+            {
+                <NavLink href="@id" class="expansion-list__center__link">
+                    @text
+                </NavLink>
+            }
+            else
+            {
+                <NavLink href="@id" class="@("expansion-list__center__link" + (isExpanded ? "" : " hidden"))">
+                    @text
+                </NavLink>
+            }
+
+            @IncrementCount()
+        }
+    </div>
+
+    <div class="expansion-list__bottom" @onclick="() => isExpanded = !isExpanded">
+        @if (!isExpanded)
+        {
+            @("Show more")
+            <MudIcon Icon="@Icons.Filled.KeyboardArrowDown"/>
+        }
+        else
+        {
+            @("Show less")
+            <MudIcon Icon="@Icons.Filled.KeyboardArrowUp"/>
+        }
+    </div>
+
+</nav>
+
+@code {
+    private bool isExpanded = false;
+
+    private int count = 0;
+
+    private string IncrementCount() 
+    {
+        count++;
+        return "";
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        count = 0;
+        base.OnAfterRender(firstRender);
+    }
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    /// <summary>
+    /// Key: Id,
+    /// Value: Text
+    /// </summary>
+    [Parameter]
+    public Dictionary<string, string> Links { get; set; } = new();
+}

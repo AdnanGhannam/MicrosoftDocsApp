@@ -3,35 +3,36 @@
 @using MicrosoftDocs.Client.Shared.ImageboxComponent;
 @using MicrosoftDocs.Client.Shared.MenuCompenent;
 @using MicrosoftDocs.Client.Shared.MultiSectionsListComponent;
+@using MicrosoftDocs.Client.Shared.ItemsListComponent;
 
 <nav class="nav-bar">
     <div class="nav-bar__left">
-        <Logo />
+        <Logo Class="nav-bar__left__logo-box"/>
 
         <div class="nav-bar__left__list-box">
-            <NavbarList Class="nav-bar__list">
-                <NavbarListItem Href="/" Class="nav-bar__list__item">
+            <ItemsList Class="nav-bar__list">
+                <ItemsListItem Href="/">
                     Docs
-                </NavbarListItem>
-                <NavbarListItem Href="/documentation" Class="nav-bar__list__item">
+                </ItemsListItem>
+                <ItemsListItem Href="/documentation">
                     Documentation
-                </NavbarListItem>
-                <NavbarListItem Href="/learn" Class="nav-bar__list__item">
+                </ItemsListItem>
+                <ItemsListItem Href="/learn">
                     Learn
-                </NavbarListItem>
-                <NavbarListItem Href="/questions" Class="nav-bar__list__item">
+                </ItemsListItem>
+                <ItemsListItem Href="/questions">
                     Q&A
-                </NavbarListItem>
-                <NavbarListItem Href="/code-samples" Class="nav-bar__list__item">
+                </ItemsListItem>
+                <ItemsListItem Href="/code-samples">
                     Code Samples
-                </NavbarListItem>
-                <NavbarListItem Href="/shows" Class="nav-bar__list__item">
+                </ItemsListItem>
+                <ItemsListItem Href="/shows">
                     Shows
-                </NavbarListItem>
-                <NavbarListItem Href="/events" Class="nav-bar__list__item">
+                </ItemsListItem>
+                <ItemsListItem Href="/events">
                     Events
-                </NavbarListItem>
-            </NavbarList>
+                </ItemsListItem>
+            </ItemsList>
         </div>
     </div>
 
@@ -39,12 +40,19 @@
 
     <div class="nav-bar__right">
         <Inputbox Placeholder="Search" />
-        <Menu Visiable="isMenuVisiable">
+        <Menu Visiable="isMenuVisiable" Class="nav-bar__right__menu">
             <Button>
                 <Imagebox Character="@('M')" ImageUrl="/images/person.svg" 
                             OnClick="() => isMenuVisiable = !isMenuVisiable"/>
             </Button>
             <ChildContent>
+                <div class="nav-bar__right__user-box">
+                    <Imagebox Character="@('M')" ImageUrl="/images/person.svg" Size="3.5em" />
+                    <div class="info-box">
+                        <h6 class="name">Adnan Ghannam</h6>
+                        <span class="email">adnanghannam21@gmail.com</span>
+                    </div>
+                </div>
                 <MultiSectionsList>
                     <MultiSectionsListItem>
                         <NavLink href="/profile">

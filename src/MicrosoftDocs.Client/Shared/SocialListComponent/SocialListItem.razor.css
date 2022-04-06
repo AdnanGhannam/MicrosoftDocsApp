@@ -1,0 +1,1 @@
+::deep .social-list-item__link{display:flex;justify-content:flex-start;align-items:center;flex-direction:row;flex-wrap:nowrap;padding:.6em 1em}::deep .social-list-item__link:hover{background-color:var(--clr-code-block)}.social-list-item__icon{margin-right:.2em}

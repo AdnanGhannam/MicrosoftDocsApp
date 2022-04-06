@@ -2,7 +2,6 @@
 
 .custom-menu {
     position: relative;
-    margin: 0 .5em;
 
     &.visiable {
         .custom-menu__content {
@@ -13,9 +12,19 @@
             display: inline-block;
         }
     }
+
+    &.rtl {
+        &::after {
+            transform: translate(0px, calc(12px - 50%)) rotate(45deg);
+        }
+        .custom-menu__content {
+            @include absolute(0px, 100%, auto, auto, 0px, 12px);
+        }
+    }
     
     &::after {
         @include absolute(auto, 100%, 0px, auto);
+        z-index: 1001;
         content: '';
         $size: 10px;
         width: $size;
@@ -30,14 +39,13 @@
 
     &__content {
         @include absolute(auto, 100%, 0px, auto, 0px, 12px);
+        z-index: 1000;
         background-color: var(--bg-primary);
         border: 1px solid var(--clr-border);
         padding: var(--page-padding);
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .4);
         display: none;
-
-        &.rtl {
-            @include absolute(0px, 100%, auto, auto, 0px, 12px);
-        }
+        min-width: 200px;
+        max-width: 400px;
     }
 }

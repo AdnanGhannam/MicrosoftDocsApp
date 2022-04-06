@@ -1,0 +1,24 @@
+﻿<li class="social-list-item">
+    <NavLink href="@Href" class="@("social-list-item__link" + $" {Class}")">
+        <span class="social-list-item__icon">
+            @Icon
+        </span>
+        <span class="social-list-item__text">
+            @ChildContent
+        </span>
+    </NavLink>
+</li>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public RenderFragment Icon { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

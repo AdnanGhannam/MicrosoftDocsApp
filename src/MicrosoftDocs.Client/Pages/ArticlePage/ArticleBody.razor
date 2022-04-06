@@ -1,0 +1,125 @@
+﻿@using MicrosoftDocs.Client.Shared.BreadcrumbsComponent;
+@using MicrosoftDocs.Client.Shared.MenuCompenent;
+@using MicrosoftDocs.Client.Shared.SocialListComponent;
+
+
+
+<div class="article-body @Class">
+    <header class="article-body__header">
+        <Breadcrumbs Items="@Path"/>
+        <div class="article-body__header__toolbar">
+            <MudIconButton Icon="@Icons.Filled.AddCircleOutline"/>
+            <MudIconButton Icon="@Icons.Filled.Feedback"/>
+            <MudIconButton Icon="@Icons.Filled.Edit"/>
+            <Menu Visiable="@socialListVisiable" ContentClass="menu-content">
+                <Button>
+                    <MudIconButton Icon="@Icons.Filled.MoreVert" @onclick="() => socialListVisiable = !socialListVisiable"/>
+                </Button>
+                <ChildContent>
+                    <SocialList>
+                        <SocialListItem>
+                            <Icon>
+                                <MudIcon Icon="@Icons.Custom.Brands.GitHub"/>
+                            </Icon>
+                            <ChildContent>
+                                Twitter
+                            </ChildContent>
+                        </SocialListItem>
+                        <SocialListItem>
+                            <Icon>
+                                <MudIcon Icon="@Icons.Custom.Brands.GitHub"/>
+                            </Icon>
+                            <ChildContent>
+                                Github
+                            </ChildContent>
+                        </SocialListItem>
+                        <SocialListItem>
+                            <Icon>
+                                <MudIcon Icon="@Icons.Custom.Brands.Facebook"/>
+                            </Icon>
+                            <ChildContent>
+                                Facebook
+                            </ChildContent>
+                        </SocialListItem>
+                        <SocialListItem>
+                            <Icon>
+                                <MudIcon Icon="@Icons.Custom.Brands.Google"/>
+                            </Icon>
+                            <ChildContent>
+                                Google
+                            </ChildContent>
+                        </SocialListItem>
+                    </SocialList>
+                </ChildContent>
+            </Menu>
+        </div>
+    </header>
+
+    <div class="article-body__content">
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+        <h1 class="article-body__content__title">@Title</h1>
+
+        <div class="article-body__content__info-box">
+            <div class="left-box">
+                <span class="">Article</span>
+                <span class="">@PublishTime.ToShortDateString()</span>
+                <span class="">@ReadingTime minutes to read</span>
+                <span class=""></span>
+            </div>
+            <div class="right-box">
+                <Menu Visiable="feedbackMenuVisiable">
+                    <Button>
+                        <MudIconButton Icon="@Icons.Filled.ThumbsUpDown" @onclick="() => feedbackMenuVisiable = !feedbackMenuVisiable"/>
+                    </Button>
+                    <ChildContent>
+                        <FeedbackMenuContent />
+                    </ChildContent>
+                </Menu>
+            </div>
+        </div>
+
+        <div>@Content</div>
+    </div>
+</div>
+
+@code {
+    private bool socialListVisiable;
+    private bool feedbackMenuVisiable;
+
+
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public Dictionary<string, string> Path { get; set; } = new();
+
+    [Parameter]
+    public List<string> Contributors { get; set; } = new();
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public DateTime PublishTime { get; set; }
+
+    [Parameter]
+    public int ReadingTime { get; set; }
+
+    [Parameter]
+    public string Content { get; set; } = "";
+
+    [Parameter]
+    public bool? Liked { get; set; }
+
+
+}
