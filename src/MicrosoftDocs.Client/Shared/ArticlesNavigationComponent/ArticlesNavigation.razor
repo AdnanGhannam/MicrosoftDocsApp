@@ -16,7 +16,7 @@
     <MudTreeView Items="TreeviewItems" Hover="true" Class="articles-nav__treeview" ExpandOnClick>
         <ItemTemplate>
             <MudTreeViewItem Value="context" Items="context.TreeviewItems" Text="@context.Title" 
-                                @onclick="() => Goto(context.Url)"/>
+                                @onclick="() => Goto(context.Url)" Expanded="context.Expanded" />
         </ItemTemplate>
     </MudTreeView>
 </nav>
@@ -40,50 +40,24 @@
         versions.Add("ASP.NET 1.0");
 
 
-        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
+        TreeviewItems.Add(new("Security and Identity", Expanded: true, TreeviewItems: new()
         {
             new("Overview", "/security-and-identity/overview"),
-            new("Authentication", TreeviewItems: new()
+            new("Authentication", Expanded: true, TreeviewItems: new()
             {
                 new("Overview", "/authentication/overview"),
                 new("Introduction to Identity", "/authentication/intro"),
             }),
         }));
-        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
+
+        TreeviewItems.Add(new("Data access", TreeviewItems: new()
         {
-            new("Overview", "/security-and-identity/overview"),
-            new("Authentication", TreeviewItems: new()
+            new("Tutorials", Expanded: true, TreeviewItems: new()
             {
-                new("Overview", "/authentication/overview"),
-                new("Introduction to Identity", "/authentication/intro"),
+                new("EF Core with Razor", "/data-access/ef-core-razor"),
+                new("EF Core with MVC", "/data-access/ef-core-mvc"),
             }),
-        }));
-        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
-        {
-            new("Overview", "/security-and-identity/overview"),
-            new("Authentication", TreeviewItems: new()
-            {
-                new("Overview", "/authentication/overview"),
-                new("Introduction to Identity", "/authentication/intro"),
-            }),
-        }));
-        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
-        {
-            new("Overview", "/security-and-identity/overview"),
-            new("Authentication", TreeviewItems: new()
-            {
-                new("Overview", "/authentication/overview"),
-                new("Introduction to Identity", "/authentication/intro"),
-            }),
-        }));
-        TreeviewItems.Add(new("Security and Identity", TreeviewItems: new()
-        {
-            new("Overview", "/security-and-identity/overview"),
-            new("Authentication", TreeviewItems: new()
-            {
-                new("Overview", "/authentication/overview"),
-                new("Introduction to Identity", "/authentication/intro"),
-            }),
+            new("EF 6 with ASP.NET Core", "/data-access/ef-6"),
         }));
     }
 
@@ -98,5 +72,5 @@
     [Parameter]
     public string Class { get; set; } = "";
 
-    public record ItemModel(string Title, string? Url = null, HashSet<ItemModel>? TreeviewItems = null);
+    public record ItemModel(string Title, string? Url = null, bool Expanded = false, HashSet<ItemModel>? TreeviewItems = null);
 }

@@ -34,6 +34,10 @@ body {
     fill: var(--clr-text);
 }
 
+::selection {
+    background-color: var(--clr-primary-lighter);
+}
+
 h1,
 h2,
 h3,
@@ -82,7 +86,7 @@ a {
     cursor: pointer;
 }
 
-a.outer-link::after {
+.outer-link::after {
     content: '⎋';
     display: inline-block;
     padding-right: .5em;
@@ -98,16 +102,22 @@ a:visited {
     color: var(--clr-hyperlink-visited);
 }
 
-input {
+input,
+textarea {
     font: inherit;
     color: inherit;
     outline: none;
+    color: inherit;
 }
 
-input::placeholder {
-    font-weight: 300;
+input::placeholder,
+textarea::placeholder {
+    font-weight: 300 !important;
     opacity: .5;
+}
 
+textarea {
+    min-height: 2.6em;
 }
 
 /* Cutsom Classes */
@@ -144,4 +154,9 @@ input::placeholder {
 
 .mud-paper .mud-list .mud-typography {
     font-size: 1em;
+}
+
+.page-header__expansion-list {
+    background-color: var(--clr-code-block);
+    color: var(--clr-text);
 }

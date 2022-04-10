@@ -15,4 +15,8 @@
             border-color: transparent;
         }
     }
+
+    > textarea {
+        resize: vertical;
+    }
 }

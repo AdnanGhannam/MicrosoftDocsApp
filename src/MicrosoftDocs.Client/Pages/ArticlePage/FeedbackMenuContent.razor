@@ -1,16 +1,34 @@
-﻿<form >
-    <h3>Is this page helpful?</h3>
+﻿@using MicrosoftDocs.Client.Shared.InputboxComponent;
+@using MicrosoftDocs.Client.Shared.ButtonComponent;
 
-    <div>
-        <MudButton Icon="@Icons.Filled.ThumbUpAlt">
+
+
+<form class="feedback-menu-content @Class">
+    <strong class="feedback-menu-content__title">Is this page helpful?</strong>
+
+    <div class="feedback-menu-content__buttons-box">
+        <MudButton StartIcon="@Icons.Filled.ThumbUpAlt">
             Yes
         </MudButton>
-        <MudButton Icon="@Icons.Filled.ThumbDownAlt">
+        <MudButton StartIcon="@Icons.Filled.ThumbDownAlt">
             No
         </MudButton>
     </div>
+
+    <Inputbox Value="" Placeholder="Any additional feedback?" IsMultiLine />
+
+    <p class="feedback-menu-content__paragraph">
+        Feedback will be sent to Microsoft: By pressing the submit button, 
+        your feedback will be used to improve Microsoft products and services. 
+        <NavLink class="outer-link" href="/policy">Privacy policy.</NavLink>
+    </p>
+
+    <Button Class="feedback-menu-content__submit-button">
+        Submit
+    </Button>
 </form>
 
 @code {
-
+    [Parameter]
+    public string Class { get; set; } = "";
 }

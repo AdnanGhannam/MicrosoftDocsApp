@@ -7,6 +7,7 @@
         padding: var(--page-padding) .5em;
         cursor: pointer;
         font-size: .97em;
+        user-select: none;
 
         &:first-child {
             font-size: 1.2em;

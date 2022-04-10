@@ -4,4 +4,27 @@
     @include flex(space-between);
     padding: 0 var(--page-padding);
     border-bottom: 1px solid var(--clr-border);
+
+    &__left {
+
+        ::deep &__item {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+
+            .active {
+                background-color: var(--clr-code-block);
+            }
+
+            .mud-button-text {
+                padding: var(--page-padding) 0;
+                font-weight: inherit;
+                font-size: inherit;
+                text-transform: none;
+
+                &::after {
+                    display: none;
+                }
+            }
+        }
+    }
 }

@@ -4,39 +4,67 @@
 <header class="page-header">
     <div class="page-header__left">
         <ItemsList>
-            <ItemsListItem Href="/aspnet">
+            <ItemsListItem Href="/aspnet" Class="page-header__left__item">
                 ASP.NET
             </ItemsListItem>
-            <ItemsListItem>
+            <ItemsListItem Class="page-header__left__item">
                 <Icon>
                     <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
                 </Icon>
                 <ChildContent>
-                    Languages
+                    <MudMenu Label="Languages" Color="Color.Inherit" ListClass="page-header__expansion-list"
+                                AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+                        <MudMenuItem>C#</MudMenuItem>
+                        <MudMenuItem>F#</MudMenuItem>
+                        <MudMenuItem>Visual Basic</MudMenuItem>
+                    </MudMenu>
                 </ChildContent>
             </ItemsListItem>
-            <ItemsListItem>
+            <ItemsListItem Class="page-header__left__item">
                 <Icon>
                     <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
                 </Icon>
                 <ChildContent>
-                    Workflows
+                    <MudMenu Label="Workflows" Color="Color.Inherit" ListClass="page-header__expansion-list"
+                                AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+                        <MudMenuItem>Web</MudMenuItem>
+                        <MudMenuItem>Mobile</MudMenuItem>
+                        <MudMenuItem>Cloud</MudMenuItem>
+                        <MudMenuItem>Desktop</MudMenuItem>
+                        <MudMenuItem>Machine Learning & Data</MudMenuItem>
+                    </MudMenu>
                 </ChildContent>
             </ItemsListItem>
-            <ItemsListItem>
+            <ItemsListItem Class="page-header__left__item">
                 <Icon>
                     <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
                 </Icon>
                 <ChildContent>
-                    APIs
+                    <MudMenu Label="APIs" Color="Color.Inherit" ListClass="page-header__expansion-list"
+                                AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+                        <MudMenuItem>.Net</MudMenuItem>
+                        <MudMenuItem>.Net Framework</MudMenuItem>
+                        <MudMenuItem>ASP.NET</MudMenuItem>
+                        <MudMenuItem>ML.NET</MudMenuItem>
+                        <MudMenuItem>Ef Core</MudMenuItem>
+                    </MudMenu>
                 </ChildContent>
             </ItemsListItem>
-            <ItemsListItem>
+            <ItemsListItem Class="page-header__left__item">
                 <Icon>
                     <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
                 </Icon>
                 <ChildContent>
-                    Resourses
+                    <MudMenu Label="Resourses" Color="Color.Inherit" ListClass="page-header__expansion-list"
+                                AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+                        <MudMenuItem>What is .NET</MudMenuItem>
+                        <MudMenuItem>.NET Architecture Guide</MudMenuItem>
+                        <MudMenuItem>Learning Materials</MudMenuItem>
+                        <MudMenuItem>Downloads</MudMenuItem>
+                        <MudMenuItem>Community</MudMenuItem>
+                        <MudMenuItem>Support</MudMenuItem>
+                        <MudMenuItem>Blog</MudMenuItem>
+                    </MudMenu>
                 </ChildContent>
             </ItemsListItem>
         </ItemsList>
@@ -50,5 +78,4 @@
 </header>
 
 @code {
-
 }
