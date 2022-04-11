@@ -1,0 +1,94 @@
+﻿@page "/account/login"
+@using System.Text.RegularExpressions
+@using System.Net.Mail
+@using mud = MudBlazor
+@using Shared.Layouts.SignLayoutComponent
+@using MicrosoftDocs.Client.Shared.ButtonComponent
+@inject NavigationManager _navManager
+@layout SignLayout
+
+
+<form class="login-page" style="transform: translate(@transformValue%)" @onsubmit="OnFormSubmit">
+    <div class="login-page__showcase login-page__showcase--1">
+        <h4>Sign in</h4>
+
+        <span class="login-page__message">@emailMessage</span>
+        <input @bind-value="emailValue" placeholder="Email, Phone or Skype" class="login-page__input" />
+
+        <div class="login-page__sub">
+            No account? 
+            <NavLink href="/account/register">Create one!</NavLink>
+        </div>
+
+        <div class="login-page__sub">
+            <NavLink href="/account/help">Can't access your account?</NavLink>
+        </div>
+
+        <div class="login-page__buttons-box">
+            <Button ButtonClass="button" OnClick="ConfirmEmail">
+                Next
+            </Button>
+        </div>
+    </div>
+
+    <div class="login-page__showcase login-page__showcase--2">
+        <p>@emailValue</p>
+
+        <span class="login-page__message">@passwordMessage</span>
+        <input @bind-value="passwordValue" placeholder="Password" class="login-page__input"
+                type="password"/>
+
+        <div class="login-page__sub">
+            <NavLink href="/account/forgot-password">Forgot password?</NavLink>
+        </div>
+
+        <div class="login-page__sub">
+            <NavLink href="/account/external-sign">Other ways to sign in</NavLink>
+        </div>
+
+        <div class="login-page__buttons-box">
+            <Button ButtonClass="button" ButtonType="submit">
+                Sign in
+            </Button>
+        </div>
+    </div>
+</form>
+
+
+@code {
+    private string emailValue = "";
+    private string passwordValue = "";
+
+    private string emailMessage = "";
+    private string passwordMessage = "";
+
+    private int transformValue = 0;
+
+    void ConfirmEmail()
+    {
+        MailAddress.TryCreate(emailValue, out var results);
+
+        if (results is not null)
+        {
+            // TODO
+            // backend check
+
+            Next();
+        }
+        else
+        {
+            emailMessage = "Email is not valid";
+        }
+    }
+
+    void OnFormSubmit()
+    {
+        // TODO 
+        // Check if 'passwordValue' is right
+        // backend check
+        // if valid navigate
+        _navManager.NavigateTo("/");
+    }
+
+    void Next() => transformValue -= 100;
+}

@@ -6,7 +6,7 @@
     flex-wrap: $wrap;
 }
 
-@mixin grid($c: auto, $r: auto, $cg: 0px, $rg: 0xp) {
+@mixin grid($c: auto, $r: auto, $cg: 0px, $rg: 0px) {
     display: grid;
     grid-template-columns: $c;
     grid-template-rows: $r;

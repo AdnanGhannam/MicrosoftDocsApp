@@ -1,12 +1,31 @@
-﻿<div class="custom-button @Class" @onclick="OnClick">
-    <NavLink href="@Href" class="custom-button__link">
-        @ChildContent
-    </NavLink>
+﻿<div class="@($"custom-button {Class}")">
+    @if(Href is not null)
+    {
+        <NavLink href="@Href" class="@($"custom-button__link {LinkClass}")">
+            @ChildContent
+        </NavLink>
+    }
+    else
+    {
+        <button class="@($"custom-button__button {ButtonClass}")" type="@ButtonType"
+                    @onclick="OnClick">
+            @ChildContent
+        </button>
+    }
 </div>
 
 @code {
     [Parameter]
     public string Class { get; set; } = "";
+
+    [Parameter]
+    public string ButtonClass { get; set; } = "";
+
+    [Parameter]
+    public string ButtonType { get; set; } = "button";
+
+    [Parameter]
+    public string LinkClass { get; set; } = "";
 
     [Parameter]
     public EventCallback<MouseEventArgs> OnClick { get; set; }

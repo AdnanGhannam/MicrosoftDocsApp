@@ -1,0 +1,22 @@
+﻿@inherits LayoutComponentBase
+@using MicrosoftDocs.Client.Shared.LogoComponent;
+
+<section class="sign-layout">
+    <div class="sign-layout__content">
+        <div class="sign-layout__content__logo-box">
+            <Logo />
+        </div>
+        <div class="sign-layout__content__body">
+            @Body
+        </div>
+    </div>
+
+    <footer class="sign-layout__footer">
+        <NavLink href="" class="sign-layout__footer__link">Terms of use</NavLink>
+        <NavLink href="" class="sign-layout__footer__link">Privacy & cookies</NavLink>
+    </footer>
+</section>
+
+@code {
+
+}

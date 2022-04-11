@@ -1,0 +1,135 @@
+﻿@page "/account/register"
+@using System.Net.Mail
+@using mud = MudBlazor
+@using Shared.Layouts.SignLayoutComponent
+@using MicrosoftDocs.Client.Shared.ButtonComponent
+@inject NavigationManager _navManager
+@layout SignLayout
+
+
+<form class="register-page" style="transform: translate(@transformValue%)" @onsubmit="OnFormSubmit">
+    <div class="register-page__showcase register-page__showcase--1">
+        <h4>Create account</h4>
+
+        <span class="register-page__message">@emailMessage</span>
+        <input @bind-value="emailValue" placeholder="someone@@example.com" class="register-page__input" />
+
+        <div class="register-page__sub">
+            <NavLink href="/account/register">Use phone number instead</NavLink>
+        </div>
+
+        <div class="register-page__sub">
+            <NavLink href="/account/help">Get new email address</NavLink>
+        </div>
+
+        <div class="register-page__buttons-box">
+            <Button ButtonClass="button" OnClick="ConfirmEmail">
+                Next
+            </Button>
+        </div>
+    </div>
+
+    <div class="register-page__showcase register-page__showcase--2">
+        <p @onclick="Back" class="clickable">
+            <MudIcon Icon="@Icons.Filled.ArrowBack"/>
+            @emailValue
+        </p>
+
+        <h4>Create a password</h4>
+
+        <div class="register-page__sub">
+            Enter the password you would like to use in your account
+        </div>
+
+        <span class="register-page__message">@passwordMessage</span>
+        <input @bind-value="passwordValue" placeholder="Password" class="register-page__input"
+                type="@(showPassword ? "" : "password")"/>
+
+        <MudCheckBox @bind-Checked="showPassword" Label="Show password" Color="Color.Primary" />
+
+        <div class="register-page__buttons-box">
+            <Button ButtonClass="button" OnClick="ConfirmPassword">
+                Next
+            </Button>
+        </div>
+    </div>
+
+    <div class="register-page__showcase register-page__showcase--3">
+        <p @onclick="Back" class="clickable">
+            <MudIcon Icon="@Icons.Filled.ArrowBack"/>
+            @emailValue
+        </p>
+
+        <h4>Verify email</h4>
+
+        <div class="register-page__sub">
+            Enter the code we sent to <strong>@emailValue</strong>. If you didn't get the email, check your 
+            junk folder of <NavLink href="/account/">Try again</NavLink>
+        </div>
+
+        <span class="register-page__message">@(codeMessage)</span>
+        <input @bind-value="codeValue" placeholder="code" class="register-page__input" />
+
+        <div class="register-page__buttons-box">
+            <Button ButtonClass="button" OnClick="ConfirmCode">
+                Verify
+            </Button>
+        </div>
+    </div>
+</form>
+
+
+@code {
+    private string emailValue = "";
+    private string passwordValue = "";
+    private string codeValue = "";
+
+    private string emailMessage = "";
+    private string passwordMessage = "";
+    private string codeMessage = "";
+
+    private bool showPassword;
+
+    private int transformValue = 0;
+
+    void ConfirmEmail()
+    {
+        MailAddress.TryCreate(emailValue, out var results);
+
+        if (results is not null)
+        {
+            // TODO
+            // backend check
+
+            Next();
+        }
+        else
+        {
+            emailMessage = "Email is not valid";
+        }
+    }
+
+    void ConfirmPassword()
+    {
+        // TODO
+        Next();
+    }
+
+    void ConfirmCode()
+    {
+        
+    }
+
+    void OnFormSubmit()
+    {
+        // TODO 
+        // Check if 'passwordValue' is right
+        // backend check
+        // if valid navigate
+        _navManager.NavigateTo("/");
+    }
+
+    void Next() => transformValue -= 100;
+
+    void Back() => transformValue += 100;
+}

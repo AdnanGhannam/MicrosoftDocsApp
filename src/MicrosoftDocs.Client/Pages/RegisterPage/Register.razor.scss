@@ -1,0 +1,50 @@
+﻿@import "../../Shared/Styles/Mixins.scss";
+
+.register-page {
+    @include grid(repeat(10, 100%), 1fr);
+    transition: all .3s linear;
+
+    &__showcase {
+        width: 100%;
+        padding-right: calc(var(--page-padding) * 2);
+    }
+
+    &__message {
+        color: var(--clr-error);
+        font-weight: 300;
+        line-height: 2em;
+        font-size: .9em;
+    }
+
+    &__input {
+        margin: 1.05em 0;
+        border-bottom: 1px solid var(--clr-border);
+        padding: .45em .15em;
+        font-size: .95em;
+    }
+
+    &__sub {
+        font-size: .8em;
+        margin: 1em 0;
+    }
+
+    ::deep .mud-checkbox {
+        font-size: .8em;
+
+        .mud-ripple-checkbox {
+            padding: 0 .5em 0 0;
+        }
+    }
+
+    &__buttons-box {
+        @include flex(flex-start, center, row-reverse);
+        margin-top: 1.3em;
+
+        ::deep .button {
+            border-radius: 0px;
+            padding: .5em 2.4em;
+            font-weight: 400;
+            font-size: .9em;
+        }
+    }
+}

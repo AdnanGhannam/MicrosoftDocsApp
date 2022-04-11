@@ -14,6 +14,7 @@
     --clr-hyperlink-hover: #278cda;
     --clr-hyperlink-visited: #ac7ee1;
     --clr-border: #404040;
+    --clr-error: #e81123; 
     --bg-primary: #171717;
     --page-padding: 16px;
     --ff-primary: 'Noto Sans', sans-serif;
@@ -108,6 +109,8 @@ textarea {
     color: inherit;
     outline: none;
     color: inherit;
+    background-color: transparent;
+    width: 100%;
 }
 
 input::placeholder,
@@ -158,5 +161,13 @@ textarea {
 
 .page-header__expansion-list {
     background-color: var(--clr-code-block);
+}
+
+.page-header__expansion-list .mud-list-item-clickable:hover {
+    background-color: transparent;
+}
+
+.page-header__expansion-list a {
     color: var(--clr-text);
 }
+
