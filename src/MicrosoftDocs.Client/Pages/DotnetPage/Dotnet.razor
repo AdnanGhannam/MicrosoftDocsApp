@@ -1,0 +1,54 @@
+﻿@page "/documentation/dotnet"
+@using mud = MudBlazor;
+@using MicrosoftDocs.Client.Models
+@using MicrosoftDocs.Client.Shared.ButtonComponent
+@using MicrosoftDocs.Client.Shared.ItemsListComponent
+@using MicrosoftDocs.Client.Shared.PageHeaderComponent
+
+
+<PageHeader Title=".NET" Items="@items" Href="/documentation/dotnet">
+    <Button Href="/download">
+        Download .NET
+    </Button>
+</PageHeader>
+
+
+
+@code {
+    private List<PageHeaderItemModel> items = new()
+    {
+        new("Languages", Icons.Filled.KeyboardArrowDown, new()
+        {
+            { "/csharp", "C#" },
+            { "/fsharp", "F#" },
+            { "/visual-basic", "Visual Basic" },
+        }),
+        new("Workflows", Icons.Filled.KeyboardArrowDown, new()
+        {
+            { "/web", "Web" },
+            { "/mobile", "Mobile" },
+            { "/clound", "Cloud" },
+            { "/desktop", "Desktop" },
+            { "/ml", "Machine Learning & Data" },
+        }),
+        new("APIs", Icons.Filled.KeyboardArrowDown, new()
+        {
+            { "/api/dotnet", ".NET" },
+            { "/api/dotnet-framework", ".NET Framework" },
+            { "/api/aspnet", "ASP.NET" },
+            { "/api/ml", "Machine Learning" },
+            { "/api/ef-core", "EF Core" },
+        }),
+        new("Resources", Icons.Filled.KeyboardArrowDown, new()
+        {
+            { "https://www.fake.c/what-is-dotnet", "What is .NET" },
+            { "https://www.fake.c/dotent-archi-guide", ".NET Architecture Guide" },
+            { "https://www.fake.c/leaning-materials", "Learning Materials" },
+            { "https://www.fake.c/downloads", "Downloads" },
+            { "https://www.fake.c/communtiy", "Community" },
+            { "https://www.fake.c/support", "Support" },
+            { "https://www.fake.c/blog", "Blog" },
+        }),
+
+    };
+}

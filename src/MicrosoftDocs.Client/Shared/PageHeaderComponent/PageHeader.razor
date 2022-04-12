@@ -1,81 +1,65 @@
-﻿@using MicrosoftDocs.Client.Shared.ButtonComponent;
+﻿@using MicrosoftDocs.Client.Models
 @using MicrosoftDocs.Client.Shared.ItemsListComponent;
 
-<header class="page-header">
+<header class="@($"page-header { Class }")">
     <div class="page-header__left">
         <ItemsList>
-            <ItemsListItem Href="/aspnet" Class="page-header__left__item">
-                ASP.NET
+            <ItemsListItem Href="@Href" Class="page-header__left__item">
+                @Title
             </ItemsListItem>
-            <ItemsListItem Class="page-header__left__item">
-                <Icon>
-                    <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
-                </Icon>
-                <ChildContent>
-                    <MudMenu Label="Languages" Color="Color.Inherit" ListClass="page-header__expansion-list"
-                                AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                        <MudMenuItem><NavLink href="/csharp">C#</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/fsharp">F#</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/visual-basic">Visual Basic</NavLink></MudMenuItem>
-                    </MudMenu>
-                </ChildContent>
-            </ItemsListItem>
-            <ItemsListItem Class="page-header__left__item">
-                <Icon>
-                    <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
-                </Icon>
-                <ChildContent>
-                    <MudMenu Label="Workflows" Color="Color.Inherit" ListClass="page-header__expansion-list"
-                                AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                        <MudMenuItem><NavLink href="/web">Web</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/mobile">Mobile</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/cloud">Cloud</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/desktop">Desktop</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/ml">Machine Learning & Data</NavLink></MudMenuItem>
-                    </MudMenu>
-                </ChildContent>
-            </ItemsListItem>
-            <ItemsListItem Class="page-header__left__item">
-                <Icon>
-                    <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
-                </Icon>
-                <ChildContent>
-                    <MudMenu Label="APIs" Color="Color.Inherit" ListClass="page-header__expansion-list"
-                                AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                        <MudMenuItem><NavLink href="/dotnet">.Net</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/dotnet-framework">.Net Framework</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/asp-net">ASP.NET</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/mk-dotnet">ML.NET</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink href="/ef-core">Ef Core</NavLink></MudMenuItem>
-                    </MudMenu>
-                </ChildContent>
-            </ItemsListItem>
-            <ItemsListItem Class="page-header__left__item">
-                <Icon>
-                    <MudIcon Icon="@Icons.Filled.KeyboardArrowDown" />
-                </Icon>
-                <ChildContent>
-                    <MudMenu Label="Resourses" Color="Color.Inherit" ListClass="page-header__expansion-list"
-                                AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                        <MudMenuItem><NavLink class="outer-link" href="/what-is-dotnet">What is .NET</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink class="outer-link" href="/dotnet-archi-guide">.NET Architecture Guide</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink class="outer-link" href="/learning-materials">Learning Materials</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink class="outer-link" href="/downloads">Downloads</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink class="outer-link" href="/community">Community</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink class="outer-link" href="/support">Support</NavLink></MudMenuItem>
-                        <MudMenuItem><NavLink class="outer-link" href="/blog">Blog</NavLink></MudMenuItem>
-                    </MudMenu>
-                </ChildContent>
-            </ItemsListItem>
+            @foreach(var item in Items)
+            {
+                @if(item.Items?.Count > 0)
+                {
+                    <ItemsListItem Class="page-header__left__item">
+                        <Icon>
+                            <MudIcon Icon="@item.Icon" />
+                        </Icon>
+                        <ChildContent>
+                                <MudMenu Label="@item.Label" Color="Color.Inherit" ListClass="page-header__expansion-list"
+                                            AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+                                    @foreach(var (key, value) in item.Items)
+                                    {
+                                        <MudMenuItem>
+                                            <NavLink href="@key" class="@(key.StartsWith('/') ? "" : "outer-link")">
+                                                @value
+                                            </NavLink>
+                                        </MudMenuItem>
+                                    }
+                            </MudMenu>
+                        </ChildContent>
+                    </ItemsListItem>
+                }
+                else
+                {
+                    <ItemsListItem>
+                        <NavLink href="@item.Url">
+                            @item.Label
+                        </NavLink>
+                    </ItemsListItem>
+                }
+            }
         </ItemsList>
     </div>
 
     <div class="page-header__right">
-        <Button Href="/download">
-            Download .NET
-        </Button>
+        @ChildContent
     </div>
 </header>
 
 @code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public List<PageHeaderItemModel> Items { get; set; } = new();
 }
