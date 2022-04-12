@@ -1,0 +1,110 @@
+﻿@page "/documentation"
+@using MicrosoftDocs.Client.Shared.HomeHeaderComponent;
+@using MicrosoftDocs.Client.Shared.DirectoryItemComponent;
+@using MicrosoftDocs.Client.Shared.ResourceItemComponent
+
+
+<div class="documentation-page">
+    <HomeHeader SearchInputPlaceHolder="Search documentation" Class="documentation-page__header"
+                    Title="Technical documentation" SubTitle="Welcome to Microsoft Documentation">
+        Search for in-depth articles on Microsoft developer tools and technologies.
+    </HomeHeader>
+
+    <section class="documentation-page__directory section">
+        <span class="sub-title">Index</span>
+        <h2>Product Directory</h2>
+        <p class="custom-text">Explore our guides and articles by product.</p>
+
+        <ul class="documentation-page__directory__list">
+            <DirectoryItem Href="/dotnet">
+                .NET
+            </DirectoryItem>
+            <DirectoryItem Href="/aspnet">
+                ASP.NET
+            </DirectoryItem>
+            <DirectoryItem Href="/azure">
+                Azure
+            </DirectoryItem>
+            <DirectoryItem Href="/azure-archi">
+                Azure Architecture Center
+            </DirectoryItem>
+            <DirectoryItem Href="/azure-devOps">
+                Azure DevOps
+            </DirectoryItem>
+            <DirectoryItem Href="/cpp">
+                C++
+            </DirectoryItem>
+            <DirectoryItem Href="/csharp">
+                C#
+            </DirectoryItem>
+            <DirectoryItem Href="/dynamics-365">
+                Dynamics 365 
+            </DirectoryItem>
+            <DirectoryItem Href="/gaming">
+                Gaming
+            </DirectoryItem>
+            <DirectoryItem Href="/microsoft-365">
+                Microsoft 365 
+            </DirectoryItem>
+            <DirectoryItem Href="/microsoft-edge">
+                Microsoft Edge
+            </DirectoryItem>
+            <DirectoryItem Href="/microsoft-security">
+                Microsoft Security
+            </DirectoryItem>
+            <DirectoryItem Href="/microsoft-teams">
+                Microsoft Teams
+            </DirectoryItem>
+            <DirectoryItem Href="/one-drive">
+                OneDrive
+            </DirectoryItem>
+            <DirectoryItem Href="/power-apps">
+                Power Apps
+            </DirectoryItem>
+            <DirectoryItem Href="/power-bi">
+                Power BI
+            </DirectoryItem>
+            <DirectoryItem Href="/power-platform">
+                Power Platform
+            </DirectoryItem>
+            <DirectoryItem Href="/power-shell">
+                PowerShell
+            </DirectoryItem>
+            <DirectoryItem Href="/share-point">
+                SharePoint
+            </DirectoryItem>
+            <DirectoryItem Href="/sql-server">
+                SQL Server
+            </DirectoryItem>
+            <DirectoryItem Href="/visual-basic">
+                Visual Basic
+            </DirectoryItem>
+            <DirectoryItem Href="/visual-studio">
+                Visual Studio
+            </DirectoryItem>
+            <DirectoryItem Href="/windows">
+                Windows
+            </DirectoryItem>
+            <DirectoryItem Href="/xamarin">
+                Xamarin
+            </DirectoryItem>
+        </ul>
+    </section>
+
+
+    <section class="documentation-page__recommended section">
+        <h2>Recommended Resources</h2>
+
+        <ul class="documentation-page__recommended__list">
+            <ResourceItem Title="Microsoft End User Support" ImageUrl="/images/end-user-community-icon.svg">
+                Get end user support for Office, Windows, Surface, and more. Visit our Microsoft support site for assistance.
+            </ResourceItem>
+            <ResourceItem Title="Microsoft End User Community" ImageUrl="/images/end-user-support-icon.svg">
+                End user Questions, issues, discussions, and knowledge sharing. Visit our Microsoft answers community to begin.
+            </ResourceItem>
+        </ul>
+    </section>
+</div>
+@code {
+
+}

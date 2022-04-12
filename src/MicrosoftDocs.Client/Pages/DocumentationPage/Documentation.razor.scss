@@ -1,0 +1,25 @@
+﻿@import "../../Shared/Styles/Mixins.scss";
+
+.documentation-page {
+    ::deep &__header {
+        padding-bottom: var(--hh-tr-y) !important;
+    }
+
+    &__directory {
+        padding-top: 4em;
+        padding-bottom: 4em;
+
+        &__list {
+            @include grid(repeat(auto-fit, minmax(400px, 1fr)), auto, 1em);
+        }
+    }
+
+    &__recommended {
+        background-color: var(--clr-secondary);
+
+        &__list {
+            @include grid(repeat(auto-fit, minmax(270px, 1fr)), auto, 1em, 1em);
+            margin: 1em 0 2em;
+        }
+    }
+}

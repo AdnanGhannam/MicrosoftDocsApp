@@ -1,0 +1,31 @@
+﻿<div class="destination-item @Class">
+    <div class="destination-item__left">
+        <span class="destination-item__left__icon">
+            @Icon
+        </span>
+    </div>
+
+    <div class="destination-item__right">
+        <NavLink href="@Href" class="destination-item__link">
+            <h6>@Title</h6>
+        </NavLink>
+        <p class="destination-item__right__content">@ChildContent</p>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment Icon { get; set; }
+}

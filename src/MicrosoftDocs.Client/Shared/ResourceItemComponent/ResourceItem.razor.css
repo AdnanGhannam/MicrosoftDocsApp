@@ -1,0 +1,1 @@
+.resource-item{display:flex;justify-content:center;align-items:center;flex-direction:row;flex-wrap:nowrap;overflow:hidden;border-radius:5px;background-color:var(--bg-primary);padding:1em}.resource-item__img-box{margin-right:1em}.resource-item__content{flex:1}

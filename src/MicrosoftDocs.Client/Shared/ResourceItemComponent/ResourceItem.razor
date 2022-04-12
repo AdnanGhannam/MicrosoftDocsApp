@@ -1,0 +1,32 @@
+﻿<li class="@($"resource-item { Class }")">
+    <div class="resource-item__img-box">
+        <img src="@ImageUrl"/>
+    </div>
+
+    <div class="resource-item__content">
+        <NavLink class="@($"resource-item__content__link { LinkClass }")" href="@Href">
+            <h3 class="resource-item__content__title">@Title</h3>
+        </NavLink>
+        <p class="resource-item__content__desc">@ChildContent</p>
+    </div>
+</li>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string LinkClass { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public string ImageUrl { get; set; } = "";
+}

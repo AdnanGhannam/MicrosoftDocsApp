@@ -1,0 +1,38 @@
+﻿@import "../Styles/Mixins.scss";
+
+.destination-item {
+    @include flex(center, stretch);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+
+    &__left,
+    &__right {
+        padding: 1.5em;
+    }
+
+    &__left {
+        @include flex();
+        background-color: var(--clr-primary-lighter);
+    }
+
+    &__right {
+        flex: 1;
+        padding: 1em;
+        background-color: var(--bg-primary);
+
+        &__content {
+            color: var(--clr-text);
+            font-size: .9em;
+            margin-bottom: 0;
+        }
+    }
+
+    ::deep &__link {
+        &::after {
+            @include absolute(0px, 0px, 0px, 0px);
+            content: '';
+            z-index: 100;
+        }
+    }
+}

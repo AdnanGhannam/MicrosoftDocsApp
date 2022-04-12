@@ -1,0 +1,38 @@
+﻿
+<li class="@($"feature-item { Class }")">
+    <div class="feature-item__img-box">
+        <img src="@ImageUrl"/>
+    </div>
+    <div class="feature-item__content">
+        <span class="feature-item__content__sub-title sub-title">@SubTitle</span>
+        <h4 class="feature-item__content__title">@Title</h4>
+        <p class="feature-item__content__desc">@ChildContent</p>
+        <NavLink class="@($"feature-item__content__link { LinkClass }")">@LinkContent</NavLink>
+    </div>
+</li>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string LinkClass { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public string ImageUrl { get; set; } = "";
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public string SubTitle { get; set; } = "";
+
+    [Parameter]
+    public string LinkContent { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

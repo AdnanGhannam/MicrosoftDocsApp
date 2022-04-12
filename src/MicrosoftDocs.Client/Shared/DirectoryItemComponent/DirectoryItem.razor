@@ -1,0 +1,19 @@
+﻿<li class="directory-item @Class">
+    <NavLink class="@($"directory-item__link { LinkClass }")" href="@Href">
+        @ChildContent
+    </NavLink>
+</li>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string LinkClass { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

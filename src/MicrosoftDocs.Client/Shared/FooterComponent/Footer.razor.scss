@@ -1,0 +1,36 @@
+﻿@import "../Styles/Mixins.scss";
+
+.page-footer {
+    @include flex(space-between);
+    padding: 3.4em 1.2em;
+    background-color: var(--clr-code-block);
+
+    &__left,
+    &__right {
+        &__list-item {
+            display: inline-block;
+            margin: .2em .5em;
+
+            ::deep a {
+                color: var(--clr-text);
+            }
+        }
+    }
+
+    &__left {
+        &__list-item {
+            border-radius: 2px;
+
+            &:hover {
+                background-color: #444;
+            }
+
+            ::deep a, 
+            ::deep button,
+            ::deep .button {
+                display: inline-block;
+                padding: .2em 1em;
+            }
+        }
+    }
+}

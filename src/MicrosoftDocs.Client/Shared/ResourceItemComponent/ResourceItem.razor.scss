@@ -1,0 +1,17 @@
+﻿@import "../Styles/Mixins.scss";
+
+.resource-item {
+    @include flex();
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: var(--bg-primary);
+    padding: 1em;
+
+    &__img-box {
+        margin-right: 1em;
+    }
+
+    &__content {
+        flex: 1;
+    }
+}

@@ -1,0 +1,19 @@
+﻿@import "../Styles/Mixins.scss";
+
+.home-header {
+    padding: calc(var(--page-padding) + 2em) var(--page-padding);
+    padding-bottom: calc(var(--page-padding) + 2em + var(--hh-tr-y));
+    background-color: var(--clr-blue);
+
+    &__input-box {
+        @include flex(flex-start, stretch);
+        font-size: 1.2em;
+
+        ::deep .input {
+            background-color: var(--bg-primary);
+            flex: 1;
+            max-width: 540px;
+            margin-right: .5em;
+        }
+    }
+}

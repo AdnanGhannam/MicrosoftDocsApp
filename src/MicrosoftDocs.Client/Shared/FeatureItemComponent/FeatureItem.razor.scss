@@ -1,0 +1,33 @@
+﻿@import "../Styles/Mixins.scss";
+
+.feature-item {
+    position: relative;
+    background-color: var(--bg-primary);
+    border-radius: 5px;
+    overflow: hidden;
+
+    &__img-box {
+        img {
+
+        }
+    }
+
+    &__content {
+        padding: 1em 2em;
+
+        &__sub-title {
+            display: inline-block;
+            margin: 1em 0;
+        }
+
+        ::deep &__link {
+            font-size: 1.1em;
+
+            &::after {
+                @include absolute(0px, 0px, 0px, 0px);
+                content: '';
+
+            }
+        }
+    }
+}

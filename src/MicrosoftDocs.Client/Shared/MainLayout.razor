@@ -1,19 +1,22 @@
 ﻿@using MicrosoftDocs.Client.Shared.LogoComponent;
 @using MicrosoftDocs.Client.Shared.NavbarComponent;
 @using MicrosoftDocs.Client.Shared.PageHeaderComponent;
+@using MicrosoftDocs.Client.Shared.FooterComponent;
 @inherits LayoutComponentBase
 
 <div class="page">
-    <div class="page__header-box">
+    <header class="page__header">
         <Navbar />
-        <PageHeader />
-    </div>
+        @*<PageHeader />*@
+    </header>
 
     <main>
         <article class="page__article">
             @Body
         </article>
     </main>
+
+    <Footer />
 </div>
 
 
