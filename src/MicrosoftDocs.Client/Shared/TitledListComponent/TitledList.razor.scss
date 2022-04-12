@@ -1,0 +1,23 @@
+﻿.titled-list {
+    background-color: var(--bg-primary);
+    padding: var(--page-padding) calc(var(--page-padding) * 2);
+
+    ::deep >li {
+        margin: .4em 0;
+
+        &:first-child {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: .7em 0;
+
+            .link {
+                font-weight: inherit;
+            }
+        }
+
+        .icon {
+            margin-right: .3em;
+            color: var(--clr-primary);
+        }
+    }
+}

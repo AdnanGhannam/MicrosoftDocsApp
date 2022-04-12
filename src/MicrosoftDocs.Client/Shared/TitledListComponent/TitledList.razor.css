@@ -1,0 +1,1 @@
+.titled-list{background-color:var(--bg-primary);padding:var(--page-padding) calc(var(--page-padding) * 2)}.titled-list ::deep>li{margin:.4em 0}.titled-list ::deep>li:first-child{font-size:1.2em;font-weight:600;margin:.7em 0}.titled-list ::deep>li:first-child .link{font-weight:inherit}.titled-list ::deep>li .icon{margin-right:.3em;color:var(--clr-primary)}

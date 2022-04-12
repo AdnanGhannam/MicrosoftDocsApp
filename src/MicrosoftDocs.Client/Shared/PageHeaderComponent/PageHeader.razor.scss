@@ -4,6 +4,7 @@
     @include flex(space-between);
     padding: 0 var(--page-padding);
     border-bottom: 1px solid var(--clr-border);
+    background-color: var(--bg-primary);
 
     &__left {
 

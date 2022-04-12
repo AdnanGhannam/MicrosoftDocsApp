@@ -1,0 +1,33 @@
+﻿<li class="@Class">
+    @if(!string.IsNullOrEmpty(IconClass))
+    {
+        <i class="@($"icon { IconClass }")"></i>
+    }
+
+    @if(!string.IsNullOrEmpty(Href))
+    {
+        <NavLink class="@("link" + (Href.StartsWith('/') ? "" : " outer-link"))" href="@Href">
+            @ChildContent
+        </NavLink>
+    }
+    else
+    {
+        <span class="custom-text">
+            @ChildContent
+        </span>
+    }
+</li>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public string? IconClass { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

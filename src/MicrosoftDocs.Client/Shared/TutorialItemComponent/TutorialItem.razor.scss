@@ -1,0 +1,42 @@
+﻿@import "../Styles/Mixins.scss";
+
+.tutorial-item {
+    @include flex(flex-start, flex-start);
+    padding: var(--page-padding);
+    position: relative;
+
+    &__img-box {
+        $size: 4.2em;
+        width: $size;
+        height: $size;
+        margin-right: .7em;
+    }
+
+    &__content {
+        flex: 1;
+
+        &__sub-title {
+            display: inline-block;
+            text-transform: uppercase;
+            font-weight: 300;
+            font-size: .9em;
+            margin: .3em 0;
+        }
+
+        &__title {
+            ::deep  >.link {
+                font-weight: inherit;
+
+                &::before {
+                    content: '';
+                    @include absolute(0px, 0px, 0px, 0px);
+                    display: inline-block;
+                }
+
+                &::after {
+                    font-size: .7em;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+﻿<ul class="@($"titled-list with-shadow { Class }")">
+    <li>
+        @if(Href is not null)
+        {
+            <NavLink href="@Href" class="link">
+                @Title
+            </NavLink>
+        }
+        else
+        {
+            @Title
+        }
+    </li>
+
+    @ChildContent
+</ul>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}

@@ -1,0 +1,42 @@
+﻿@import "../../Shared/Styles/Mixins.scss";
+
+.dotnet-page {
+    background-color: var(--clr-secondary);
+
+    ::deep &__header {
+        background-color: var(--clr-dotnet);
+    }
+
+    ::deep &__tutorials {
+        background-color: var(--bg-primary);
+
+        &__list {
+            @include grid(repeat(auto-fit, minmax(300px, 1fr)), auto, 2em, 2em);
+        }
+    }
+
+    ::deep &__overview {
+
+        &__list {
+            @include grid(repeat(auto-fill, minmax(300px, 1fr)), auto, 2em, 2em);
+        }
+    }
+
+    ::deep &__languages {
+        background-color: var(--bg-primary);
+    }
+
+    ::deep &__create {
+
+        &__list {
+            @include grid(repeat(auto-fill, minmax(300px, 1fr)), auto, 2em, 2em);
+        }
+    }
+
+    ::deep &__apis {
+
+        &__list {
+            @include grid(repeat(auto-fill, minmax(300px, 1fr)), auto, 2em, 2em);
+        }
+    }
+}
