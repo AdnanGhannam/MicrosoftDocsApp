@@ -9,9 +9,14 @@
         font-size: .97em;
         user-select: none;
 
+        .mud-button {
+            min-width: auto;
+        }
+
         &:first-child {
             font-size: 1.2em;
 
+            .text,
             a {
                 font-weight: 600;
 
@@ -22,17 +27,20 @@
         }
 
         &:hover {
+            .text,
             a {
                 text-decoration: none;
                 border-bottom: 2px solid var(--clr-text);
             }
         }
 
+        .text,
         a {
             color: var(--clr-text-light);
 
             &.active {
                 border-bottom: 2px solid var(--clr-text);
+                background-color: inherit;
             }
         }
     }

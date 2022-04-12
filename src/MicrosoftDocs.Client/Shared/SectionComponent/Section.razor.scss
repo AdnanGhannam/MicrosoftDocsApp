@@ -1,0 +1,28 @@
+﻿@import "../Styles/Mixins.scss";
+
+.section {
+    padding: calc(var(--page-padding) * 3) var(--page-padding);
+
+    &__header {
+        @include flex(flex-start);
+        line-height: .5em;
+
+        &__sub-title,
+        &__title,
+        &__desc {
+            color: var(--clr-white);
+        }
+
+        &__title {
+            margin-bottom: .5em;
+        }
+
+        &__img-box {
+            margin-left: 4em;
+
+            .img {
+                width: 250px;
+            }
+        }
+    }
+}

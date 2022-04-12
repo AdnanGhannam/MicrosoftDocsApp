@@ -2,19 +2,16 @@
 @using MicrosoftDocs.Client.Shared.HomeHeaderComponent;
 @using MicrosoftDocs.Client.Shared.DirectoryItemComponent;
 @using MicrosoftDocs.Client.Shared.ResourceItemComponent
+@using MicrosoftDocs.Client.Shared.SectionComponent
 
 
 <div class="documentation-page">
     <HomeHeader SearchInputPlaceHolder="Search documentation" Class="documentation-page__header"
-                    Title="Technical documentation" SubTitle="Welcome to Microsoft Documentation">
-        Search for in-depth articles on Microsoft developer tools and technologies.
-    </HomeHeader>
+                    Title="Technical documentation" SubTitle="Welcome to Microsoft Documentation"
+                    Description="Search for in-depth articles on Microsoft developer tools and technologies." />
 
-    <section class="documentation-page__directory section">
-        <span class="sub-title">Index</span>
-        <h2>Product Directory</h2>
-        <p class="custom-text">Explore our guides and articles by product.</p>
-
+    <Section SubTitle="Index" Title="Product Directory" Class="documentation-page__directory"
+                Description="Explore our guides and articles by product.">
         <ul class="documentation-page__directory__list">
             <DirectoryItem Href="/documentation/dotnet">
                 .NET
@@ -89,12 +86,10 @@
                 Xamarin
             </DirectoryItem>
         </ul>
-    </section>
+    </Section>
 
 
-    <section class="documentation-page__recommended section">
-        <h2>Recommended Resources</h2>
-
+    <Section Title="Recommended Resources" Class="documentation-page__recommended">
         <ul class="documentation-page__recommended__list">
             <ResourceItem Title="Microsoft End User Support" ImageUrl="/images/end-user-community-icon.svg">
                 Get end user support for Office, Windows, Surface, and more. Visit our Microsoft support site for assistance.
@@ -103,7 +98,7 @@
                 End user Questions, issues, discussions, and knowledge sharing. Visit our Microsoft answers community to begin.
             </ResourceItem>
         </ul>
-    </section>
+    </Section>
 </div>
 @code {
 

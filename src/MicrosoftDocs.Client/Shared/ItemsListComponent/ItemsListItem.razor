@@ -1,7 +1,16 @@
 ﻿<li class="@Class" @onclick="OnClick">
-    <NavLink href="@Href" Match="NavLinkMatch.All">
-        @ChildContent
-    </NavLink>
+    @if(Href is not null)
+    {
+        <NavLink href="@Href">
+            @ChildContent
+        </NavLink>
+    }
+    else
+    {
+        <span class=text>
+            @ChildContent
+        </span>
+    }
     @Icon
 </li>
 

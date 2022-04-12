@@ -2,10 +2,10 @@
 
 .documentation-page {
     ::deep &__header {
-        padding-bottom: var(--hh-tr-y) !important;
+        padding-bottom: 1em !important;
     }
 
-    &__directory {
+    ::deep &__directory {
         padding-top: 4em;
         padding-bottom: 4em;
 
@@ -14,7 +14,7 @@
         }
     }
 
-    &__recommended {
+    ::deep &__recommended {
         background-color: var(--clr-secondary);
 
         &__list {

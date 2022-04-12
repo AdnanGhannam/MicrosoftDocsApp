@@ -1,18 +1,17 @@
 ﻿@using MicrosoftDocs.Client.Shared.InputboxComponent;
 @using MicrosoftDocs.Client.Shared.ButtonComponent;
+@using MicrosoftDocs.Client.Shared.SectionComponent
 
 <header class="@($"home-header { Class }")">
-    <span class="home-header__sub-title sub-title">@SubTitle</span>
-    <h1 class="home-header__title">@Title</h1>
-    <p class="home-header__text custom-text">
-        @ChildContent
-    </p>
-    <form class="home-header__input-box" @onsubmit="OnSubmit">
-        <Inputbox Placeholder="@SearchInputPlaceHolder" Class="input"/>
-        <Button ButtonType="submit">
-            Search
-        </Button>
-    </form>
+    <Section ImageUrl="@ImageUrl"
+                SubTitle="@SubTitle" Title="@Title" Description="@Description">
+        <form class="home-header__input-box" @onsubmit="OnSubmit">
+            <Inputbox Placeholder="@SearchInputPlaceHolder" Class="input"/>
+            <Button ButtonType="submit">
+                Search
+            </Button>
+        </form>
+    </Section>
 </header>
 
 @code {
@@ -26,7 +25,10 @@
     public string Title { get; set; } = "";
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public string ImageUrl { get; set; } = "";
+
+    [Parameter]
+    public string Description { get; set; } = "";
 
     [Parameter]
     public string SearchInputPlaceHolder { get; set; } = "Search";

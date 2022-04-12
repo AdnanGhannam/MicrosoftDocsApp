@@ -1,15 +1,15 @@
 ﻿@import "../Styles/Mixins.scss";
 
 .home-header {
-    padding: calc(var(--page-padding) + 2em) var(--page-padding);
+    padding-top: 3em;
     padding-bottom: calc(var(--page-padding) + 2em + var(--hh-tr-y));
     background-color: var(--clr-blue);
 
-    &__input-box {
+    ::deep &__input-box {
         @include flex(flex-start, stretch);
         font-size: 1.2em;
 
-        ::deep .input {
+        .input {
             background-color: var(--bg-primary);
             flex: 1;
             max-width: 540px;

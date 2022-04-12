@@ -1,7 +1,7 @@
 ﻿@using MicrosoftDocs.Client.Models
 @using MicrosoftDocs.Client.Shared.ItemsListComponent;
 
-<header class="@($"page-header { Class }")">
+<nav class="@($"page-header { Class }")">
     <div class="page-header__left">
         <ItemsList>
             <ItemsListItem Href="@Href" Class="page-header__left__item">
@@ -45,7 +45,7 @@
     <div class="page-header__right">
         @ChildContent
     </div>
-</header>
+</nav>
 
 @code {
     [Parameter]

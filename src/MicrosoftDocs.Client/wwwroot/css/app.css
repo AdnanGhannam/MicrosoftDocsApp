@@ -5,6 +5,7 @@
     --clr-primary-lighter: #004173;
     --clr-secondary: #404040;
     --clr-blue: #243a5e;
+    --clr-white: #fff;
     --clr-text: #e6e6e6;
     --clr-text-light: #fff;
     --clr-text-paragraph: #d2d2d2;
@@ -130,6 +131,11 @@ textarea {
 
 .clickable { cursor: pointer; }
 
+.container {
+    max-width: 1768px;
+    margin: 0 auto;
+}
+
 .sub-title {
     text-transform: uppercase;
     font-size: .9em;
@@ -142,10 +148,6 @@ textarea {
     font-weight: 300;
     line-height: normal;
     max-width: 800px;
-}
-
-.section {
-    padding: var(--page-padding);
 }
 
 /*
