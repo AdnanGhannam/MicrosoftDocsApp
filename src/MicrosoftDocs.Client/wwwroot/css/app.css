@@ -81,10 +81,6 @@ li {
     padding: 0;
 }
 
-p {
-    margin: 1.3em 0;
-}
-
 a {
     text-decoration: none;
     color: var(--clr-hyperlink);
@@ -126,6 +122,12 @@ textarea::placeholder {
 
 textarea {
     min-height: 2.6em;
+}
+
+p {
+    margin: 1.3em 0;
+    font-weight: 300;
+    line-height: normal;
 }
 
 /* Cutsom Classes */

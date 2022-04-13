@@ -7,13 +7,27 @@
     @if(!string.IsNullOrEmpty(Href))
     {
         <NavLink class="@("link" + (Href.StartsWith('/') ? "" : " outer-link"))" href="@Href">
-            @ChildContent
+            @if(ChildContent is not null)
+            {
+                @ChildContent
+            }
+            else
+            {
+                @Text
+            }
         </NavLink>
     }
     else
     {
-        <span class="custom-text">
-            @ChildContent
+        <span class="">
+            @if(ChildContent is not null)
+            {
+                @ChildContent
+            }
+            else
+            {
+                @Text
+            }
         </span>
     }
 </li>
@@ -29,5 +43,8 @@
     public string? IconClass { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; } = null;
+
+    [Parameter]
+    public string Text { get; set; } = "";
 }

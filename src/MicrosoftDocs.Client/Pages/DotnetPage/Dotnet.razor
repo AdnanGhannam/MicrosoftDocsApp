@@ -10,7 +10,7 @@
 
 
 <div class="dotnet-page">
-    <PageHeader Title=".NET" Items="@items" Href="/documentation/dotnet">
+    <PageHeader Title=".NET" Items="@headerItems" Href="/documentation/dotnet">
         <Button Href="/download">
             Download .NET
         </Button>
@@ -186,98 +186,10 @@
     <Section Title=".NET: Free. Cross platform. Open source." Class="dotnet-page__overview"
                 Description="A developer platform for building all your apps: web, mobile, desktop, gaming, IoT, and more. Supported on Windows, Linux, and macOS.">
         <ul class="dotnet-page__overview__list">
-            <TitledList Title="Open source .NET">
-                <TitledListItem IconClass="bi bi-map" Href="/documentation/dotnet/overview">
-                    .NET overview
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-journal-code" Href="/documentation/dotnet/overview">
-                    .NET tutorials
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-megaphone" Href="/documentation/dotnet/overview">
-                    What's new in .NET 6
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-file-code" Href="/documentation/dotnet/overview">
-                    Deploy .NET apps
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-map" Href="/documentation/dotnet/overview">
-                    .NET Foundation
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-megaphone" Href="/documentation/dotnet/overview">
-                    .NET developer community
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-diagram-3" Href="/documentation/dotnet/overview">
-                    Library guidance
-                </TitledListItem>
-            </TitledList>
-            <TitledList Title=".NET concepts">
-                <TitledListItem IconClass="bi bi-map" Href="/documentation/dotnet/overview">
-                    What is .NET?
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-journal-code" Href="/documentation/dotnet/overview">
-                    .NET fundamentals
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-megaphone" Href="/documentation/dotnet/overview">
-                    ASP.NET Core
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-file-code" Href="/documentation/dotnet/overview">
-                    Entity Framework Core
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-map" Href="/documentation/dotnet/overview">
-                    .NET Foundation
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-megaphone" Href="/documentation/dotnet/overview">
-                    .NET developer community
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-diagram-3" Href="/documentation/dotnet/overview">
-                    Library guidance
-                </TitledListItem>
-            </TitledList>
-            <TitledList Title="Develop .NET apps">
-                <TitledListItem IconClass="bi bi-map" Href="/documentation/dotnet/overview">
-                    .NET overview
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-journal-code" Href="/documentation/dotnet/overview">
-                    .NET tutorials
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-megaphone" Href="/documentation/dotnet/overview">
-                    What's new in .NET 6
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-file-code" Href="/documentation/dotnet/overview">
-                    Deploy .NET apps
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-map" Href="/documentation/dotnet/overview">
-                    .NET Foundation
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-megaphone" Href="/documentation/dotnet/overview">
-                    .NET developer community
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-diagram-3" Href="/documentation/dotnet/overview">
-                    Library guidance
-                </TitledListItem>
-            </TitledList>
-            <TitledList Title=".NET architectural guides">
-                <TitledListItem IconClass="bi bi-map" Href="/documentation/dotnet/overview">
-                    .NET overview
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-journal-code" Href="/documentation/dotnet/overview">
-                    .NET tutorials
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-megaphone" Href="/documentation/dotnet/overview">
-                    What's new in .NET 6
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-file-code" Href="/documentation/dotnet/overview">
-                    Deploy .NET apps
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-map" Href="/documentation/dotnet/overview">
-                    .NET Foundation
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-megaphone" Href="/documentation/dotnet/overview">
-                    .NET developer community
-                </TitledListItem>
-                <TitledListItem IconClass="bi bi-diagram-3" Href="/documentation/dotnet/overview">
-                    Library guidance
-                </TitledListItem>
-            </TitledList>
+            <TitledList Title="Open source .NET" Items="overviewListItems"/>
+            <TitledList Title=".NET concepts" Items="overviewListItems"/>
+            <TitledList Title="Develop .NET apps" Items="overviewListItems"/>
+            <TitledList Title=".NET architectural guides" Items="overviewListItems"/>
         </ul>
     </Section>
 
@@ -289,58 +201,20 @@
     <Section Title="Create your application" Description="You can choose web, mobile, desktop, gaming, IoT, and more."
                 Class="dotnet-page__create">
         <ul class="dotnet-page__create__list">
-            <TitledList Title=".NET architectural guides">
-                <TitledListItem Href="/documentation/dotnet/overview">
-                    .NET overview
-                </TitledListItem>
-                <TitledListItem Href="/documentation/dotnet/overview">
-                    .NET tutorials
-                </TitledListItem>
-                <TitledListItem Href="/documentation/dotnet/overview">
-                    What's new in .NET 6
-                </TitledListItem>
-                <TitledListItem Href="/documentation/dotnet/overview">
-                    Deploy .NET apps
-                </TitledListItem>
-                <TitledListItem Href="/documentation/dotnet/overview">
-                    .NET Foundation
-                </TitledListItem>
-                <TitledListItem Href="/documentation/dotnet/overview">
-                    .NET developer community
-                </TitledListItem>
-                <TitledListItem Href="/documentation/dotnet/overview">
-                    Library guidance
-                </TitledListItem>
-            </TitledList>
+            <TitledList Title=".NET architectural guides" Items="createListItems"/>
         </ul>
     </Section>
 
     <Section Title="API and language reference" Description="Search the .NET API and language reference documentation."
                 Class="dotnet-page__apis">
         <ul class="dotnet-page__apis__list">
-            <TitledList Title=".NET API reference" Href="/">
-                <TitledListItem>
-                    API reference documentation for .NET 
-                </TitledListItem>
-            </TitledList>
-            <TitledList Title=".NET Framework API reference" Href="/">
-                <TitledListItem>
-                    API reference documentation for .NET Framework 
-                </TitledListItem>
-            </TitledList>
-            <TitledList Title="ASP.NET Core API reference" Href="/">
-                <TitledListItem>
-                    API reference documentation for ASP.NET Core 
-                </TitledListItem>
-            </TitledList>
-            <TitledList Title="ML.NET API reference" Href="/">
-                <TitledListItem>
-                    API reference documentation for ML.NET
-                </TitledListItem>
-            </TitledList>
+            <TitledList Title=".NET API reference" Href="/" Items="apisLists.ElementAt(0)" />
+            <TitledList Title=".NET Framework API reference" Href="/" Items="apisLists.ElementAt(1)" />
+            <TitledList Title="ASP.NET Core API reference" Href="/" Items="apisLists.ElementAt(2)" />
+            <TitledList Title="ML.NET API reference" Href="/" Items="apisLists.ElementAt(3)" />
         </ul>
 
-        <p class="custom-text">
+        <p class="">
             Are you interested in contributing to the .NET docs? For more information, see our 
             <NavLink href="/">
                 contributor guide.
@@ -351,7 +225,7 @@
 
 
 @code {
-    private List<PageHeaderItemModel> items = new()
+    private List<PageHeaderItemModel> headerItems = new()
     {
         new("Languages", Icons.Filled.KeyboardArrowDown, new()
         {
@@ -385,7 +259,35 @@
             { "https://www.fake.c/support", "Support" },
             { "https://www.fake.c/blog", "Blog" },
         }),
+    };
 
+    private List<TitledListItemModel> overviewListItems = new()
+    {
+        new(".NET overview", "bi bi-map", "/documentation/dotnet/"),
+        new(".NET tutorials", "bi bi-journal-code", "/documentation/dotnet/"),
+        new("What's new in .NET 6", "bi bi-megaphone", "/documentation/dotnet/"),
+        new("Deploy .NET apps", "bi bi-file-code", "/documentation/dotnet/"),
+        new(".NET Foundation", "bi bi-map", "/documentation/dotnet/"),
+        new(".NET developer community", "bi bi-megaphone", "/documentation/dotnet/"),
+        new("Library guidance", "bi bi-diagram-3", "/documentation/dotnet/"),
+    };
 
+    private List<TitledListItemModel> createListItems = new()
+    {
+        new(".NET overview", Href: "/documentation/dotnet/"),
+        new(".NET tutorials", Href: "/documentation/dotnet/"),
+        new("What's new in .NET 6", Href: "/documentation/dotnet/"),
+        new("Deploy .NET apps", Href: "/documentation/dotnet/"),
+        new(".NET Foundation", Href: "/documentation/dotnet/"),
+        new(".NET developer community", Href: "/documentation/dotnet/"),
+        new("Library guidance", Href: "/documentation/dotnet/"),
+    };
+
+    private List<List<TitledListItemModel>> apisLists = new()
+    {
+        new() { new("API reference documentation for .NET "), },
+        new() { new("API reference documentation for .NET Framework "), },
+        new() { new("API reference documentation for ASP.NET Core "), },
+        new() { new("API reference documentation for ML.NET "), }
     };
 }
