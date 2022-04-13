@@ -5,11 +5,11 @@
 
     <div class="tutorial-item__content">
         <span class="tutorial-item__content__sub-title">@SubTitle</span>
-        <h5 class="tutorial-item__content__title">
+        <h6 class="tutorial-item__content__title">
             <NavLink class="@("link" + (Href.StartsWith('/') ? "" : " outer-link"))" href="@Href">
                 @ChildContent
             </NavLink>
-        </h5>
+        </h6>
     </div>
 </li>
 

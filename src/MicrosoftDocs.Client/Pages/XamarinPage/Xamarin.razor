@@ -3,11 +3,95 @@
 @using MicrosoftDocs.Client.Shared.ButtonComponent
 @using MicrosoftDocs.Client.Shared.ItemsListComponent
 @using MicrosoftDocs.Client.Shared.PageHeaderComponent
+@using MicrosoftDocs.Client.Shared.SectionComponent
+@using MicrosoftDocs.Client.Shared.TitledListComponent
+@using MicrosoftDocs.Client.Shared.TutorialItemComponent
 
+<PageTitle>
+    Xamarin Documentation - Xamarin | Microsoft Docs
+</PageTitle>
 
 <div class="xamarin-page">
     <PageHeader Title="Xamarin" Items="@items" Href="/documentation/xamarin"/>
 
+    <Section Title="Xamarin documentation" Class="xamarin-page__header"
+                Description="Xamarin lets you build native apps for Android, iOS, and macOS using .NET code and platform-specific user interfaces. Xamarin.Forms allows you to build native apps, with shared UI code written in C# or XAML." />
+
+    <Section Class="xamarin-page__tutorials">
+        <ul class="xamarin-page__tutorials__list">
+            <TutorialItem SubTitle="Download" Href="https://www.fakeurl.c/" ImageUrl="/images/download.svg">
+                Setup and installation
+            </TutorialItem>
+            <TutorialItem SubTitle="Overview" Href="/learn/" ImageUrl="/images/overview.svg">
+                What is Xamarin?
+            </TutorialItem>
+            <TutorialItem SubTitle="What's new" Href="/learn/" ImageUrl="/images/whats-new.svg">
+                What's new in Xamarin Docs
+            </TutorialItem>
+            <TutorialItem SubTitle="Learn" Href="https://www.fakeurl.c/" ImageUrl="/images/learn.svg">
+                Improve your mobile development skills
+            </TutorialItem>
+        </ul>
+    </Section>
+
+    <Section Class="xamarin-page__platforms">
+        <ul class="xamarin-page__platforms__list">
+            <TitledList Title="Xamarin.Forms cross-platform" ImageUrl="/images/logo_xamarin.svg" Items="tutorialsListItems"/>
+            <TitledList Title="Android" ImageUrl="/images/logo_android.svg" Items="tutorialsListItems"/>
+            <TitledList Title="IOS" ImageUrl="/images/i_web-apps.svg" Items="tutorialsListItems"/>
+            <TitledList Title="Mac" ImageUrl="/images/i_xplat-code.svg" Items="tutorialsListItems"/>
+        </ul>
+    </Section>
+
+    <Section Class="xamarin-page__get-started" Title="Get started with Xamarin.Forms"
+                Description="Build cross-platform Android & iOS apps using C# and .NET in Visual Studio on Windows and macOS.">
+        <ul class="xamarin-page__get-started__list">
+            <TitledList Title="Build your first app" Items="getStartedLists.ElementAt(0)"/>
+            <TitledList Title="Follow a tutorial" Items="getStartedLists.ElementAt(1)"/>
+            <TitledList Title="Leverage existing knowledge" Items="getStartedLists.ElementAt(2)"/>
+        </ul>
+    </Section>
+
+    <Section Class="xamarin-page__tasks" Title="Xamarin.Forms common tasks"
+                Description="Important concepts for building Android & iOS apps with Xamarin.Forms">
+        <ul class="xamarin-page__tasks__list">
+            <TitledList Title="Learn about the app lifecycle" Href="/documentation/xamarin" Items="commonTasksLists.ElementAt(0)"/>
+            <TitledList Title="Show a list of data" Href="/documentation/xamarin" Items="commonTasksLists.ElementAt(1)"/>
+            <TitledList Title="Use XAML & data-binding" Href="/documentation/xamarin" Items="commonTasksLists.ElementAt(2)"/>
+            <TitledList Title="Expose platform-specific features" Href="/documentation/xamarin" Items="commonTasksLists.ElementAt(3)"/>
+            <TitledList Title="Xamarin.Essentials" Href="/documentation/xamarin" Items="commonTasksLists.ElementAt(4)"/>
+            <TitledList Title="Access a REST web service" Href="/documentation/xamarin" Items="commonTasksLists.ElementAt(5)"/>
+            <TitledList Title="Deploy to Android & iOS devices" Href="/documentation/xamarin" Items="commonTasksLists.ElementAt(6)"/>
+            <TitledList Title="Render SkiaSharp graphics" Href="/documentation/xamarin" Items="commonTasksLists.ElementAt(7)"/>
+        </ul>
+    </Section>
+
+    <Section Class="xamarin-page__overview" Title="Xamarin platforms overview">
+        <ul class="xamarin-page__overview__list">
+            <TitledList Title="Xamarin.Forms cross-platform" Items="overviewLists.ElementAt(0)"/>
+            <TitledList Title="Android" Items="overviewLists.ElementAt(0)"/>
+            <TitledList Title="IOS" Items="overviewLists.ElementAt(0)"/>
+            <TitledList Title="Mac" Items="overviewLists.ElementAt(0)"/>
+        </ul>
+
+        <div class="xamarin-page__overview__links-box">
+            <NavLink href="/blogs" class="">
+                Blogs 
+            </NavLink>
+            <i class="bi bi-dash"></i>
+            <NavLink href="https://www.twitter.com" class="outer-link">
+                Twitter 
+            </NavLink>
+            <i class="bi bi-dash"></i>
+            <NavLink href="/questions-answer" class="">
+                Microsoft Q&A 
+            </NavLink>
+            <i class="bi bi-dash"></i>
+            <NavLink href="/dev-communtiy" class="">
+                Developer Community 
+            </NavLink>
+        </div>
+    </Section>
 </div>
 
 
@@ -36,5 +120,65 @@
             { "/api/ios", "IOS APIs" },
             { "/api/mac", "Mac APIs" },
         }),
+    };
+
+    private List<TitledListItemModel> tutorialsListItems = new()
+    {
+        new("What's in Xamarin.Forms?", Href: "/documentation/xamarin/"),
+        new("Build an Android & IOS app", Href: "/documentation/xamarin/"),
+        new("Xamarin.Forms XAML", Href: "/documentation/xamarin/"),
+        new("All Xamarin.Forms docs", Href: "/documentation/xamarin/"),
+    };
+
+    private List<List<TitledListItemModel>> getStartedLists = new()
+    {
+        new()
+        {
+            new("File > New", "bi bi-journal-plus", "/documentation/xamarin/"),
+            new("Add navigation", "bi bi-journal-plus", "/documentation/xamarin/"),
+            new("Add a database", "bi bi-journal-plus", "/documentation/xamarin/"),
+            new("Style the app", "bi bi-journal-plus", "/documentation/xamarin/"),
+        },
+        new()
+        {
+            new("Stack layout", "bi bi-clipboard2", "/documentation/xamarin/"),
+            new("Lables", "bi bi-clipboard2", "/documentation/xamarin/"),
+            new("Buttons", "bi bi-clipboard2", "/documentation/xamarin/"),
+            new("Images", "bi bi-clipboard2", "/documentation/xamarin/"),
+        },
+        new()
+        {
+            new(".NET desktop (UWP, WPF, WinForms)", "bi bi-map", "/documentation/xamarin/"),
+            new("Android & Java", "bi bi-map", "/documentation/xamarin/"),
+            new("iOS & Objective-C", "bi bi-map", "/documentation/xamarin/"),
+            new("Further development guidance", "bi bi-map", "/documentation/xamarin/"),
+        },
+    };
+
+    private List<List<TitledListItemModel>> commonTasksLists = new()
+    {
+        new() { new("Understand how apps start and go to the background."), },
+        new() { new("Use the CollectionView to scroll and select data."), },
+        new() { new("Use the MVVM pattern to show data in your UI."), },
+        new() { new("Use Android- or iOS-specific features in Xamarin.Forms apps."), },
+        new() { new("Cross-platform APIs for common device features."), },
+        new() { new("Integrate and interact with web services using HTTP and JSON"), },
+        new() { new("Upload to test devices and app stores."), },
+        new() { new("Render cross-platform 2D vector graphics."), }
+    };
+
+    private List<List<TitledListItemModel>> overviewLists = new()
+    {
+        new()
+        {
+            new("App fundamentals", Href: "/documentation/xamarin/"),
+            new("User interface", Href: "/documentation/xamarin/"),
+            new("Xamarin.Forms XAML", Href: "/documentation/xamarin/"),
+            new("Platform features", Href: "/documentation/xamarin/"),
+            new("Azure cloud services", Href: "/documentation/xamarin/"),
+            new("Deployment & testing", Href: "/documentation/xamarin/"),
+            new("Advanced concepts & internals", Href: "/documentation/xamarin/"),
+            new("Samples", Href: "/documentation/xamarin/"),
+        },
     };
 }

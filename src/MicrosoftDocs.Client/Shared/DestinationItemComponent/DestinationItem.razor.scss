@@ -14,6 +14,10 @@
     &__left {
         @include flex();
         background-color: var(--clr-primary-lighter);
+
+        &__img-box {
+            width: 3em;
+        }
     }
 
     &__right {

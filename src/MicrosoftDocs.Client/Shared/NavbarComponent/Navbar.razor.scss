@@ -1,21 +1,51 @@
 ﻿@import "../Styles/Mixins.scss";
 
 .nav-bar {
-    @include flex(space-between);
-    padding: 0 var(--page-padding);
     border-bottom: 1px solid var(--clr-border);
+
+    // Media Query
+    @include Laptops {
+        &__left {
+            ::deep &__logo-box {
+                &::before {
+                    display: none;
+                }
+            }
+
+            &__list-box {
+                display: none;
+            }
+        }
+
+        &__right {
+            ::deep &__inputbox,
+            ::deep &__user-menu {
+                display: none !important;
+            }
+
+            &__menu-button {
+                display: flex !important;
+            }
+        }
+    }
+
+    .container {
+        @include flex(space-between);
+        padding: 0 var(--page-padding);
+    }
 
     &__left {
         @include flex(center, baseline);
 
         ::deep &__logo-box {
             $padding: 1.3em;
+            padding: var(--page-padding);
             padding-right: $padding;
             margin-right: $padding;
             position: relative;
 
             &::before {
-                @include absolute(auto, 0px, 0px, 0px);
+                @include absolute(auto, 1em, 0px, 1em);
                 content: '';
                 border-left: 2px solid var(--clr-text);
             }
@@ -25,7 +55,7 @@
     &__right {
         @include flex();
 
-        ::deep &__menu {
+        ::deep &__user-menu {
             margin: 0 .5em;
         }
 
@@ -41,6 +71,19 @@
                     font-size: 1.1em;
                     margin-bottom: .5em;
                 }
+            }
+        }
+
+        &__menu-button {
+            display: none;
+
+            .menu-label {
+                @include flex();
+                cursor: pointer;
+            }
+
+            .text {
+                margin-right: .5em;
             }
         }
     }

@@ -1,5 +1,12 @@
 ﻿@using MicrosoftDocs.Client.Models
 <ul class="@($"titled-list with-shadow { Class }")">
+    @if(ImageUrl is not null)
+    {
+        <li class="titled-list__img-box">
+            <img src="@ImageUrl"/>
+        </li>
+    }
+
     <li>
         @if(Href is not null)
         {
@@ -27,6 +34,9 @@
 
     [Parameter]
     public string Title { get; set; } = "";
+
+    [Parameter]
+    public string? ImageUrl { get; set; }
 
     [Parameter]
     public string? Href { get; set; }

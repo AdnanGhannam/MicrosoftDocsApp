@@ -1,36 +1,43 @@
 ﻿<footer class="page-footer">
-    <ul class="page-footer__left">
-        <li class="page-footer__left__list-item">
-            <NavLink href="/">English</NavLink>
-        </li>
-        <li class="page-footer__left__list-item">
-            <NavLink href="/">Theme</NavLink>
-        </li>
-    </ul>
+    <div class="container">
+        <ul class="page-footer__left">
+            <li class="page-footer__left__list-item">
+                <NavLink href="/"><i class="bi bi-globe2"></i> English (United States)</NavLink>
+            </li>
+            <li class="page-footer__left__list-item">
+                <MudMenu Label="Theme" Size="Size.Large" Color="Color.Inherit" Class="custom-menu bi bi-brightness-high"
+                            AnchorOrigin="Origin.TopLeft" TransformOrigin="Origin.BottomLeft">
+                    <MudMenuItem>Light</MudMenuItem>
+                    <MudMenuItem>Dark</MudMenuItem>
+                    <MudMenuItem>High contrast</MudMenuItem>
+                </MudMenu>
+            </li>
+        </ul>
 
-    <ul class="page-footer__right">
-        <li class="page-footer__right__list-item">
-            <NavLink href="/">Previous Version Docs</NavLink>
-        </li>
-        <li class="page-footer__right__list-item">
-            <NavLink href="/">Blog</NavLink>
-        </li>
-        <li class="page-footer__right__list-item">
-            <NavLink href="/">Contribute</NavLink>
-        </li>
-        <li class="page-footer__right__list-item">
-            <NavLink href="/">Privacy & Cookies</NavLink>
-        </li>
-        <li class="page-footer__right__list-item">
-            <NavLink href="/">Terms of Use</NavLink>
-        </li>
-        <li class="page-footer__right__list-item">
-            <NavLink href="/">Trademarks</NavLink>
-        </li>
-        <li class="page-footer__right__list-item">
-            <NavLink href="/">© Microsoft 2022</NavLink>
-        </li>
-    </ul>
+        <ul class="page-footer__right">
+            <li class="page-footer__right__list-item">
+                <NavLink href="/">Previous Version Docs</NavLink>
+            </li>
+            <li class="page-footer__right__list-item">
+                <NavLink href="/">Blog</NavLink>
+            </li>
+            <li class="page-footer__right__list-item">
+                <NavLink href="/">Contribute</NavLink>
+            </li>
+            <li class="page-footer__right__list-item">
+                <NavLink href="/">Privacy & Cookies</NavLink>
+            </li>
+            <li class="page-footer__right__list-item">
+                <NavLink href="/">Terms of Use</NavLink>
+            </li>
+            <li class="page-footer__right__list-item">
+                <NavLink href="/">Trademarks</NavLink>
+            </li>
+            <li class="page-footer__right__list-item">
+                <NavLink href="/">© Microsoft 2022</NavLink>
+            </li>
+        </ul>
+    </div>
 </footer>
 
 @code {

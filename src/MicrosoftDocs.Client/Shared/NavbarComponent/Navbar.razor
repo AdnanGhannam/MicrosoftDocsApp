@@ -6,72 +6,81 @@
 @using MicrosoftDocs.Client.Shared.ItemsListComponent;
 
 <nav class="nav-bar">
-    <div class="nav-bar__left">
-        <Logo Class="nav-bar__left__logo-box"/>
+    <div class="container">
+        <div class="nav-bar__left">
+            <Logo Class="nav-bar__left__logo-box"/>
 
-        <div class="nav-bar__left__list-box">
-            <ItemsList Class="nav-bar__list">
-                <ItemsListItem Href="/">
-                    Docs
-                </ItemsListItem>
-                <ItemsListItem Href="/documentation">
-                    Documentation
-                </ItemsListItem>
-                <ItemsListItem Href="/learn">
-                    Learn
-                </ItemsListItem>
-                <ItemsListItem Href="/questions">
-                    Q&A
-                </ItemsListItem>
-                <ItemsListItem Href="/code-samples">
-                    Code Samples
-                </ItemsListItem>
-                <ItemsListItem Href="/shows">
-                    Shows
-                </ItemsListItem>
-                <ItemsListItem Href="/events">
-                    Events
-                </ItemsListItem>
-            </ItemsList>
+            <div class="nav-bar__left__list-box">
+                <ItemsList Class="nav-bar__list">
+                    <ItemsListItem Href="/">
+                        Docs
+                    </ItemsListItem>
+                    <ItemsListItem Href="/documentation">
+                        Documentation
+                    </ItemsListItem>
+                    <ItemsListItem Href="/learn">
+                        Learn
+                    </ItemsListItem>
+                    <ItemsListItem Href="/questions">
+                        Q&A
+                    </ItemsListItem>
+                    <ItemsListItem Href="/code-samples">
+                        Code Samples
+                    </ItemsListItem>
+                    <ItemsListItem Href="/shows">
+                        Shows
+                    </ItemsListItem>
+                    <ItemsListItem Href="/events">
+                        Events
+                    </ItemsListItem>
+                </ItemsList>
+            </div>
         </div>
-    </div>
 
 
 
-    <div class="nav-bar__right">
-        <Inputbox Placeholder="Search" />
-        <Menu Visiable="isMenuVisiable" Class="nav-bar__right__menu">
-            <Button>
-                <Imagebox Character="@('M')" ImageUrl="/images/person.svg" 
-                            OnClick="() => isMenuVisiable = !isMenuVisiable"/>
-            </Button>
-            <ChildContent>
-                <div class="nav-bar__right__user-box">
-                    <Imagebox Character="@('M')" ImageUrl="/images/person.svg" Size="3.5em" />
-                    <div class="info-box">
-                        <h6 class="name">Adnan Ghannam</h6>
-                        <span class="email">adnanghannam21@gmail.com</span>
+        <div class="nav-bar__right">
+            <Inputbox Placeholder="Search" Class="nav-bar__right__inputbox"/>
+            <Menu Visiable="isMenuVisiable" Class="nav-bar__right__user-menu">
+                <Button>
+                    <Imagebox Character="@('M')" ImageUrl="/images/person.svg" 
+                                OnClick="() => isMenuVisiable = !isMenuVisiable"/>
+                </Button>
+                <ChildContent>
+                    <div class="nav-bar__right__user-box">
+                        <Imagebox Character="@('M')" ImageUrl="/images/person.svg" Size="3.5em" />
+                        <div class="info-box">
+                            <h6 class="name">Adnan Ghannam</h6>
+                            <span class="email">adnanghannam21@gmail.com</span>
+                        </div>
                     </div>
-                </div>
-                <MultiSectionsList>
-                    <MultiSectionsListItem>
-                        <NavLink href="/profile">
-                            Profile
-                        </NavLink>
-                    </MultiSectionsListItem>
-                    <MultiSectionsListItem IsLastInSubList>
-                        <NavLink href="/settings">
-                            Settings
-                        </NavLink>
-                    </MultiSectionsListItem>
-                    <MultiSectionsListItem>
-                        <NavLink href="/signout">
-                            Sign out
-                        </NavLink>
-                    </MultiSectionsListItem>
-                </MultiSectionsList>
-            </ChildContent>
-        </Menu>
+                    <MultiSectionsList>
+                        <MultiSectionsListItem>
+                            <NavLink href="/profile">
+                                Profile
+                            </NavLink>
+                        </MultiSectionsListItem>
+                        <MultiSectionsListItem IsLastInSubList>
+                            <NavLink href="/settings">
+                                Settings
+                            </NavLink>
+                        </MultiSectionsListItem>
+                        <MultiSectionsListItem>
+                            <NavLink href="/signout">
+                                Sign out
+                            </NavLink>
+                        </MultiSectionsListItem>
+                    </MultiSectionsList>
+                </ChildContent>
+            </Menu>
+
+            <div class="nav-bar__right__menu-button">
+                <label for="menu-cb" class="menu-label">
+                    <strong class="text">Documentation</strong>
+                    <MudIcon Icon="@Icons.Filled.Menu" Class="icon" Size="Size.Large"/>
+                </label>
+            </div>
+        </div>
     </div>
 </nav>
 

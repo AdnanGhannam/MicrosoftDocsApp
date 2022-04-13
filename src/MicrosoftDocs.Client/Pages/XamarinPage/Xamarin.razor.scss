@@ -1,0 +1,48 @@
+﻿@import "../../Shared/Styles/Mixins.scss";
+
+.xamarin-page {
+    background-color: var(--clr-secondary);
+
+    ::deep &__header {
+        background-color: var(--clr-xamarin);
+        color: var(--clr-black);
+    }
+
+    ::deep &__tutorials {
+        background-color: var(--bg-primary);
+
+        &__list {
+            @include grid(repeat(auto-fit, minmax(300px, 1fr)), auto, 2em, 2em);
+        }
+    }
+
+    ::deep &__platforms {
+        &__list {
+            @include grid(repeat(auto-fill, minmax(300px, 1fr)), auto, 2em, 2em);
+        }
+    }
+
+    ::deep &__get-started {
+        background-color: var(--bg-primary);
+
+        &__list {
+            @include grid(repeat(auto-fill, minmax(400px, 1fr)), auto, 2em, 2em);
+        }
+    }
+
+    ::deep &__tasks {
+        &__list {
+            @include grid(repeat(auto-fill, minmax(300px, 1fr)), auto, 2em, 2em);
+        }
+    }
+
+    ::deep &__overview {
+        &__list {
+            @include grid(repeat(auto-fill, minmax(300px, 1fr)), auto, 2em, 2em);
+        }
+
+        &__links-box {
+            margin-top: 2em;
+        }
+    }
+}

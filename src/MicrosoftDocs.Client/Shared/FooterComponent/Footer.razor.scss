@@ -1,9 +1,12 @@
 ﻿@import "../Styles/Mixins.scss";
 
 .page-footer {
-    @include flex(space-between);
-    padding: 3.4em 1.2em;
     background-color: var(--clr-code-block);
+
+    .container {
+        @include flex(space-between);
+        padding: 3.4em 1.2em;
+    }
 
     &__left,
     &__right {
@@ -25,11 +28,23 @@
                 background-color: #444;
             }
 
-            ::deep a, 
+            ::deep a,
             ::deep button,
             ::deep .button {
                 display: inline-block;
-                padding: .2em 1em;
+                padding: .2em .7em;
+                flex: auto 1;
+            }
+
+            ::deep .custom-menu {
+                @include flex();
+                color: var(--clr-text);
+                padding-left: .7em;
+
+                .mud-button-root {
+                    font-weight: 300;
+                    text-transform: none;
+                }
             }
         }
     }

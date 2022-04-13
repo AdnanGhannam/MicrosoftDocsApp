@@ -1,7 +1,7 @@
 ﻿<li class="destination-item @Class">
     <div class="destination-item__left">
-        <span class="destination-item__left__icon">
-            @Icon
+        <span class="destination-item__left__img-box">
+            <img src="@ImageUrl"/>
         </span>
     </div>
 
@@ -24,8 +24,8 @@
     public string Title { get; set; } = "";
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public string ImageUrl { get; set; } = "";
 
     [Parameter]
-    public RenderFragment Icon { get; set; }
+    public RenderFragment ChildContent { get; set; }
 }

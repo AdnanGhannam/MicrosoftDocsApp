@@ -7,12 +7,6 @@
         @include flex(flex-start);
         line-height: .5em;
 
-        &__sub-title,
-        &__title,
-        &__desc {
-            color: var(--clr-white);
-        }
-
         &__title {
             margin-bottom: .5em;
         }
