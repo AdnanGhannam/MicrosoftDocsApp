@@ -1,6 +1,6 @@
 ﻿<li class="@($"tutorial-item { Class } with-shadow")">
     <div class="tutorial-item__img-box">
-        @Icon
+        <img src="@ImageUrl"/>
     </div>
 
     <div class="tutorial-item__content">
@@ -24,7 +24,7 @@
     public string Href { get; set; } = "";
 
     [Parameter]
-    public RenderFragment Icon { get; set; }
+    public string ImageUrl { get; set; } = "";
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }

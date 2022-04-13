@@ -1,0 +1,14 @@
+ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" preserveAspectRatio="xMidYMin meet">
+                      <g data-name="Layer 1">
+                        <path fill="#e3e3e3" d="M15.21 6.69h31.57v4.29H15.21z"></path>
+                        <path d="M41 57.87H9a4.09 4.09 0 0 1-4.09-4.09V16h4.85v32.9a4.09 4.09 0 0 0 4.09 4.1h23.06v1.37a4.1 4.1 0 0 0 4.09 3.5z" fill="#acacac"></path>
+                        <path d="M9.76 16H4.85v37.8a4.09 4.09 0 0 0 4.09 4.09H41a4.1 4.1 0 0 1-4.05-3.51V53" stroke="#acacac" fill="none" stroke-miterlimit="10" stroke-width="1.17"></path>
+                        <path fill="#e3e3e3" d="M45.87 53h-32a4.09 4.09 0 0 1-4.11-4.1V11.1h4.93v32.83A4.09 4.09 0 0 0 18.78 48h23v1.46A4.09 4.09 0 0 0 45.87 53z"></path>
+                        <path fill="none" stroke-miterlimit="10" stroke-width="1.17px" stroke="#c8c8c8" d="M14.69 11.1H9.76v37.8a4.09 4.09 0 0 0 4.09 4.1h32a4.09 4.09 0 0 1-4-3.51V48"></path>
+                        <path d="M50.8 48a4.1 4.1 0 0 1-4-3.51V6.11h-32v37.8A4.09 4.09 0 0 0 18.78 48z" fill-opacity=".3" fill="#e3e3e3"></path>
+                        <path fill="none" stroke-miterlimit="10" stroke-width="1.17px" stroke="#c8c8c8" d="M50.8 48a4.1 4.1 0 0 1-4-3.51V6.11h-32v37.8A4.09 4.09 0 0 0 18.78 48zM27.28 19.78h14.33M27.28 27.96h14.33M27.28 36.74h14.33"></path>
+                        <path fill="none" stroke-miterlimit="10" stroke-width="1.17px" stroke="#c8c8c8" d="M20.1 19.23l1.42 1.42 3.52-3.51M20.1 27.55l1.42 1.42 3.52-3.52M20.1 36.24l1.42 1.42 3.52-3.51"></path>
+                        <circle cx="50.35" cy="27.96" r="8.8" class="has-fill-current-color" fill="#0079d6"></circle>
+                        <path fill="#fff" d="M47 22.51l.86 9.71 2.2-2.64 2.37 3.84 1.51-.87-2.37-3.94 3.51-.84L47 22.51z"></path>
+                      </g>
+                    </svg>
