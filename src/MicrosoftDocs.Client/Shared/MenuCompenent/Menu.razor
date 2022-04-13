@@ -1,16 +1,24 @@
-﻿<div class="@("custom-menu " + Class + (Visiable ? " visiable" : "") + (RTL ? " rtl" : ""))" 
-            @onblur="() => Visiable = false" tabindex="0">
-    <div class="custom-menu__button-box clickable @ButtonClass">
+﻿@inject IJSRuntime _jsRuntime;
+
+<div class="@("custom-menu " + Class + (RTL ? " rtl" : ""))" data-id="@(i)">
+    <label for="@($"menu-cb-{i}")" class="custom-menu__button-box clickable @ButtonClass">
         @Button
-    </div>
+    </label>
+
+    <input type="checkbox" name="@($"menu-cb-{i}")" id="@($"menu-cb-{i}")" class="custom-menu__checkbox" />
 
     <div class="@("custom-menu__content " + $" {ContentClass}")">
         @ChildContent
     </div>
+
+    <label for="@($"menu-cb-{i}")" class="custom-menu__overlay"></label>
 </div>
 
 
+
 @code {
+    private string i = Guid.NewGuid().ToString();
+
     [Parameter]
     public string Class { get; set; } = "";
 
@@ -27,8 +35,12 @@
     public RenderFragment ChildContent { get; set; }
 
     [Parameter]
-    public bool Visiable { get; set; }
-
-    [Parameter]
     public bool RTL { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        _jsRuntime.InvokeVoidAsync("addEventToWindow", i);
+    }
 }

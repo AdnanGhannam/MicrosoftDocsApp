@@ -8,12 +8,12 @@
     <header class="article-body__header">
         <Breadcrumbs Items="@Path"/>
         <div class="article-body__header__toolbar">
-            <MudIconButton Icon="@Icons.Filled.AddCircleOutline"/>
-            <MudIconButton Icon="@Icons.Filled.Feedback"/>
-            <MudIconButton Icon="@Icons.Filled.Edit"/>
-            <Menu Visiable="@socialListVisiable" ContentClass="menu-content">
+            <MudIcon Icon="@Icons.Filled.AddCircleOutline" Class="menu-button"/>
+            <MudIcon Icon="@Icons.Filled.Feedback" Class="menu-button"/>
+            <MudIcon Icon="@Icons.Filled.Edit" Class="menu-button"/>
+            <Menu ContentClass="menu-content">
                 <Button>
-                    <MudIconButton Icon="@Icons.Filled.MoreVert" @onclick="() => socialListVisiable = !socialListVisiable"/>
+                    <MudIcon Icon="@Icons.Filled.MoreVert" Class="menu-button"/>
                 </Button>
                 <ChildContent>
                     <SocialList>
@@ -66,9 +66,9 @@
                 <span class=""></span>
             </div>
             <div class="right-box">
-                <Menu Visiable="feedbackMenuVisiable">
+                <Menu>
                     <Button>
-                        <MudIconButton Icon="@Icons.Filled.ThumbsUpDown" @onclick="() => feedbackMenuVisiable = !feedbackMenuVisiable"/>
+                        <MudIcon Icon="@Icons.Filled.ThumbsUpDown" />
                     </Button>
                     <ChildContent>
                         <FeedbackMenuContent />
@@ -82,11 +82,6 @@
 </div>
 
 @code {
-    private bool socialListVisiable;
-    private bool feedbackMenuVisiable;
-
-
-
     [Parameter]
     public string Class { get; set; } = "";
 

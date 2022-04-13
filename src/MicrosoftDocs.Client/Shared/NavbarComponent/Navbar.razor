@@ -41,10 +41,9 @@
 
         <div class="nav-bar__right">
             <Inputbox Placeholder="Search" Class="nav-bar__right__inputbox"/>
-            <Menu Visiable="isMenuVisiable" Class="nav-bar__right__user-menu">
+            <Menu Class="nav-bar__right__user-menu">
                 <Button>
-                    <Imagebox Character="@('M')" ImageUrl="/images/person.svg" 
-                                OnClick="() => isMenuVisiable = !isMenuVisiable"/>
+                    <Imagebox Character="@('M')" ImageUrl="/images/person.svg" />
                 </Button>
                 <ChildContent>
                     <div class="nav-bar__right__user-box">
@@ -85,5 +84,4 @@
 </nav>
 
 @code {
-    private bool isMenuVisiable = false;
 }

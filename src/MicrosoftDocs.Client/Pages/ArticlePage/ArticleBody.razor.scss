@@ -11,9 +11,11 @@
         &__toolbar {
             @include flex();
 
-            ::deep .mud-button-root {
+            ::deep .menu-button {
                 border-radius: 2px;
                 padding: .2em .4em;
+                box-sizing: content-box;
+                cursor: pointer;
 
                 &:hover {
                     background-color: var(--clr-primary-lighter);
@@ -53,7 +55,7 @@
 
             .right-box {
 
-                ::deep .mud-icon-root.mud-svg-icon{
+                ::deep .mud-icon-root.mud-svg-icon {
                     fill: var(--clr-primary);
                 }
             }

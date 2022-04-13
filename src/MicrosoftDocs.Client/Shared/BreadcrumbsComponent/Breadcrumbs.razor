@@ -5,9 +5,9 @@
 <div class="custom-breadcrumbs @Class">
     @if(Items.Count > 3)
     {
-        <Menu Class="custom-breadcrumbs__menu" Visiable="@breadcrumbsListVisiable" RTL ContentClass="custom-breadcrumbs__menu__content">
+        <Menu Class="custom-breadcrumbs__menu"  RTL ContentClass="custom-breadcrumbs__menu__content">
             <Button>
-                <MudIcon Icon="@Icons.Filled.MoreHoriz" @onclick="() => breadcrumbsListVisiable = !breadcrumbsListVisiable"/>
+                <MudIcon Icon="@Icons.Filled.MoreHoriz" />
             </Button>
             <ChildContent>
                 <MultiSectionsList>
@@ -38,8 +38,6 @@
 </div>
 
 @code {
-    private bool breadcrumbsListVisiable;
-
     [Parameter]
     public string Class { get; set; } = "";
 
