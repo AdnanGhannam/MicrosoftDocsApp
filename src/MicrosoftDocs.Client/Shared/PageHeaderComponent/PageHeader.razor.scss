@@ -57,7 +57,7 @@
 
                 ::deep &__inputbox {
                     flex: 1;
-                    padding: var(--page-padding);
+                    padding: calc(var(--page-padding) * .65);
                     border-right: 1px solid var(--clr-border);
 
                     input {

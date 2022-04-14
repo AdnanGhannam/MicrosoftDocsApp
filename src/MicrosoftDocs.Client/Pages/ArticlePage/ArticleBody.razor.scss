@@ -2,7 +2,7 @@
 
 .article-body {
     margin: 0 4em;
-    overflow: hidden;
+    overflow: auto;
 
     &__header {
         @include flex(space-between);
@@ -50,6 +50,10 @@
                             display: none;
                         }
                     }
+                }
+
+                .contributors-label {
+
                 }
             }
 

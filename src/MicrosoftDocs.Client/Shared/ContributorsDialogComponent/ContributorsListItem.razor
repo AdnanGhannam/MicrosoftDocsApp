@@ -1,0 +1,22 @@
+﻿<li class="@($"contributors-list-item {Class}")">
+    <div class="contributors-list-item__avatar avatar">
+        <NavLink class="avatar-link">
+            @Name.ElementAtOrDefault(0)
+        </NavLink>
+    </div>
+
+    <NavLink href="@Href" class="contributors-list-item__link">
+        @Name
+    </NavLink>
+</li>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string Name { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+}

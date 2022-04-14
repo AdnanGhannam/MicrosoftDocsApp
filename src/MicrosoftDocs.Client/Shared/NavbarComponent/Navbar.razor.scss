@@ -39,7 +39,7 @@
 
         ::deep &__logo-box {
             $padding: 1.3em;
-            padding: var(--page-padding);
+            padding: var(--page-padding) 0;
             padding-right: $padding;
             margin-right: $padding;
             position: relative;

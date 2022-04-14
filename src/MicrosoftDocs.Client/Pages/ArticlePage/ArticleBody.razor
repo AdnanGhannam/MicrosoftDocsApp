@@ -1,4 +1,6 @@
-﻿@using MicrosoftDocs.Client.Shared.BreadcrumbsComponent;
+﻿@using MicrosoftDocs.Client.Models
+@using MicrosoftDocs.Client.Shared.BreadcrumbsComponent;
+@using MicrosoftDocs.Client.Shared.ContributorsDialogComponent
 @using MicrosoftDocs.Client.Shared.MenuCompenent;
 @using MicrosoftDocs.Client.Shared.SocialListComponent;
 
@@ -63,7 +65,7 @@
                 <span class="">Article</span>
                 <span class="">@PublishTime.ToShortDateString()</span>
                 <span class="">@ReadingTime minutes to read</span>
-                <span class=""></span>
+                <label for="@checkboxId" class="contributors-label link">19 contributors</label>
             </div>
             <div class="right-box">
                 <Menu>
@@ -79,9 +81,13 @@
 
         <div>@((MarkupString)Content)</div>
     </div>
+
+    <ContributorsDialog Contributors="Contributors" CheckboxId="@checkboxId"/>
 </div>
 
 @code {
+    private string checkboxId = "contributors-label";
+
     [Parameter]
     public string Class { get; set; } = "";
 
@@ -89,7 +95,7 @@
     public Dictionary<string, string> Path { get; set; } = new();
 
     [Parameter]
-    public List<string> Contributors { get; set; } = new();
+    public List<ContributorItemModel> Contributors { get; set; } = new();
 
     [Parameter]
     public string Title { get; set; } = "";

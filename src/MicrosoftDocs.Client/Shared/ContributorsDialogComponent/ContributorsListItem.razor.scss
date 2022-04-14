@@ -1,0 +1,24 @@
+﻿@import "../Styles/Mixins.scss";
+
+.contributors-list-item {
+    @include flex(flex-start);
+    padding: .5em 2em;
+    border-left: 3px solid var(--clr-border);
+    border-bottom: 1px solid var(--clr-border);
+
+    &:hover {
+        background-color: var(--clr-code-block);
+        border-left-color: var(--clr-primary);
+    }
+
+    &__avatar {
+        margin-right: 1em;
+        background-color: var(--clr-primary);
+
+        ::deep .avatar-link {
+            color: var(--clr-black);
+            font-weight: 400;
+            font-size: 1.1em;
+        }
+    }
+}

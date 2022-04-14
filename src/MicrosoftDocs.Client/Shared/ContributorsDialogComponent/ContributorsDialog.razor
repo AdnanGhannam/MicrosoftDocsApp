@@ -1,0 +1,29 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using MicrosoftDocs.Client.Models
+<div class="contributors-dialog">
+    <input type="checkbox" id="@CheckboxId" class="contributors-dialog__checkbox"/>
+
+    <div class="contributors-dialog__content">
+        <header class="contributors-dialog__header">
+            <h6 class="contributors-dialog__header__title">Contributors for this article</h6>
+            <label for="@CheckboxId" class="contributors-dialog__header__close-button bi bi-x-lg"></label>
+        </header>
+
+        <div class="contributors-dialog__body">
+            <ContributorsList Contributors="Contributors" />
+        </div>
+    </div>
+
+    <label for="@CheckboxId" class="contributors-dialog__overlay"></label>
+</div>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string CheckboxId { get; set; }
+
+    [Parameter]
+    public List<ContributorItemModel> Contributors { get; set; } = new();
+}

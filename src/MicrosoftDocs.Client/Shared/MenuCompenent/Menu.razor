@@ -11,7 +11,7 @@
         @ChildContent
     </div>
 
-    <label for="@($"menu-cb-{i}")" class="custom-menu__overlay"></label>
+    <span class=custom-menu__square></span>
 </div>
 
 
@@ -41,6 +41,6 @@
     {
         await base.OnInitializedAsync();
 
-        _jsRuntime.InvokeVoidAsync("addEventToWindow", i);
+        await _jsRuntime.InvokeVoidAsync("handleClickOutsideMenu", i);
     }
 }

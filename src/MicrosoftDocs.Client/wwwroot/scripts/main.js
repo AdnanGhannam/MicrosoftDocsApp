@@ -1,10 +1,20 @@
-﻿
-function addEventToWindow(id) {
-    window.addEventListener('mouseup', function (event) {
-        let menu = document.querySelector('[data-id="' + id + '"]');
-        var box = document.getElementById("menu-cb-" + id);
-        if (menu && box && !menu.contains(event.target)) {
-            box.checked = false;
+﻿function handleOnBlur(selector, action) {
+    window.addEventListener('mouseup', (e) => {
+        let box = document.querySelector(selector);
+
+        if (box && !box.contains(e.target) && typeof(action) == "function") {
+            action();
         }
     });
 }
+
+function handleClickOutsideMenu(id) {
+    handleOnBlur('[data-id="' + id + '"]', () => {
+        let checkbox = document.getElementById("menu-cb-" + id);
+
+        if (checkbox) {
+            checkbox.checked = false;
+        }
+    });
+}
+

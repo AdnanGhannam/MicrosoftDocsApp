@@ -1,11 +1,12 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using MicrosoftDocs.Client.Shared.NotFoundComponent
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
     <NotFound>
         <PageTitle>Not found</PageTitle>
-        <LayoutView Layout="@typeof(NotFoundLayout)">
-            <h6 role="alert">Sorry, there's nothing at this address.</h6>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <NotFound />
         </LayoutView>
     </NotFound>
 </Router>

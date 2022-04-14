@@ -24,18 +24,21 @@
         }
     </div>
 
-    <div class="expansion-list__bottom" @onclick="() => isExpanded = !isExpanded">
-        @if (!isExpanded)
-        {
-            @("Show more")
-            <MudIcon Icon="@Icons.Filled.KeyboardArrowDown"/>
-        }
-        else
-        {
-            @("Show less")
-            <MudIcon Icon="@Icons.Filled.KeyboardArrowUp"/>
-        }
-    </div>
+    @if(Links.Count > 3)
+    {
+        <div class="expansion-list__bottom" @onclick="() => isExpanded = !isExpanded">
+            @if (!isExpanded)
+            {
+                @("Show more")
+                <MudIcon Icon="@Icons.Filled.KeyboardArrowDown"/>
+            }
+            else
+            {
+                @("Show less")
+                <MudIcon Icon="@Icons.Filled.KeyboardArrowUp"/>
+            }
+        </div>
+    }
 
 </nav>
 

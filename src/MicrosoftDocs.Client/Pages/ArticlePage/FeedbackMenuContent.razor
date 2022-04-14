@@ -7,12 +7,34 @@
     <strong class="feedback-menu-content__title">Is this page helpful?</strong>
 
     <div class="feedback-menu-content__buttons-box">
-        <MudButton StartIcon="@Icons.Filled.ThumbUpAlt">
-            Yes
-        </MudButton>
-        <MudButton StartIcon="@Icons.Filled.ThumbDownAlt">
-            No
-        </MudButton>
+        @if(Liked is null)
+        {
+            <MudButton StartIcon="@Icons.Outlined.ThumbUpAlt">
+                Yes
+            </MudButton>
+            <MudButton StartIcon="@Icons.Outlined.ThumbDownAlt">
+                No
+            </MudButton>
+        }
+        else if (Liked.Value)
+        {
+            <MudButton StartIcon="@Icons.Filled.ThumbUpAlt">
+                Yes
+            </MudButton>
+            <MudButton StartIcon="@Icons.Outlined.ThumbDownAlt">
+                No
+            </MudButton>
+        }
+        else
+        {
+            <MudButton StartIcon="@Icons.Outlined.ThumbUpAlt">
+                Yes
+            </MudButton>
+            <MudButton StartIcon="@Icons.Filled.ThumbDownAlt">
+                No
+            </MudButton>
+        }
+
     </div>
 
     <Inputbox Value="" Placeholder="Any additional feedback?" IsMultiLine />
@@ -31,4 +53,7 @@
 @code {
     [Parameter]
     public string Class { get; set; } = "";
+
+    [Parameter]
+    public bool? Liked { get; set; }
 }

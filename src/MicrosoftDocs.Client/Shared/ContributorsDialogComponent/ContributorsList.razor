@@ -1,0 +1,21 @@
+﻿@using MicrosoftDocs.Client.Models
+
+<ul class="@Class">
+    @foreach(var item in Contributors)
+    {
+        <ContributorsListItem Href="@item.Href" Name="@item.Name" />
+    }
+
+    @ChildContent
+</ul>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public List<ContributorItemModel> Contributors { get; set; } = new();
+}
