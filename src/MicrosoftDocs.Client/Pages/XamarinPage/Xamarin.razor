@@ -1,4 +1,5 @@
 ﻿@page "/documentation/xamarin"
+@using MicrosoftDocs.Client.Constants
 @using MicrosoftDocs.Client.Models
 @using MicrosoftDocs.Client.Shared.ButtonComponent
 @using MicrosoftDocs.Client.Shared.ItemsListComponent
@@ -12,7 +13,8 @@
 </PageTitle>
 
 <div class="xamarin-page">
-    <PageHeader Title="Xamarin" Items="@items" Href="/documentation/xamarin"/>
+    <PageHeader Title="Xamarin" Href="/documentation/xamarin" 
+                Items="@(PageHeaderItems.ItemsLists.FirstOrDefault(i => i.Name == "xamarin").Items)"/>
 
     <Section Title="Xamarin documentation" Class="xamarin-page__header"
                 Description="Xamarin lets you build native apps for Android, iOS, and macOS using .NET code and platform-specific user interfaces. Xamarin.Forms allows you to build native apps, with shared UI code written in C# or XAML." />
@@ -96,31 +98,6 @@
 
 
 @code {
-    private List<PageHeaderItemModel> items = new()
-    {
-        new("Get Started", Icons.Filled.KeyboardArrowDown, Url: "/xamarin/get-started"),
-        new("Android", Icons.Filled.KeyboardArrowDown, Url: "/xamarin/android"),
-        new("IOS", Icons.Filled.KeyboardArrowDown, Url: "/xamarin/ios"),
-        new("Mac", Icons.Filled.KeyboardArrowDown, Url: "/xamarin/mac"),
-        new("Xamarin.Forms", Icons.Filled.KeyboardArrowDown, Url: "/xamarin/xamarin-forms"),
-        new("Xamarin Community Toolkit", Icons.Filled.KeyboardArrowDown, Url: "/xamarin/xamarin-community-toolkit"),
-        new("Samples", Icons.Filled.KeyboardArrowDown, new()
-        {
-            { "/samples/xamarin-forms", "Xamarin.Forms Samples" },
-            { "/samples/android", "Android Samples" },
-            { "/samples/ios", "IOS Samples" },
-            { "/samples/mac", "Mac Samples" },
-            { "/samples/all-xamarin", "All Xamarin Samples" },
-        }),
-        new("APIs", Icons.Filled.KeyboardArrowDown, new()
-        {
-            { "/api/xamarin-forms", "Xamarin.Forms APIs" },
-            { "/api/xamarin-community-toolkit", "Xamarin Community Toolkit APIs" },
-            { "/api/android", "Android APIs" },
-            { "/api/ios", "IOS APIs" },
-            { "/api/mac", "Mac APIs" },
-        }),
-    };
 
     private List<TitledListItemModel> tutorialsListItems = new()
     {

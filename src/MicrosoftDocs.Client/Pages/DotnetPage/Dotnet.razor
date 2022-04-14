@@ -1,4 +1,5 @@
 ﻿@page "/documentation/dotnet"
+@using MicrosoftDocs.Client.Constants
 @using MicrosoftDocs.Client.Shared.SectionComponent
 @using MicrosoftDocs.Client.Shared.TitledListComponent
 @using MicrosoftDocs.Client.Shared.TutorialItemComponent
@@ -13,11 +14,8 @@
 </PageTitle>
 
 <div class="dotnet-page">
-    <PageHeader Title=".NET" Items="@headerItems" Href="/documentation/dotnet">
-        <Button Href="/download">
-            Download .NET
-        </Button>
-    </PageHeader>
+    <PageHeader Title=".NET" Href="/documentation/dotnet" 
+                Items="@(PageHeaderItems.ItemsLists.FirstOrDefault(i => i.Name == "dotnet").Items)"/>
 
     <Section Title=".NET documentation" Class="dotnet-page__header"
                 Description="Learn to use .NET to create applications on any platform using C#, F#, and Visual Basic. Browse API reference, sample code, tutorials, and more." />
@@ -94,42 +92,6 @@
 
 
 @code {
-    private List<PageHeaderItemModel> headerItems = new()
-    {
-        new("Languages", Icons.Filled.KeyboardArrowDown, new()
-        {
-            { "/csharp", "C#" },
-            { "/fsharp", "F#" },
-            { "/visual-basic", "Visual Basic" },
-        }),
-        new("Workflows", Icons.Filled.KeyboardArrowDown, new()
-        {
-            { "/web", "Web" },
-            { "/mobile", "Mobile" },
-            { "/clound", "Cloud" },
-            { "/desktop", "Desktop" },
-            { "/ml", "Machine Learning & Data" },
-        }),
-        new("APIs", Icons.Filled.KeyboardArrowDown, new()
-        {
-            { "/api/dotnet", ".NET" },
-            { "/api/dotnet-framework", ".NET Framework" },
-            { "/api/aspnet", "ASP.NET" },
-            { "/api/ml", "Machine Learning" },
-            { "/api/ef-core", "EF Core" },
-        }),
-        new("Resources", Icons.Filled.KeyboardArrowDown, new()
-        {
-            { "https://www.fake.c/what-is-dotnet", "What is .NET" },
-            { "https://www.fake.c/dotent-archi-guide", ".NET Architecture Guide" },
-            { "https://www.fake.c/leaning-materials", "Learning Materials" },
-            { "https://www.fake.c/downloads", "Downloads" },
-            { "https://www.fake.c/communtiy", "Community" },
-            { "https://www.fake.c/support", "Support" },
-            { "https://www.fake.c/blog", "Blog" },
-        }),
-    };
-
     private List<TitledListItemModel> overviewListItems = new()
     {
         new(".NET overview", "bi bi-map", "/documentation/dotnet/"),

@@ -1,7 +1,16 @@
 ﻿@page "/documentation/{lang}/{title}";
+@using MicrosoftDocs.Client.Constants
 @using MicrosoftDocs.Client.Models
 @using MicrosoftDocs.Client.Shared.ExpansionListComponent;
 @using MicrosoftDocs.Client.Shared.ArticlesNavigationComponent;
+@using MicrosoftDocs.Client.Shared.PageHeaderComponent
+
+<PageTitle>
+    @Title.Replace('-', ' ') | Microsoft Docs
+</PageTitle>
+
+<PageHeader Title="@alias" Href="@($"/documentation/{Lang}")" 
+                Items="@items"/>
 
 <section class="article-page">
     <div class="article-page__container container">
@@ -18,6 +27,19 @@
 
     [Parameter]
     public string Title { get; set; }
+
+    private string alias;
+    private List<PageHeaderItemModel> items;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        var tuple = PageHeaderItems.ItemsLists.FirstOrDefault(i => i.Name.ToLower() == Lang.ToLower());
+
+        alias = tuple.Alias;
+        items = tuple.Items;
+    }
 
     private Dictionary<string, string> links = new()
     {
