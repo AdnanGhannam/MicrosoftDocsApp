@@ -8,7 +8,7 @@
 
 <div class="article-body @Class">
     <header class="article-body__header">
-        <Breadcrumbs Items="@Path"/>
+        <Breadcrumbs Items="@Path" Class="article-body__header__breadcrumbs"/>
         <div class="article-body__header__toolbar">
             <MudIcon Icon="@Icons.Filled.AddCircleOutline" Class="menu-button"/>
             <MudIcon Icon="@Icons.Filled.Feedback" Class="menu-button"/>
@@ -79,13 +79,27 @@
             </div>
         </div>
 
+        <div class="article-body__content__links-box">
+            <strong>In this article</strong>
+            <ul class="links-list">
+                @foreach(var (key, value) in Links)
+                {
+                    <li class="links-list__item">
+                        <NavLink href="@key">
+                            @value
+                        </NavLink>
+                    </li>
+                }
+            </ul>
+        </div>
+
         <div>@((MarkupString)Content)</div>
     </div>
 
     <ContributorsDialog Contributors="Contributors" CheckboxId="@checkboxId"/>
 </div>
 
-@code {
+    @code {
     private string checkboxId = "contributors-label";
 
     [Parameter]
@@ -112,7 +126,8 @@
     [Parameter]
     public bool? Liked { get; set; }
 
-
+    [Parameter]
+    public Dictionary<string, string> Links { get; set; } = new();
 }
 
 

@@ -1,15 +1,28 @@
 ﻿@import "../../Shared/Styles/Mixins.scss";
 
 .article-body {
-    margin: 0 4em;
-    overflow: auto;
+    margin: 0 3em;
+    overflow: hidden;
+
+    @include Desktop {
+        margin: 0 2em;
+    }
+
+    @include Tablets {
+        margin: 0;
+    }
 
     &__header {
-        @include flex(space-between);
+        @include flex(space-between, flex-start, row, wrap);
         margin-bottom: 1em;
 
+        ::deep &__breadcrumbs{
+            margin-bottom: .5em;
+        }
+
         &__toolbar {
-            @include flex();
+            @include flex(flex-end);
+            flex: 1;
 
             ::deep .menu-button {
                 border-radius: 2px;
@@ -34,9 +47,14 @@
     }
 
     &__content {
+        &__title {
+            line-height: 1.2em;
+        }
+
         &__info-box {
             @include flex(space-between);
             font-weight: 300;
+            margin-top: .8em;
 
             .left-box {
 
@@ -53,7 +71,6 @@
                 }
 
                 .contributors-label {
-
                 }
             }
 
@@ -61,6 +78,21 @@
 
                 ::deep .mud-icon-root.mud-svg-icon {
                     fill: var(--clr-primary);
+                }
+            }
+        }
+
+        &__links-box {
+            display: none;
+            margin-top: 1.5em;
+
+            @include Desktop {
+                display: block;
+            }
+
+            .links-list {
+                &__item {
+                    margin: .5em;
                 }
             }
         }

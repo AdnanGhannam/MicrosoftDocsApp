@@ -1,17 +1,23 @@
 ﻿@import "../Styles/Mixins.scss";
 
 .custom-breadcrumbs {
-    @include flex(flex-start, flex-end);
+    @include flex(flex-start, flex-end, row, wrap);
+
+    &__item {
+        @include flex();
+        white-space: nowrap;
+
+        &::after {
+            content: '/';
+            display: inline-block;
+            margin: 0 .5em;
+        }
+    }
 
     ::deep &__menu {
         &__content {
             min-width: 200px;
             max-width: 250px;
         }
-    }
-
-    &__seperator {
-        display: inline-block;
-        margin: 0 .5em;
     }
 }

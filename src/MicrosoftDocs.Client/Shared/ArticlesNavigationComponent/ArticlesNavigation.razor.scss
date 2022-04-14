@@ -2,14 +2,20 @@
 
 .articles-nav {
     @include flex(flex-start, flex-start, column);
-    min-width: 250px;
+    min-width: clamp(220px, 25vw, 400px);
+
+    @include Tablets {
+        display: none;
+    } 
 
     ::deep .mud-select {
         flex: auto 0;
+        width: 100%;
     }
 
     ::deep &__select-box {
         flex: auto 0;
+        width: 100%;
 
         .mud-input > input.mud-input-root-outlined, div.mud-input-slot.mud-input-root-outlined {
             padding: .7em;
