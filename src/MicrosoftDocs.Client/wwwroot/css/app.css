@@ -20,6 +20,8 @@
     --page-padding: 16px;
     --ff-primary: 'Noto Sans', sans-serif;
     --hh-tr-y: 4em;
+
+    --mw-side-menu: clamp(220px, 22vw, 350px);
     /* custom colors */
     --clr-blue: #243a5e;
     --clr-white: #fff;
@@ -201,6 +203,17 @@ p {
     color: #000;
     text-align: center;
     text-transform: uppercase;
+}
+
+.badge {
+    background-color: var(--clr-secondary);
+    color: var(--clr-white);
+    display: inline-block;
+    border-radius: 50px;
+    font-size: .75em;
+    font-weight: 300;
+    padding: .4em .5em;
+    text-align: center;
 }
 
 /*

@@ -1,0 +1,163 @@
+﻿@page "/search"
+@using MicrosoftDocs.Client.Models
+@using MicrosoftDocs.Client.Shared.ButtonComponent
+@using MicrosoftDocs.Client.Shared.HomeHeaderComponent
+@using MicrosoftDocs.Client.Shared.InputboxComponent
+@using MicrosoftDocs.Client.Shared.PageHeaderComponent
+@using MicrosoftDocs.Client.Shared.SearchItemComponent
+
+<PageTitle>
+    Search | Microsoft Docs
+</PageTitle>
+
+<PageHeader />
+
+<div class="search-page">
+    <div class="search-page__container container">
+        <div class="search-page__left">
+            <h3 class="search-page__left__title">Filter</h3>
+
+            <form class="search-page__left__area-form">
+                <h5 class="form-title">Content area</h5>
+                <MudRadioGroup @bind-SelectedOption="@selectedOption">
+                    <MudRadio Option="@("All")" Color="Color.Primary">
+                        <span>All</span>
+                        <span class="badge">423</span>
+                    </MudRadio>
+                    <MudRadio Option="@("Documentation")" Color="Color.Primary">
+                        <span>Documentation</span>
+                        <span class="badge">23</span>
+                    </MudRadio>
+                    <MudRadio Option="@("Learn")" Color="Color.Primary">
+                        <span>Learn</span>
+                        <span class="badge">3</span>
+                    </MudRadio>
+                    <MudRadio Option="@("Shows")" Color="Color.Primary">
+                        <span>Shows</span>
+                        <span class="badge">0</span>
+                    </MudRadio>
+                    <MudRadio Option="@("Events")" Color="Color.Primary">
+                        <span>Events</span>
+                        <span class="badge">0</span>
+                    </MudRadio>
+                </MudRadioGroup>
+            </form>
+
+            <form class="search-page__left__products-form">
+                <h5 class="form-title">Products</h5>
+                <Inputbox Placeholder="Find a product"/>
+                <MudTreeView Items="ProductItems" Class="products-list"
+                            MultiSelection="true" @bind-ActivatedValue="activatedValue" 
+                            @bind-SelectedValues="selectedValues">
+                    <ItemTemplate>
+                        <MudTreeViewItem Items="@context.Items" Value="@context"
+                                         Text="@context.Name" EndTextTypo="@Typo.caption" />
+                    </ItemTemplate>
+                </MudTreeView>
+            </form>
+        </div>
+
+        <div class="search-page__right">
+            <form class="search-page__right__search-form">
+                <Inputbox Value="@Term" Placeholder="Seach" Class="input"/>
+                <Button ButtonType="submit">
+                    Search
+                </Button>
+            </form>
+
+
+            <div class="search-page__right__results-box">
+                <h6 class="search-page__right__results-number">566 results for "blazor"</h6>
+
+                <ul class="search-page__right__results-list">
+                    @foreach(var (key, value) in searchResults.Skip(skip).Take(take))
+                    {
+                        <SearchItem Title="@key">@value</SearchItem>
+                    }
+                </ul>
+
+                <MudPagination Rectangular="true" Variant="Variant.Outlined" Class="results-pagination"
+                                SelectedChanged="OnPaginationSelectedChanged" Count="count" Size="Size.Large"
+                                NextIcon="@Icons.Filled.ArrowForward" BeforeIcon="@Icons.Filled.ArrowBack"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? Term { get; set; }
+
+    private string selectedOption = "All";
+
+    private ProductSearchItemModel activatedValue;
+    private HashSet<ProductSearchItemModel> selectedValues;
+
+    public HashSet<ProductSearchItemModel> ProductItems = new()
+    {
+        new("Microsoft 365"),
+        new("Visual Studio", new()
+        {
+            new("Visual Studio for Mac"),
+            new("Visual Studio 2019"),
+            new("Microsoft Build"),
+            new(" Visual Studio 2022"),
+        }),
+        new(".NET", new()
+        {
+            new("Blazor"),
+            new("ML.NET"),
+            new("MSAL.NET"),
+            new("Entity Framework Core"),
+            new(".NET Core"),
+            new("ASP.NET"),
+            new("Windows Communication Foundation"),
+            new(".NET Framework"),
+            new("ASP.NET Core"),
+            new("Xamarin"),
+            new("Orleans"),
+
+        }),
+        new("Visual Studio Code"),
+        new("GitHub"),
+        new("Windows", new()
+        {
+            new("Windows Forms"),
+            new("Windows 10 IoT Core"),
+            new("Internet Information Services"),
+            new("Windows Presentation Foundation (WPF)"),
+        }),
+        new("SQL Server"),
+    };
+
+    private Dictionary<string, string> searchResults = new()
+    {
+        { "ASP.NET Core Blazor", "Blazor is a framework for building interactive client-side web UI with .NET: Create rich interactive UIs using C# instead of JavaScript. Share server-side and client-side app logic written in .NET." },
+        { "Integrations - Blazor", "For example, to create a new Blazor App named \"fluent-blazor\", you would use the following command: Create a project using the command above if you don't already have one. When the CLI completes, you should have a basic runnable Blazor application." },
+        { "Introduction to Web Development with Blazor - Learn", "Evaluate whether Blazor is appropriate to build your next web application, learn how pages and components of Blazor work to build a web application and evaluate when to use Blazor WebAssembly or Blazor Server." },
+        { "Build a web app with Blazor - Learn", "Build a web app with Blazor Module 8 Units Beginner Developer Azure .NET ASP.NET Core .NET Core Blazor Learn how to set up your development environment and build your first web app with Blazor, Visual Studio Code, and C#." },
+        { "ASP.NET Core Blazor hosting models", "Blazor is a web framework for building web UI components (Razor components) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (Blazor Server) versus client-side in the browser on a WebAssembly-based .NET runtime (Blazor WebAssembly, Blazor WASM)." },
+        { "Build reusable components with Blazor - Learn", "Build reusable components with Blazor Module 6 Units Intermediate Developer Blazor .NET ASP.NET Core By using Blazor components, you can reuse sections of HTML in your applications. Learn how to build a component, package it, and share it with other Blazor applications." },
+        { "Host and deploy ASP.NET Core Blazor", "Blazor Server: The app is published into the /bin/Release/{TARGET FRAMEWORK}/publish folder. Deploy the contents of the publish folder to the host. The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use." },
+        { "Debug ASP.NET Core Blazor WebAssembly", "Blazor provides a debugging proxy that implements the Chrome DevTools Protocol and augments the protocol with .NET-specific information. When debugging keyboard shortcut is pressed, Blazor points the Chrome DevTools at the proxy. The proxy connects to the browser window you're seeking to debug (hence the need to enable remote debugging)." },
+        { "ASP.NET Core Blazor project structure", "Blazor Server Blazor Server project template: blazorserver The Blazor Server template creates the initial files and directory structure for a Blazor Server app. The app is populated with demonstration code for a FetchData component that loads data from a registered service, WeatherForecastService, and user interaction with a Counter component." },
+        { "Project structure for Blazor apps", "Blazor doesn't define a separate file extension for addressable pages, like the .aspx files in ASP.NET Web Forms apps. Instead, pages are defined by assigning routes to components. A route is typically assigned using the @page Razor directive." },
+    };
+
+    private int count;
+    private int take = 5;
+    private int skip = 0;
+
+    private void OnPaginationSelectedChanged(int current)
+    {
+        skip = current;
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        count = searchResults.Count / take;
+    }
+}

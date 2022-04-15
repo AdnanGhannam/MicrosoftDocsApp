@@ -1,0 +1,15 @@
+﻿.search-item {
+    padding-top: 1em;
+
+    &__title {
+        padding: .4em 0;
+
+        ::deep .title-link {
+            font-weight: inherit;
+        }
+    }
+
+    &__desc {
+        font-size: .93em;
+    }
+}

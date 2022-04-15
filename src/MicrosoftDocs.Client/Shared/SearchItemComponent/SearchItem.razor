@@ -1,0 +1,22 @@
+﻿<li class="@($"search-item { Class }")">
+    <h5 class="search-item__title">
+        <NavLink href="@Href" class="title-link">
+            @Title
+        </NavLink>
+    </h5>
+    <div class="custom-text search-item__desc">@ChildContent</div>
+</li>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

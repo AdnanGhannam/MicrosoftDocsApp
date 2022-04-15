@@ -2,11 +2,11 @@
 
 .articles-nav {
     @include flex(flex-start, flex-start, column);
-    min-width: clamp(220px, 25vw, 400px);
+    min-width: var(--mw-side-menu);
 
     @include Tablets {
         display: none;
-    } 
+    }
 
     ::deep .mud-select {
         flex: auto 0;
