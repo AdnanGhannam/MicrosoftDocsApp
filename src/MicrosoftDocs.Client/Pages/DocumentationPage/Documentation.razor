@@ -1,11 +1,14 @@
 ﻿@page "/documentation"
 @using MicrosoftDocs.Client.Shared.HomeHeaderComponent;
 @using MicrosoftDocs.Client.Shared.DirectoryItemComponent;
+@using MicrosoftDocs.Client.Shared.PageHeaderComponent
 @using MicrosoftDocs.Client.Shared.ResourceItemComponent
 @using MicrosoftDocs.Client.Shared.SectionComponent
 
 
 <div class="documentation-page">
+    <PageHeader />
+
     <HomeHeader SearchInputPlaceHolder="Search documentation" Class="documentation-page__header"
                     Title="Technical documentation" SubTitle="Welcome to Microsoft Documentation"
                     Description="Search for in-depth articles on Microsoft developer tools and technologies." />

@@ -67,7 +67,18 @@
             </div>
 
             <div class="menu-center">
-                <PageHeaderList Title=".NET" Items="@Items"/>
+                <PageHeaderList>
+                    <PageHeaderListItem Href="/documentation" Label="Documentation" />
+                    <PageHeaderListItem Href="/learn" Label="Learn" />
+                    <PageHeaderListItem Href="/questions-and-answers" Label="Q&A" />
+                    <PageHeaderListItem Href="/code-samples" Label="Code Samples" />
+                    <PageHeaderListItem Href="/shows" Label="Shows" />
+                    <PageHeaderListItem Href="/events" Label="Events" />
+                    @if(Items.Count > 0)
+                    {
+                        <PageHeaderListItem Label="@Title" Items="@Items"/>
+                    }
+                </PageHeaderList>
             </div>
 
             <div class="menu-bottom">
