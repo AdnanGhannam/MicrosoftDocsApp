@@ -1,76 +1,83 @@
 ﻿@using MicrosoftDocs.Client.Models
+@using MicrosoftDocs.Client.Shared.ImageboxComponent
 @using MicrosoftDocs.Client.Shared.InputboxComponent
 @using MicrosoftDocs.Client.Shared.ItemsListComponent;
 
-@if(Items is not null)
-{
-    <nav class="@($"page-header { Class }")">
-        <div class="page-header__container container">
-            <div class="page-header__left">
-                <ItemsList>
-                    <ItemsListItem Href="@Href" Class="page-header__left__item">
-                        @Title
-                    </ItemsListItem>
-                    @foreach(var item in Items)
+<nav class="@($"page-header { Class }")">
+    <div class="page-header__container container" style="@(Items.Count == 0 ? "display: none": "")">
+        <div class="page-header__left">
+            <ItemsList>
+                <ItemsListItem Href="@Href" Class="page-header__left__item">
+                    @Title
+                </ItemsListItem>
+                @foreach(var item in Items)
+                {
+                    @if(item.Items?.Count > 0)
                     {
-                        @if(item.Items?.Count > 0)
-                        {
-                            <ItemsListItem Class="page-header__left__item">
-                                <Icon>
-                                    <MudIcon Icon="@item.Icon" />
-                                </Icon>
-                                <ChildContent>
-                                        <MudMenu Label="@item.Label" Color="Color.Inherit" ListClass="page-header__expansion-list"
-                                                    AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                                            @foreach(var (key, value) in item.Items)
-                                            {
-                                                <MudMenuItem>
-                                                    <NavLink href="@key" class="@(key.StartsWith('/') ? "" : "outer-link")">
-                                                        @value
-                                                    </NavLink>
-                                                </MudMenuItem>
-                                            }
-                                    </MudMenu>
-                                </ChildContent>
-                            </ItemsListItem>
-                        }
-                        else
-                        {
-                            <ItemsListItem>
-                                <NavLink href="@item.Url">
-                                    @item.Label
-                                </NavLink>
-                            </ItemsListItem>
-                        }
+                        <ItemsListItem Class="page-header__left__item">
+                            <Icon>
+                                <MudIcon Icon="@item.Icon" />
+                            </Icon>
+                            <ChildContent>
+                                    <MudMenu Label="@item.Label" Color="Color.Inherit" ListClass="page-header__expansion-list"
+                                                AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+                                        @foreach(var (key, value) in item.Items)
+                                        {
+                                            <MudMenuItem>
+                                                <NavLink href="@key" class="@(key.StartsWith('/') ? "" : "outer-link")">
+                                                    @value
+                                                </NavLink>
+                                            </MudMenuItem>
+                                        }
+                                </MudMenu>
+                            </ChildContent>
+                        </ItemsListItem>
                     }
-                </ItemsList>
-            </div>
-
-            <div class="page-header__right">
-                @ChildContent
-            </div>
+                    else
+                    {
+                        <ItemsListItem>
+                            <NavLink href="@item.Url">
+                                @item.Label
+                            </NavLink>
+                        </ItemsListItem>
+                    }
+                }
+            </ItemsList>
         </div>
 
-        <div class="page-header__side-bar">
-            <input type="checkbox" name="menu-cb"  id="menu-cb" class="page-header__side-bar__menu-button"/>
-            <div class="page-header__side-bar__menu-box">
-                <div class="menu-top">
-                    <Inputbox Placeholder="Search" Class="menu-top__inputbox"/>
-                    <label for="menu-cb" class="bi bi-x-lg menu-top__x-button"></label>
+        <div class="page-header__right">
+            @ChildContent
+        </div>
+    </div>
+
+    <div class="page-header__side-bar">
+        <input type="checkbox" name="menu-cb"  id="menu-cb" class="page-header__side-bar__menu-button"/>
+        <div class="page-header__side-bar__menu-box">
+            <div class="menu-top">
+                <Inputbox Placeholder="Search" Class="menu-top__inputbox"/>
+                <label for="menu-cb" class="bi bi-x-lg menu-top__x-button"></label>
+            </div>
+
+            <div class="menu-center">
+
+            </div>
+
+            <div class="menu-bottom">
+                <div class="menu-bottom__left">
+                    <Imagebox Character="@('M')" ImageUrl="/images/person.svg" Class="menu-bottom__imgbox"/>
+                    <NavLink href="/user/me/account" class="menu-bottom__left__link">adnan ghannam</NavLink>
                 </div>
 
-                <div class="menu-center">
-
-                </div>
-
-                <div class="menu-bottom">
+                <div class="menu-bottom__right">
+                    <NavLink href="/user/me/settings" class="bi bi-gear"></NavLink>
+                    <NavLink href="/user/me/signout" class="">Sign out</NavLink>
 
                 </div>
             </div>
-            <label for="menu-cb" class="page-header__side-bar__overlay"></label>
         </div>
-    </nav>
-}
+        <label for="menu-cb" class="page-header__side-bar__overlay"></label>
+    </div>
+</nav>
 
 @code {
     [Parameter]
@@ -86,5 +93,5 @@
     public RenderFragment ChildContent { get; set; }
 
     [Parameter]
-    public List<PageHeaderItemModel>? Items { get; set; }
+    public List<PageHeaderItemModel> Items { get; set; } = new();
 }

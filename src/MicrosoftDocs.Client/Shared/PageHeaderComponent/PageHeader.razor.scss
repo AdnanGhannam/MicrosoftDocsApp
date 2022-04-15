@@ -48,7 +48,6 @@
 
             .menu-top {
                 @include flex();
-                border-bottom: 1px solid var(--clr-border);
 
                 &__x-button {
                     padding: var(--page-padding) calc(var(--page-padding) * 1.3);
@@ -67,6 +66,8 @@
             }
 
             .menu-center {
+                border-top: 1px solid var(--clr-border);
+                border-bottom: 1px solid var(--clr-border);
                 flex: 1;
 
                 overflow: auto;
@@ -76,7 +77,29 @@
             }
 
             .menu-bottom {
+                @include flex(space-between);
+                font-size: .8em;
+                padding: calc(var(--page-padding) / 2) var(--page-padding);
 
+                &__left {
+                    position: relative;
+
+                    ::deep &__link {
+                        &:after {
+                            @include absolute(0px, 0px, 0px, 0px);
+                            content: '';
+                        }
+                    }
+                }
+
+                &__left,
+                &__right {
+                    @include flex();
+
+                    ::deep >* {
+                        margin-right: 1em;
+                    }
+                }
             }
         }
 

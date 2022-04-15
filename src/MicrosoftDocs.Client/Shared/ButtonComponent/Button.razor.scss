@@ -8,6 +8,10 @@
         background-color: var(--clr-primary);
         padding: calc(var(--page-padding) / 2) calc(var(--page-padding) / 1.5);
         display: inline-block;
+
+        &:hover {
+            background-color: var(--clr-hyperlink-hover);
+        }
     }
 
     ::deep &__link {
@@ -23,4 +27,3 @@
         }
     }
 }
-
