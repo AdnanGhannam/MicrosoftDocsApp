@@ -1,0 +1,40 @@
+﻿@import "../Styles/Mixins.scss";
+
+.page-header-item {
+    $padding: var(--page-padding);
+
+    ::deep &__link,
+    &__content {
+        color: var(--clr-white);
+        font-weight: 300;
+    }
+
+    ::deep &__link {
+        text-decoration: none;
+        color: inherit;
+        padding: $padding;
+        display: block;
+    }
+
+    &__content {
+        @include flex(space-between);
+        padding: $padding;
+        color: inherit;
+    }
+
+    &__checkbox {
+        display: none;
+
+        &:checked {
+            + ::deep .page-header-item__sub-list {
+                display: block;
+            }
+        }
+    }
+
+    ::deep &__sub-list {
+        @include absolute(0px, 0px, 0px, 0px);
+        background-color: var(--bg-primary);
+        display: none;
+    }
+}

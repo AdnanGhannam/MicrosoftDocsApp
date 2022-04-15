@@ -1,0 +1,47 @@
+﻿@using MicrosoftDocs.Client.Models
+<li class="@($"page-header-item {Class}")">
+    @if(Href is not null)
+    {
+        <NavLink href="@Href" class="page-header-item__link">
+            @if(Label is not null)
+            {
+                @Label
+            }
+            else
+            {
+                @ChildContent
+            }
+        </NavLink>
+    }
+    else 
+    {
+        <label for="@Label" class="page-header-item__content clickable">
+            <span class="page-header-item__content__text">@Label</span>
+            <span class="bi bi-chevron-right page-header-item__content__icon"></span>
+        </label>
+
+        <input type="checkbox" id="@Label" class="page-header-item__checkbox"/>
+
+        <PageHeaderList Items="Items" Title="@Label" CheckboxId="@Label" 
+                        Class="page-header-item__sub-list" IsSubList>
+            @ChildContent
+        </PageHeaderList>
+    }
+</li>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string? Href { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public List<PageHeaderItemModel>? Items { get; set; }
+}

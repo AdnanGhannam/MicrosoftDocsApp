@@ -71,9 +71,9 @@
                 flex: 1;
 
                 overflow: auto;
-                direction: rtl;
                 text-align: left;
-                padding: var(--page-padding);
+                // direction: rtl;
+                // padding: var(--page-padding);
             }
 
             .menu-bottom {

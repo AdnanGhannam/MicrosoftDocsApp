@@ -21,12 +21,20 @@
                             <ChildContent>
                                     <MudMenu Label="@item.Label" Color="Color.Inherit" ListClass="page-header__expansion-list"
                                                 AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
-                                        @foreach(var (key, value) in item.Items)
+                                        @foreach(var subItem in item.Items)
                                         {
                                             <MudMenuItem>
-                                                <NavLink href="@key" class="@(key.StartsWith('/') ? "" : "outer-link")">
-                                                    @value
-                                                </NavLink>
+                                                @if(subItem.Href is not null)
+                                                {
+                                                    <NavLink href="@subItem.Href" 
+                                                            class="@(subItem.Href.StartsWith('/') || subItem.Href.StartsWith('#') ? "" : "outer-link")">
+                                                            @subItem.Label
+                                                    </NavLink>
+                                                }
+                                                else
+                                                {
+                                                    @subItem.Label
+                                                }
                                             </MudMenuItem>
                                         }
                                 </MudMenu>
@@ -36,7 +44,7 @@
                     else
                     {
                         <ItemsListItem>
-                            <NavLink href="@item.Url">
+                            <NavLink href="@item.Href">
                                 @item.Label
                             </NavLink>
                         </ItemsListItem>
@@ -59,7 +67,7 @@
             </div>
 
             <div class="menu-center">
-
+                <PageHeaderList Title=".NET" Items="@Items"/>
             </div>
 
             <div class="menu-bottom">

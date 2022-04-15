@@ -3,6 +3,6 @@
 namespace MicrosoftDocs.Client.Models;
 
 public record PageHeaderItemModel(string Label, 
-    string Icon, 
-    Dictionary<string, string>? Items = null, 
-    string? Url = null);
+    string Icon = "", 
+    List<PageHeaderItemModel>? Items = null, 
+    string? Href = null);

@@ -1,0 +1,25 @@
+﻿.page-header-list {
+    height: 100%;
+    position: relative;
+
+    &__label-item {
+        label {
+            border-bottom: 1px solid var(--clr-border);
+            padding: var(--page-padding);
+            font-weight: 600;
+            display: block;
+
+            &::before {
+                margin-right: 1em;
+            }
+        }
+    }
+
+    &__title-item {
+        span {
+            padding: var(--page-padding);
+            font-weight: 600;
+            display: block;
+        }
+    }
+}
