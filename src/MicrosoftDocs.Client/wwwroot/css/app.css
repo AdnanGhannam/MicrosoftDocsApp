@@ -268,3 +268,8 @@ p {
     color: var(--clr-text);
 }
 
+.mud-popover {
+    transition-delay: 0 !important;
+    transition-duration: 0 !important
+}
+

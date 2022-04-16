@@ -5,8 +5,8 @@
 <header class="@($"home-header { Class }")">
     <Section ImageUrl="@ImageUrl"
                 SubTitle="@SubTitle" Title="@Title" Description="@Description">
-        <form class="home-header__input-box" @onsubmit="OnSubmit">
-            <Inputbox Placeholder="@SearchInputPlaceHolder" Class="input"/>
+        <form class="home-header__input-box" @onsubmit="OnSubmit" @onsubmit:preventDefault="true">
+            <Inputbox Placeholder="@SearchInputPlaceHolder" @bind-Value="@Value" Class="input"/>
             <Button ButtonType="submit">
                 Search
             </Button>
@@ -17,6 +17,12 @@
 @code {
     [Parameter]
     public string Class { get; set; } = "";
+
+    [Parameter]
+    public string Value { get; set; } = "";
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
 
     [Parameter]
     public string SubTitle { get; set; } = "";

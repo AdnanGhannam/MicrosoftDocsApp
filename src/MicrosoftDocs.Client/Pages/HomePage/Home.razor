@@ -8,6 +8,7 @@
 @using MicrosoftDocs.Client.Shared.ResourceItemComponent;
 @using MicrosoftDocs.Client.Shared.HomeHeaderComponent;
 @using MicrosoftDocs.Client.Shared.SectionComponent
+@inject NavigationManager _navManager
 
 <PageTitle>
     Developer tools, technical documentation and coding examples | Microsoft Docs
@@ -16,8 +17,8 @@
 <div class="home-page">
     <PageHeader />
 
-    <HomeHeader SearchInputPlaceHolder="Search for articles, traning, and code samples"
-                    Title="Microsoft technical documentation"
+    <HomeHeader SearchInputPlaceHolder="Search for articles, traning, and code samples" @bind-Value="@searchValue"
+                    Title="Microsoft technical documentation" OnSubmit="SearchFormSubmit"
                     Description="The home for Microsoft documentation and learning for developers and technology professionals." />
 
     <Section Class="home-page__destinations">
@@ -158,5 +159,10 @@
 </div>
 
 @code {
+    private string searchValue = "";
 
+    private void SearchFormSubmit()
+    {
+        _navManager.NavigateTo($"/search?term={searchValue}");
+    }
 }
