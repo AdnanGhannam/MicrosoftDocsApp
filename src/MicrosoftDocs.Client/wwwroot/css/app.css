@@ -129,10 +129,8 @@ a:visited {
 }
 
 .outer-link::after {
-    content: '⎋';
-    display: inline-block;
-    padding-right: .5em;
-    transform: rotate(90deg);
+    content: url("/images/outer-link.svg");
+    margin-left: .4em;
 }
 
 input,
