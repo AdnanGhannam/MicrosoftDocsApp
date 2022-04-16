@@ -1,6 +1,6 @@
 ﻿@using MicrosoftDocs.Client.Models
 <li class="@($"side-menu-item {Class}")">
-    @if(Items is null || Items.Count == 0)
+    @if(!HasItems && (Items is null || Items.Count == 0))
     {
         <NavLink href="@Href" class="side-menu-item__link">
             @if(Label is not null)
@@ -23,7 +23,7 @@
         <input type="checkbox" id="@Label" class="side-menu-item__checkbox"/>
 
         <SideMenuList Items="Items" Title="@Label" CheckboxId="@Label" 
-                        Class="side-menu-item__sub-list" IsSubList>
+                        Class="@($"side-menu-item__sub-list { SubListClass }")" IsSubList>
             @ChildContent
         </SideMenuList>
     }
@@ -32,6 +32,9 @@
 @code {
     [Parameter]
     public string Class { get; set; } = "";
+
+    [Parameter]
+    public string SubListClass { get; set; } = "";
 
     [Parameter]
     public string? Href { get; set; }
@@ -44,4 +47,7 @@
 
     [Parameter]
     public List<PageHeaderItemModel>? Items { get; set; }
+
+    [Parameter]
+    public bool HasItems { get; set; }
 }

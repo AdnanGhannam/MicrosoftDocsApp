@@ -1,10 +1,12 @@
 ﻿@page "/search"
+@using MicrosoftDocs.Client.Enums
 @using MicrosoftDocs.Client.Models
 @using MicrosoftDocs.Client.Shared.ButtonComponent
 @using MicrosoftDocs.Client.Shared.HomeHeaderComponent
 @using MicrosoftDocs.Client.Shared.InputboxComponent
 @using MicrosoftDocs.Client.Shared.PageHeaderComponent
 @using MicrosoftDocs.Client.Shared.SearchItemComponent
+@using MicrosoftDocs.Client.Shared.SideMenuComponent
 
 <PageTitle>
     Search | Microsoft Docs
@@ -67,6 +69,10 @@
 
 
             <div class="search-page__right__results-box">
+                <label class="custom-btn search-page__right__filters-button" for="@sideMenuId">
+                    <i class="bi bi-funnel"></i>
+                    Search filters
+                </label>
                 <h6 class="search-page__right__results-number">566 results for "blazor"</h6>
 
                 <ul class="search-page__right__results-list">
@@ -82,17 +88,71 @@
             </div>
         </div>
     </div>
+
+    <div class="search-page__side-menu">
+        <SideMenu MenuId="@sideMenuId" Direction="Directions.Left">
+            <HeaderContent>
+                <h4>Search filters</h4>
+            </HeaderContent>
+
+            <ChildContent>
+                <SideMenuList>
+                    <SideMenuListItem Label="Content area" HasItems SubListClass="search-page__side-menu__item-list">
+                        <MudRadioGroup @bind-SelectedOption="@selectedOption" Class="radio-group">
+                            <MudRadio Option="@("All")" Color="Color.Primary">
+                                <span>All</span>
+                                <span class="badge">423</span>
+                            </MudRadio>
+                            <MudRadio Option="@("Documentation")" Color="Color.Primary">
+                                <span>Documentation</span>
+                                <span class="badge">23</span>
+                            </MudRadio>
+                            <MudRadio Option="@("Learn")" Color="Color.Primary">
+                                <span>Learn</span>
+                                <span class="badge">3</span>
+                            </MudRadio>
+                            <MudRadio Option="@("Shows")" Color="Color.Primary">
+                                <span>Shows</span>
+                                <span class="badge">0</span>
+                            </MudRadio>
+                            <MudRadio Option="@("Events")" Color="Color.Primary">
+                                <span>Events</span>
+                                <span class="badge">0</span>
+                            </MudRadio>
+                        </MudRadioGroup>
+                    </SideMenuListItem>
+                    <SideMenuListItem Label="Products" HasItems>
+                        <MudTreeView Items="ProductItems" Class="products-list"
+                                    MultiSelection="true" @bind-ActivatedValue="activatedValue" 
+                                    @bind-SelectedValues="selectedValues">
+                            <ItemTemplate>
+                                <MudTreeViewItem Items="@context.Items" Value="@context"
+                                                 Text="@context.Name" EndTextTypo="@Typo.caption" />
+                            </ItemTemplate>
+                        </MudTreeView>
+                    </SideMenuListItem>
+                </SideMenuList>
+            </ChildContent>
+
+            <FooterContent>
+                <Button>View results (123)</Button>
+                <Button>Clear all</Button>
+            </FooterContent>
+        </SideMenu>
+    </div>
 </div>
 
 @code {
+    private string sideMenuId = "side-menu";
+
     [Parameter]
     [SupplyParameterFromQuery]
     public string? Term { get; set; }
 
     private string selectedOption = "All";
 
-    private ProductSearchItemModel activatedValue;
-    private HashSet<ProductSearchItemModel> selectedValues;
+    private ProductSearchItemModel? activatedValue;
+    private HashSet<ProductSearchItemModel> selectedValues = new();
 
     public HashSet<ProductSearchItemModel> ProductItems = new()
     {

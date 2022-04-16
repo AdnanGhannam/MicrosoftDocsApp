@@ -1,6 +1,25 @@
 ﻿@import "../../Shared/Styles/Mixins.scss";
 
+@mixin radioGroup {
+    ::deep .mud-radio {
+        @include flex();
+
+        .mud-button-root {
+            $p: .2em;
+            padding-top: $p;
+            padding-bottom: $p;
+        }
+
+        .mud-radio-content {
+            @include flex(space-between);
+            flex: 1;
+            color: var(--clr-text);
+        }
+    }
+}
+
 .search-page {
+
     &__container {
         @include flex(flex-start, flex-start);
         padding: var(--page-padding);
@@ -21,26 +40,14 @@
         }
 
         &__area-form {
-            ::deep .mud-radio {
-                @include flex();
-
-                .mud-button-root {
-                    padding: .2em;
-                }
-
-                .mud-radio-content {
-                    @include flex(space-between);
-                    flex: 1;
-                    color: var(--clr-text);
-                }
-            }
+            @include radioGroup;
         }
 
         &__products-form {
             ::deep .products-list {
                 margin-top: .5em;
                 overflow-y: scroll;
-                max-height: 300px;
+                max-height: 280px;
             }
         }
     }
@@ -67,6 +74,12 @@
 
         &__results-list {
             padding: 1em 0;
+        }
+
+        &__filters-button {
+            display: none;
+            margin-bottom: .7em;
+            font-size: .9em;
         }
 
         ::deep .results-pagination {
@@ -105,6 +118,38 @@
                     color: var(--clr-black);
                     height: 100%;
                 }
+            }
+        }
+    }
+
+    &__side-menu {
+        @include radioGroup;
+        display: none;
+
+        ::deep .radio-group {
+            padding-right: 1em;
+        }
+    }
+
+    @include Laptops {
+        &__right {
+            max-width: auto;
+            padding-right: 0;
+        }
+    }
+
+    @include Tablets {
+        &__left {
+            display: none;
+        }
+
+        &__side-menu {
+            display: block;
+        }
+
+        &__right {
+            &__filters-button {
+                display: inline-block;
             }
         }
     }

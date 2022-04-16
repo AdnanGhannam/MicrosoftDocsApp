@@ -216,6 +216,14 @@ p {
     text-align: center;
 }
 
+.custom-btn {
+    display: inline-block;
+    padding: .5em 1em;
+    border-radius: 2px;
+    border: 1px solid var(--clr-border);
+    cursor: pointer;
+}
+
 /*
 .focusable:focus-within {
     outline: 2px dashed var(--clr-text-light);

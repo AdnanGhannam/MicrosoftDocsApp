@@ -3,8 +3,10 @@
     <input type="checkbox" name="@MenuId"  id="@MenuId" class="side-menu__menu-button"/>
     <div class="side-menu__menu-box">
         <div class="menu-top">
-            @HeaderContent
-            <label for="menu-cb" class="bi bi-x-lg menu-top__x-button"></label>
+            <div class="menu-top__content">
+                @HeaderContent
+            </div>
+            <label for="@MenuId" class="bi bi-x-lg menu-top__x-button"></label>
         </div>
 
         <div class="menu-center">

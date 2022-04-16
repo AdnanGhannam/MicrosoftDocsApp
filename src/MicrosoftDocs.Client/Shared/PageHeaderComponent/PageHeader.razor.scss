@@ -27,9 +27,6 @@
 
     ::deep &__side-menu {
         .top-inputbox {
-            flex: 1;
-            padding: calc(var(--page-padding) * .65);
-            border-right: 1px solid var(--clr-border);
 
             input {
                 border: 1px solid var(--clr-border);
