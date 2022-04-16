@@ -13,20 +13,5 @@ internal class SectionConfigurations : IEntityTypeConfiguration<Section>
 {
     public void Configure(EntityTypeBuilder<Section> builder)
     {
-        builder.HasKey(e => e.Id);
-
-
-        builder.Property(e => e.Title)
-            .IsRequired()
-            .HasMaxLength(20);
-
-
-        builder.HasOne(e => e.Language)
-            .WithMany(e => e.Sections)
-            .HasForeignKey(e => e.LanguageId)
-            .OnDelete(DeleteBehavior.NoAction);
-
-        builder.HasMany(e => e.Sections)
-            .WithOne();
     }
 }

@@ -12,8 +12,8 @@ using MicrosoftDocs.Infrastructure.Data;
 namespace MicrosoftDocs.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220403232523_000")]
-    partial class _000
+    [Migration("20220416192944_000_inti")]
+    partial class _000_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -250,7 +250,8 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("OwnerId")
                         .IsRequired()
@@ -281,7 +282,8 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -334,18 +336,20 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Version")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", b =>
+            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Product", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -365,7 +369,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("SectionId")
+                    b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Title")
@@ -379,11 +383,24 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.HasIndex("SectionId");
+                    b.HasIndex("ProductId");
 
-                    b.ToTable("Sections");
+                    b.ToTable("Products");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Section");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
+                });
+
+            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", b =>
+                {
+                    b.HasBaseType("MicrosoftDocs.Domain.Entities.SectionAggregate.Product");
+
+                    b.Property<int>("ContentArea")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsApi")
+                        .HasColumnType("bit");
+
+                    b.HasDiscriminator().HasValue("Section");
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Article", b =>
@@ -531,23 +548,23 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                     b.Navigation("Interactor");
                 });
 
-            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", b =>
+            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Product", b =>
                 {
                     b.HasOne("MicrosoftDocs.Domain.Entities.AppUserAggregate.AppUser", "Creator")
-                        .WithMany("Sections")
+                        .WithMany("Products")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MicrosoftDocs.Domain.Entities.SectionAggregate.Language", "Language")
-                        .WithMany("Sections")
+                        .WithMany("Products")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", null)
-                        .WithMany("Sections")
-                        .HasForeignKey("SectionId");
+                    b.HasOne("MicrosoftDocs.Domain.Entities.SectionAggregate.Product", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ProductId");
 
                     b.Navigation("Creator");
 
@@ -569,7 +586,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.Navigation("Interactions");
 
-                    b.Navigation("Sections");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.AppUserAggregate.Collection", b =>
@@ -579,12 +596,12 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Language", b =>
                 {
-                    b.Navigation("Sections");
+                    b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", b =>
+            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Product", b =>
                 {
-                    b.Navigation("Sections");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Article", b =>

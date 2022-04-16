@@ -13,11 +13,6 @@ internal class ArticleConfigurations : IEntityTypeConfiguration<Article>
 {
     public void Configure(EntityTypeBuilder<Article> builder)
     {
-
-        builder.Property(e => e.Title)
-            .IsRequired()
-            .HasMaxLength(20);
-
         builder.Property(e => e.FullTitle)
             .HasMaxLength(40);
 

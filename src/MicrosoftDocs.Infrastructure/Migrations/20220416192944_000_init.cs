@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MicrosoftDocs.Infrastructure.Migrations
 {
-    public partial class _000 : Migration
+    public partial class _000_init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,8 +14,8 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Version = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Version = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -89,7 +89,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     OwnerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -190,15 +190,17 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sections",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    LanguageId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LanguageId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SectionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ProductId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IsApi = table.Column<bool>(type: "bit", nullable: true),
+                    ContentArea = table.Column<int>(type: "int", nullable: true),
                     FullTitle = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     ReadingTime = table.Column<TimeSpan>(type: "time", nullable: true),
                     ReadTimes = table.Column<int>(type: "int", nullable: true),
@@ -209,24 +211,24 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sections", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sections_Collections_CollectionId",
+                        name: "FK_Products_Collections_CollectionId",
                         column: x => x.CollectionId,
                         principalTable: "Collections",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Sections_Languages_LanguageId",
+                        name: "FK_Products_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalTable: "Languages",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Sections_Sections_SectionId",
-                        column: x => x.SectionId,
-                        principalTable: "Sections",
+                        name: "FK_Products_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Sections_User_CreatorId",
+                        name: "FK_Products_User_CreatorId",
                         column: x => x.CreatorId,
                         principalTable: "User",
                         principalColumn: "Id",
@@ -244,9 +246,9 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_ContributorsArticles", x => new { x.ArticlesId, x.ContributorsId });
                     table.ForeignKey(
-                        name: "FK_ContributorsArticles_Sections_ArticlesId",
+                        name: "FK_ContributorsArticles_Products_ArticlesId",
                         column: x => x.ArticlesId,
-                        principalTable: "Sections",
+                        principalTable: "Products",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ContributorsArticles_User_ContributorsId",
@@ -260,7 +262,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ArticleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -270,9 +272,9 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Feedbacks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Feedbacks_Sections_ArticleId",
+                        name: "FK_Feedbacks_Products_ArticleId",
                         column: x => x.ArticleId,
-                        principalTable: "Sections",
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -296,9 +298,9 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Interactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Interactions_Sections_ArticleId",
+                        name: "FK_Interactions_Products_ArticleId",
                         column: x => x.ArticleId,
-                        principalTable: "Sections",
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -339,6 +341,26 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 column: "InteractorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_CollectionId",
+                table: "Products",
+                column: "CollectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CreatorId",
+                table: "Products",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_LanguageId",
+                table: "Products",
+                column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductId",
+                table: "Products",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 table: "Role",
                 column: "NormalizedName",
@@ -349,26 +371,6 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 name: "IX_RoleClaims_RoleId",
                 table: "RoleClaims",
                 column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sections_CollectionId",
-                table: "Sections",
-                column: "CollectionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sections_CreatorId",
-                table: "Sections",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sections_LanguageId",
-                table: "Sections",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sections_SectionId",
-                table: "Sections",
-                column: "SectionId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -425,7 +427,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                 name: "UserTokens");
 
             migrationBuilder.DropTable(
-                name: "Sections");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Role");

@@ -1,4 +1,5 @@
 ﻿using MicrosoftDocs.Domain.Entities.AppUserAggregate;
+using MicrosoftDocs.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,16 @@ public partial class Article
         string creatorId,
         string content,
         string points,
-        Language language,
+        string languageId,
         string? fullTitle = null,
-        IEnumerable<AppUser>? contributors = null) 
+        IEnumerable<AppUser>? contributors = null,
+        bool isApi = false,
+        ContentAreas contentArea = ContentAreas.Documentation) 
+        : base(title, creatorId, languageId, isApi, contentArea)
     {
-        Title = title;
-        CreatorId = creatorId;
         Content = content;
         Points = points;
         FullTitle = fullTitle;
-        Language = language;
 
         if(contributors != null)
         {
@@ -38,8 +39,10 @@ public partial class Article
         string points,
         Language language,
         string? fullTitle = null,
-        IEnumerable<AppUser>? contributors = null)
-        : this(title, creator.Id, content, points, language, fullTitle, contributors) { }
+        IEnumerable<AppUser>? contributors = null,
+        bool isApi = false,
+        ContentAreas contentArea = ContentAreas.Documentation) 
+        : this(title, creator.Id, content, points, language.Id, fullTitle, contributors, isApi, contentArea) { }
 
     public void AddContributors(AppUser contributors)
     {

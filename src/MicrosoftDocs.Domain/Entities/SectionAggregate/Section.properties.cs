@@ -1,5 +1,4 @@
-﻿using MicrosoftDocs.Domain.Base;
-using MicrosoftDocs.Domain.Entities.AppUserAggregate;
+﻿using MicrosoftDocs.Domain.Enums;
 using MicrosoftDocs.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,21 +8,9 @@ using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 
-public partial class Section : EntityBase, IAggregateRoot
+public partial class Section : Product, IAggregateRoot
 {
-    /// <summary>
-    /// Max length is 20
-    /// </summary>
-    public string Title { get; protected set; }
+    public bool IsApi { get; protected set; }
 
-    public string LanguageId { get; protected set; }
-    public Language Language { get; protected set; }
-
-
-    private List<Section> _sections = new();
-    public IReadOnlyCollection<Section> Sections => _sections.AsReadOnly();
-
-
-    public string CreatorId { get; protected set; }
-    public AppUser Creator { get; protected set; }
+    public ContentAreas ContentArea { get; protected set; }
 }

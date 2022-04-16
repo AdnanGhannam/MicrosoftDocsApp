@@ -42,18 +42,18 @@ public partial class AppUser
         _collections.SingleOrDefault(collection).RemoveArticle(article);
     }
 
-    public Section AddSection(string title, Language language)
+    public Section AddProduct(string title, Language language)
     {
-        var section = new Section(title, this, language);
+        var product = new Section(title, this, language);
 
-        _sections.Add(section);
+        _products.Add(product);
 
-        return section;
+        return product;
     }
 
-    public void RemoveSection(Section section)
+    public void RemoveProduct(Product product)
     {
-        _sections.Remove(section);
+        _products.Remove(product);
     }
 
     public void AddArticle(Article article)

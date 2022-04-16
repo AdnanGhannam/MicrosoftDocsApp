@@ -1,4 +1,5 @@
 ﻿using MicrosoftDocs.Domain.Entities.AppUserAggregate;
+using MicrosoftDocs.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +11,22 @@ namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 public partial class Section
 {
     protected Section() { }
-    
+
     public Section(string title,
         string creatorId,
-        Language language)
+        string languageId,
+        bool isApi = false,
+        ContentAreas contentArea = ContentAreas.Documentation) 
+        : base(title, creatorId, languageId)
     {
-        Title = title;
-        CreatorId = creatorId;
-        Language = language;
+        IsApi = isApi;
+        ContentArea = contentArea;
     }
 
-    public Section(string title, AppUser creator, Language language) 
-        : this(title, creator.Id, language) { }
-
-    public void AddSection(Section section)
-    {
-        _sections.Add(section);
-    }
-
-    public void AddArticle(Article article)
-    {
-        _sections.Add(article);
-    }
+    public Section(string title, 
+        AppUser creator, 
+        Language language, 
+        bool isApi = false,
+        ContentAreas contentArea = ContentAreas.Documentation) 
+        : this(title, creator.Id, language.Id, isApi, contentArea) { }
 }

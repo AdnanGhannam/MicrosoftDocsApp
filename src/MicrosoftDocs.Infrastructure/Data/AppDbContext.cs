@@ -39,6 +39,8 @@ public class AppDbContext : IdentityDbContext<AppUser>
 
     public DbSet<Section> Sections { get; set; }
 
+    public DbSet<Product> Products { get; set; }
+
 
 
     protected override void OnModelCreating(ModelBuilder builder)

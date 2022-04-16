@@ -22,7 +22,7 @@ internal class AppUserConfigurations : IEntityTypeConfiguration<AppUser>
             .HasForeignKey(e => e.OwnerId);
 
 
-        builder.HasMany(e => e.Sections)
+        builder.HasMany(e => e.Products)
             .WithOne(e => e.Creator)
             .HasForeignKey(e => e.CreatorId);
 

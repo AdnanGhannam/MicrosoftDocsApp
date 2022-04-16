@@ -34,7 +34,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("ContributorsId");
 
-                    b.ToTable("ContributorsArticles", (string)null);
+                    b.ToTable("ContributorsArticles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -259,7 +259,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Collections", (string)null);
+                    b.ToTable("Collections");
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Feedback", b =>
@@ -293,7 +293,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Feedbacks", (string)null);
+                    b.ToTable("Feedbacks");
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Interaction", b =>
@@ -321,7 +321,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("InteractorId");
 
-                    b.ToTable("Interactions", (string)null);
+                    b.ToTable("Interactions");
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Language", b =>
@@ -344,10 +344,10 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Languages", (string)null);
+                    b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", b =>
+            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Product", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -367,7 +367,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("SectionId")
+                    b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Title")
@@ -381,11 +381,24 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.HasIndex("SectionId");
+                    b.HasIndex("ProductId");
 
-                    b.ToTable("Sections", (string)null);
+                    b.ToTable("Products");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Section");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
+                });
+
+            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", b =>
+                {
+                    b.HasBaseType("MicrosoftDocs.Domain.Entities.SectionAggregate.Product");
+
+                    b.Property<int>("ContentArea")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsApi")
+                        .HasColumnType("bit");
+
+                    b.HasDiscriminator().HasValue("Section");
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Article", b =>
@@ -533,23 +546,23 @@ namespace MicrosoftDocs.Infrastructure.Migrations
                     b.Navigation("Interactor");
                 });
 
-            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", b =>
+            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Product", b =>
                 {
                     b.HasOne("MicrosoftDocs.Domain.Entities.AppUserAggregate.AppUser", "Creator")
-                        .WithMany("Sections")
+                        .WithMany("Products")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MicrosoftDocs.Domain.Entities.SectionAggregate.Language", "Language")
-                        .WithMany("Sections")
+                        .WithMany("Products")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", null)
-                        .WithMany("Sections")
-                        .HasForeignKey("SectionId");
+                    b.HasOne("MicrosoftDocs.Domain.Entities.SectionAggregate.Product", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ProductId");
 
                     b.Navigation("Creator");
 
@@ -571,7 +584,7 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
                     b.Navigation("Interactions");
 
-                    b.Navigation("Sections");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.AppUserAggregate.Collection", b =>
@@ -581,12 +594,12 @@ namespace MicrosoftDocs.Infrastructure.Migrations
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Language", b =>
                 {
-                    b.Navigation("Sections");
+                    b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Section", b =>
+            modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Product", b =>
                 {
-                    b.Navigation("Sections");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("MicrosoftDocs.Domain.Entities.SectionAggregate.Article", b =>

@@ -12,14 +12,14 @@ public partial class Language
 
     public Language(string name,
         string version,
-        Section? section = null)
+        Product? product = null) : base()
     {
         Name = name;
         Version = version;
 
-        if(section != null)
+        if(product != null)
         {
-            _sections.Add(section);
+            _products.Add(product);
         }
     }
 }
