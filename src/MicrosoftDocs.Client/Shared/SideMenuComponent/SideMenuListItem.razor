@@ -1,8 +1,8 @@
 ﻿@using MicrosoftDocs.Client.Models
-<li class="@($"page-header-item {Class}")">
-    @if(Href is not null)
+<li class="@($"side-menu-item {Class}")">
+    @if(Items is null || Items.Count == 0)
     {
-        <NavLink href="@Href" class="page-header-item__link">
+        <NavLink href="@Href" class="side-menu-item__link">
             @if(Label is not null)
             {
                 @Label
@@ -15,17 +15,17 @@
     }
     else 
     {
-        <label for="@Label" class="page-header-item__content clickable">
-            <span class="page-header-item__content__text">@Label</span>
-            <span class="bi bi-chevron-right page-header-item__content__icon"></span>
+        <label for="@Label" class="side-menu-item__content clickable">
+            <span class="side-menu-item__content__text">@Label</span>
+            <span class="bi bi-chevron-right side-menu-item__content__icon"></span>
         </label>
 
-        <input type="checkbox" id="@Label" class="page-header-item__checkbox"/>
+        <input type="checkbox" id="@Label" class="side-menu-item__checkbox"/>
 
-        <PageHeaderList Items="Items" Title="@Label" CheckboxId="@Label" 
-                        Class="page-header-item__sub-list" IsSubList>
+        <SideMenuList Items="Items" Title="@Label" CheckboxId="@Label" 
+                        Class="side-menu-item__sub-list" IsSubList>
             @ChildContent
-        </PageHeaderList>
+        </SideMenuList>
     }
 </li>
 

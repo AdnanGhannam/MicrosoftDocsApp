@@ -1,14 +1,14 @@
 ﻿@using MicrosoftDocs.Client.Models
-<ul class="@($"page-header-list {Class}")">
+<ul class="@($"side-menu-list {Class}")">
     @if(CheckboxId is not null)
     {
-        <li class="page-header-list__label-item">
+        <li class="side-menu-list__label-item">
             <label for="@CheckboxId" class="@(IsSubList ? "bi bi-arrow-left clickable" : "")">Back</label>
         </li>
     }
     @if(Title is not null)
     {
-        <li class="page-header-list__title-item">
+        <li class="side-menu-list__title-item">
             <span>@Title</span>
         </li>
     }
@@ -17,7 +17,7 @@
     {
         @foreach(var item in Items)
         {
-            <PageHeaderListItem Label="@item.Label" Items="item.Items" Href="@item.Href"/>
+            <SideMenuListItem Label="@item.Label" Items="item.Items" Href="@item.Href"/>
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿@import "../Styles/Mixins.scss";
 
-.page-header-item {
+.side-menu-item {
     $padding: var(--page-padding);
 
     ::deep &__link,
@@ -26,7 +26,7 @@
         display: none;
 
         &:checked {
-            + ::deep .page-header-item__sub-list {
+            + ::deep .side-menu-item__sub-list {
                 display: block;
             }
         }

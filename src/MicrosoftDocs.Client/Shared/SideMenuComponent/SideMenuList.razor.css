@@ -1,0 +1,1 @@
+.side-menu-list{height:100%;position:relative}.side-menu-list__label-item label{border-bottom:1px solid var(--clr-border);padding:var(--page-padding);font-weight:600;display:block}.side-menu-list__label-item label::before{margin-right:1em}.side-menu-list__title-item span{padding:var(--page-padding);font-weight:600;display:block}

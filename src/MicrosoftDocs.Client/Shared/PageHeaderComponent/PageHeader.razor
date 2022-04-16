@@ -2,6 +2,7 @@
 @using MicrosoftDocs.Client.Shared.ImageboxComponent
 @using MicrosoftDocs.Client.Shared.InputboxComponent
 @using MicrosoftDocs.Client.Shared.ItemsListComponent;
+@using MicrosoftDocs.Client.Shared.SideMenuComponent
 
 <nav class="@($"page-header { Class }")">
     <div class="page-header__container container" style="@(Items.Count == 0 ? "display: none": "")">
@@ -59,42 +60,39 @@
     </div>
 
     <div class="page-header__side-bar">
-        <input type="checkbox" name="menu-cb"  id="menu-cb" class="page-header__side-bar__menu-button"/>
-        <div class="page-header__side-bar__menu-box">
-            <div class="menu-top">
-                <Inputbox Placeholder="Search" Class="menu-top__inputbox"/>
-                <label for="menu-cb" class="bi bi-x-lg menu-top__x-button"></label>
-            </div>
+        <SideMenu MenuId="menu-cb" Class="page-header__side-menu">
+            <HeaderContent>
+                <Inputbox Placeholder="Search" Class="top-inputbox"/>
+            </HeaderContent>
 
-            <div class="menu-center">
-                <PageHeaderList>
-                    <PageHeaderListItem Href="/documentation" Label="Documentation" />
-                    <PageHeaderListItem Href="/learn" Label="Learn" />
-                    <PageHeaderListItem Href="/questions-and-answers" Label="Q&A" />
-                    <PageHeaderListItem Href="/code-samples" Label="Code Samples" />
-                    <PageHeaderListItem Href="/shows" Label="Shows" />
-                    <PageHeaderListItem Href="/events" Label="Events" />
+            <ChildContent>
+                <SideMenuList>
+                    <SideMenuListItem Href="/documentation" Label="Documentation" />
+                    <SideMenuListItem Href="/learn" Label="Learn" />
+                    <SideMenuListItem Href="/questions-and-answers" Label="Q&A" />
+                    <SideMenuListItem Href="/code-samples" Label="Code Samples" />
+                    <SideMenuListItem Href="/shows" Label="Shows" />
+                    <SideMenuListItem Href="/events" Label="Events" />
                     @if(Items.Count > 0)
                     {
-                        <PageHeaderListItem Label="@Title" Items="@Items"/>
+                        <SideMenuListItem Label="@Title" Items="@Items"/>
                     }
-                </PageHeaderList>
-            </div>
+                </SideMenuList>
+            </ChildContent>
 
-            <div class="menu-bottom">
-                <div class="menu-bottom__left">
-                    <Imagebox Character="@('M')" ImageUrl="/images/person.svg" Class="menu-bottom__imgbox"/>
-                    <NavLink href="/user/me/account" class="menu-bottom__left__link">adnan ghannam</NavLink>
+            <FooterContent>
+                <div class="bottom-left">
+                    <Imagebox Character="@('M')" ImageUrl="/images/person.svg" Class="bottom-left__imgbox"/>
+                    <NavLink href="/user/me/account" class="bottom-left__link">adnan ghannam</NavLink>
                 </div>
 
-                <div class="menu-bottom__right">
+                <div class="bottom-right">
                     <NavLink href="/user/me/settings" class="bi bi-gear"></NavLink>
                     <NavLink href="/user/me/signout" class="">Sign out</NavLink>
 
                 </div>
-            </div>
-        </div>
-        <label for="menu-cb" class="page-header__side-bar__overlay"></label>
+            </FooterContent>
+        </SideMenu>
     </div>
 </nav>
 

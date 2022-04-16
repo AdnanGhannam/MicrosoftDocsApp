@@ -1,0 +1,39 @@
+﻿@using MicrosoftDocs.Client.Enums
+<div class="@($"side-menu { Class } { (Direction == Directions.Left ? "left" : "right") }")">
+    <input type="checkbox" name="@MenuId"  id="@MenuId" class="side-menu__menu-button"/>
+    <div class="side-menu__menu-box">
+        <div class="menu-top">
+            @HeaderContent
+            <label for="menu-cb" class="bi bi-x-lg menu-top__x-button"></label>
+        </div>
+
+        <div class="menu-center">
+            @ChildContent
+        </div>
+
+        <div class="menu-bottom">
+            @FooterContent
+        </div>
+    </div>
+    <label for="@MenuId" class="side-menu__overlay"></label>
+</div>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment HeaderContent { get; set; }
+
+    [Parameter]
+    public RenderFragment FooterContent { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string MenuId { get; set; }
+
+    [Parameter]
+    public Directions Direction { get; set; } = Directions.Right;
+}
