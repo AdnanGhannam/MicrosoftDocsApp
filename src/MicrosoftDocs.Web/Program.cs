@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddSqlServer<AppDbContext>(builder.Configuration.GetConnectionString("DbConnection"))
     .AddConfiguredIdentity<AppDbContext>()
+    .AddCookieConfigurations()
     .AddMappingProfiles(new MappingProfile())
     .AddConfiguredControllers()
     .AddTransient<IDomainEventDispatcher, MediatrDomainEventDispatcher>()

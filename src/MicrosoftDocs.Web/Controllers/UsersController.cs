@@ -75,10 +75,19 @@ public class UsersController : Controller
     }
 
     [HttpPost(UsersControllerRoutes.ChangePassword)]
+    [Authorize]
     public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto requestDto)
     {
+        var results = await _mediator.Send(new ChangePasswordCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), requestDto));
 
-        return Ok();
+        return results switch
+        {
+            string message => Ok(new ResponseModel<string>(message)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            List<ErrorModel> errors => BadRequest(new ResponseModel(null, errors: errors)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
     }
 
     [HttpPost(UsersControllerRoutes.ResetPassword)]

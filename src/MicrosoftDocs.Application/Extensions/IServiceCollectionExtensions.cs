@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -70,6 +71,31 @@ public static class IServiceCollectionExtensions
         })
             .AddEntityFrameworkStores<T>()
             .AddDefaultTokenProviders();
+
+        return services;
+    }
+
+    public static IServiceCollection AddCookieConfigurations(this IServiceCollection services)
+    {
+        services.ConfigureApplicationCookie(config =>
+        {
+            config.Cookie.Name = "MicrosoftDocsCookie";
+
+            config.Events = new CookieAuthenticationEvents
+            {
+                OnRedirectToLogin = context =>
+                {
+                    context.Response.StatusCode = 401;
+                    return Task.CompletedTask;
+                },
+
+                OnRedirectToAccessDenied = context =>
+                {
+                    context.Response.StatusCode = 403;
+                    return Task.CompletedTask;
+                },
+            };
+        });
 
         return services;
     }
