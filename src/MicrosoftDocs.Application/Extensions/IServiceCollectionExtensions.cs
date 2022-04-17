@@ -46,11 +46,11 @@ public static class IServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddMappingProfiles(this IServiceCollection services)
+    public static IServiceCollection AddMappingProfiles(this IServiceCollection services, params Profile[] profiles)
     {
         services.AddSingleton(provider => new MapperConfiguration(cfg =>
         {
-            cfg.AddProfile(new MappingProfile());
+            cfg.AddProfiles(profiles);
         }).CreateMapper());
 
         return services;

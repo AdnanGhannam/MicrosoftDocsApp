@@ -8,6 +8,7 @@ using MicrosoftDocs.Infrastructure.Data;
 using MediatR;
 using System.Reflection;
 using MicrosoftDocs.Application.Extensions;
+using MicrosoftDocs.Application.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddSqlServer<AppDbContext>(builder.Configuration.GetConnectionString("DbConnection"))
     .AddConfiguredIdentity<AppDbContext>()
-    .AddMappingProfiles()
+    .AddMappingProfiles(new MappingProfile())
     .AddConfiguredControllers()
     .AddTransient<IDomainEventDispatcher, MediatrDomainEventDispatcher>()
     .AddMediatR(typeof(Program).Assembly, typeof(MediatrDomainEventDispatcher).GetTypeInfo().Assembly)
