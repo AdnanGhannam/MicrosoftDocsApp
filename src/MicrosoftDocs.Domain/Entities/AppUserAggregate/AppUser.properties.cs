@@ -14,7 +14,7 @@ namespace MicrosoftDocs.Domain.Entities.AppUserAggregate;
 
 public partial class AppUser : IdentityUser, IAggregateRoot
 {
-    public DateTime CreationTime { get; set; }
+    public DateTime CreationTime { get; private set; }
 
 
     private List<Collection> _collections = new();

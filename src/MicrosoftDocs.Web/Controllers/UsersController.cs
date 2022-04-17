@@ -5,6 +5,7 @@ using MicrosoftDocs.Shared.ControllersRoutes;
 using MicrosoftDocs.Shared.Helpers;
 using MicrosoftDocs.Shared.Models.UserModels;
 using MicrosoftDocs.Web.Features.Commands.UserCommands;
+using MicrosoftDocs.Web.Features.Queries.UserQueries;
 using System.Security.Claims;
 
 namespace MicrosoftDocs.Web.Controllers;
@@ -26,8 +27,10 @@ public class UsersController : Controller
     [Authorize]
     public async Task<IActionResult> GetMyInformations()
     {
+        var results = await _mediator.Send(new GetMyInformationsQuery(
+            User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-        return Ok();
+        return Ok(results);
     }
 
     #endregion
@@ -47,6 +50,14 @@ public class UsersController : Controller
         };
     }
 
+    [HttpPost(UsersControllerRoutes.Logout)]
+    public async Task<IActionResult> Logout()
+    {
+        await _mediator.Send(new LogoutCommand());
+
+        return NoContent();
+    }
+
     [HttpPost(UsersControllerRoutes.Register)]
     public async Task<IActionResult> Register([FromBody] RegisterDto requestDto)
     {
@@ -54,7 +65,7 @@ public class UsersController : Controller
 
         return results switch
         {
-            string message => Ok(new ResponseModel<string>(message)),
+            string message => StatusCode(201, new ResponseModel<string>(message)),
             List<ErrorModel> errors => BadRequest(new ResponseModel(null, errors: errors)),
             _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
         };

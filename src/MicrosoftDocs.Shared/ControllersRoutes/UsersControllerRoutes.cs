@@ -10,6 +10,7 @@ public static class UsersControllerRoutes
 {
     public const string Root = "/api/[controller]";
     public const string Login = "login";
+    public const string Logout = "logout";
     public const string Register = "register";
     public const string VerifyEmail = "verify-email";
     public const string ChangePassword = "password/change";
