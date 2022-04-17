@@ -51,6 +51,10 @@ public class RegisterHandler : IRequestHandler<RegisterCommand, object>
             return errors.ToList();
         }
 
+        var confirmCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        // TODO
+        // Send the email-confirm-code to user's Email
+
         // Succeeded
         return "User has been created";
     }
