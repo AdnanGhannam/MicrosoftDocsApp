@@ -1,0 +1,75 @@
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MicrosoftDocs.Application.Profiles;
+using MicrosoftDocs.Domain.Entities.AppUserAggregate;
+using MicrosoftDocs.Shared.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MicrosoftDocs.Application.Extensions;
+
+public static class IServiceCollectionExtensions
+{
+    public static IServiceCollection AddSqlServer<T>(this IServiceCollection services, string connectionString)
+        where T : DbContext
+    {
+        services.AddDbContext<T>(options => options.UseSqlServer(connectionString));
+
+        return services;
+    }
+
+    public static IServiceCollection AddConfiguredControllers(this IServiceCollection services)
+    {
+        services.AddControllers().ConfigureApiBehaviorOptions(config =>
+        {
+            config.InvalidModelStateResponseFactory = context =>
+            {
+                var response = new ResponseModel();
+
+                foreach (var item in context.ModelState)
+                {
+                    response.Errors.Add(new(item.Key, item.Value.Errors.FirstOrDefault()?.ErrorMessage));
+                }
+
+                var results = new ObjectResult(response);
+
+                return results;
+            };
+        });
+
+        return services;
+    }
+
+    public static IServiceCollection AddMappingProfiles(this IServiceCollection services)
+    {
+        services.AddSingleton(provider => new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile(new MappingProfile());
+        }).CreateMapper());
+
+        return services;
+    }
+
+    public static IServiceCollection AddConfiguredIdentity<T>(this IServiceCollection services)
+        where T : DbContext
+    {
+        services.AddIdentity<AppUser, IdentityRole>(config =>
+        {
+            config.Password.RequireNonAlphanumeric = false;
+            config.Password.RequireLowercase = false;
+            config.Password.RequireUppercase = false;
+            config.Password.RequireDigit = false;
+            config.Password.RequiredLength = 1;
+        })
+            .AddEntityFrameworkStores<T>()
+            .AddDefaultTokenProviders();
+
+        return services;
+    }
+}

@@ -35,6 +35,8 @@ public class AppDbContextSeed
                     "One of the following or more is null: context, userManager, roleManager, loggerFactory");
             }
 
+            await context.Database.MigrateAsync();
+
             #region Add Users and Roles
 
             if (!await context.Users.AnyAsync())
