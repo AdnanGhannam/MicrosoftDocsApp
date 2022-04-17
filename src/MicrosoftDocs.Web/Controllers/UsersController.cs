@@ -91,17 +91,30 @@ public class UsersController : Controller
     }
 
     [HttpPost(UsersControllerRoutes.ResetPassword)]
-    public async Task<IActionResult> ResetPassword([FromHeader] string UserName)
+    public async Task<IActionResult> ResetPassword([FromHeader] string userName)
     {
+         var results = await _mediator.Send(new ResetPasswordCommand(userName));
 
-        return Ok();
+        return results switch
+        {
+            string message => Ok(new ResponseModel<string>(message)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
     }
 
     [HttpPost(UsersControllerRoutes.ConfirmResetPassword)]
     public async Task<IActionResult> ConfirmResetPassword([FromBody] ConfirmResetPasswordDto requestDto)
     {
+        var results = await _mediator.Send(new ConfirmResetPasswordCommand(requestDto));
 
-        return Ok();
+        return results switch
+        {
+            string message => Ok(new ResponseModel<string>(message)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            List<ErrorModel> errors => BadRequest(new ResponseModel(null, errors: errors)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
     }
 
     #endregion 
