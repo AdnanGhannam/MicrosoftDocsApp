@@ -8,8 +8,8 @@ public record ChangePasswordDto(
         StringLength(EntitiesConstants.MaxUserNameLength, MinimumLength = EntitiesConstants.MinUserNameLength)
     ] string UserName, 
     [Required, 
-        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MaxPasswordLength)
+        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MinPasswordLength)
     ] string OldPassword,
     [Required, 
-        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MaxPasswordLength)
+        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MinPasswordLength)
     ] string NewPassword);

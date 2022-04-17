@@ -6,5 +6,5 @@ namespace MicrosoftDocs.Shared.Models.UserModels;
 public record ConfirmResetPasswordDto(
     [Required] string Code, 
     [Required, 
-        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MaxPasswordLength)
+        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MinPasswordLength)
     ] string NewPassword);

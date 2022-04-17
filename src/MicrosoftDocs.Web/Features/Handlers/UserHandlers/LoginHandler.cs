@@ -33,10 +33,17 @@ public class LoginHandler : IRequestHandler<LoginCommand, object>
 
         var loginResults = await _signInManager.PasswordSignInAsync(user, password, isPersistence, false);
 
-        // Password Is Wrong
+        // Failed
         if (!loginResults.Succeeded)
         {
-            return new ErrorModel("Failed", "Password is wrong");
+            return loginResults switch 
+            {
+                // Email Is Not Confirmed
+                { IsNotAllowed: true } => new ErrorModel("Failed", "Email is not confirmed"),
+
+                // Password Is Wrong 
+                _ => new ErrorModel("Failed", "Password is wrong"),
+            };
         }
 
         // Succeeded

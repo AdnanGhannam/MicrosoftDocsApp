@@ -54,16 +54,22 @@ public class AppDbContextSeed
                 // Admin user 
                 var adminUser = new AppUser(adminUserName, $"{ adminUserName }@mail.co");
                 await userManager.CreateAsync(adminUser, "123");
+                var adminUserToken = await userManager.GenerateEmailConfirmationTokenAsync(adminUser);
+                await userManager.ConfirmEmailAsync(adminUser, adminUserToken);
                 await userManager.AddToRoleAsync(adminUser, Roles.Admin.ToString());
 
                 // Contributor user 
                 var contributorUser = new AppUser(contributorUserName, $"{ contributorUserName }@mail.co");
                 await userManager.CreateAsync(contributorUser, "123");
+                var contributorUserToken = await userManager.GenerateEmailConfirmationTokenAsync(contributorUser);
+                await userManager.ConfirmEmailAsync(contributorUser, contributorUserToken);
                 await userManager.AddToRoleAsync(contributorUser, Roles.Contributor.ToString());
 
                 // Normal user 
                 var normalUser = new AppUser(normalUserName, $"{ normalUserName }@mail.co");
                 await userManager.CreateAsync(normalUser, "123");
+                var normalUserToken = await userManager.GenerateEmailConfirmationTokenAsync(normalUser);
+                await userManager.ConfirmEmailAsync(normalUser, normalUserToken);
                 await userManager.AddToRoleAsync(normalUser, Roles.NormalUser.ToString());
 
                 logger.LogInformation("Added Users To Database");

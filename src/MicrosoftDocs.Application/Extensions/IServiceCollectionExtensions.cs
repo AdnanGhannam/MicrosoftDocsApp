@@ -65,6 +65,8 @@ public static class IServiceCollectionExtensions
             config.Password.RequireUppercase = false;
             config.Password.RequireDigit = false;
             config.Password.RequiredLength = 1;
+
+            config.SignIn.RequireConfirmedEmail = true;
         })
             .AddEntityFrameworkStores<T>()
             .AddDefaultTokenProviders();

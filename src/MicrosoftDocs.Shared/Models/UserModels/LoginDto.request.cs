@@ -8,6 +8,6 @@ public record LoginDto(
         StringLength(EntitiesConstants.MaxUserNameLength, MinimumLength = EntitiesConstants.MinUserNameLength)
     ] string UserName, 
     [Required, 
-        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MaxPasswordLength)
+        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MinPasswordLength)
     ] string Password, 
     bool IsPersistence);
