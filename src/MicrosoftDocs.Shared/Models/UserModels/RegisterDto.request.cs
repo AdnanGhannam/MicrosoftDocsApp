@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MicrosoftDocs.Domain.Constants;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Shared.Models.UserModels;
 
-public record RegisterDto([Required] string Email, [Required] string Password);
+public record RegisterDto(
+    [Required, 
+        StringLength(EntitiesConstants.MaxUserNameLength, MinimumLength = EntitiesConstants.MinUserNameLength)
+        ] string UserName, 
+    [Required, 
+        StringLength(EntitiesConstants.MaxEmailLength, MinimumLength = EntitiesConstants.MinEmailLength),
+        EmailAddress
+        ] string Email, 
+    [Required, 
+        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MinPasswordLength) 
+        ] string Password);

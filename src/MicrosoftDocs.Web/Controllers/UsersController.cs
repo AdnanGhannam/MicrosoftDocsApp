@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MicrosoftDocs.Shared.ControllersRoutes;
+using MicrosoftDocs.Shared.Helpers;
 using MicrosoftDocs.Shared.Models.UserModels;
+using MicrosoftDocs.Web.Features.Commands.UserCommands;
+using System.Security.Claims;
 
 namespace MicrosoftDocs.Web.Controllers;
 
@@ -34,15 +37,27 @@ public class UsersController : Controller
     [HttpPost(UsersControllerRoutes.Login)]
     public async Task<IActionResult> Login([FromBody] LoginDto requestDto)
     {
+        var results = await _mediator.Send(new LoginCommand(requestDto));
 
-        return Ok();
+        return results switch
+        {
+            IList<string> roles => Ok(new ResponseModel(new { roles })),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
     }
 
     [HttpPost(UsersControllerRoutes.Register)]
     public async Task<IActionResult> Register([FromBody] RegisterDto requestDto)
     {
-        
-        return Ok();
+        var results = await _mediator.Send(new RegisterCommand(requestDto));
+
+        return results switch
+        {
+            string message => Ok(new ResponseModel<string>(message)),
+            List<ErrorModel> errors => BadRequest(new ResponseModel(null, errors: errors)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
     }
 
     [HttpPost(UsersControllerRoutes.VerifyEmail)]

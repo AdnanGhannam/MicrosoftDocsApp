@@ -8,7 +8,7 @@ using MicrosoftDocs.Infrastructure.Data;
 using MediatR;
 using System.Reflection;
 using MicrosoftDocs.Application.Extensions;
-using MicrosoftDocs.Application.Profiles;
+using MicrosoftDocs.Web.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 

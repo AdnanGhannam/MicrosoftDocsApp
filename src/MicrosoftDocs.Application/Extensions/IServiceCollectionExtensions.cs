@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MicrosoftDocs.Application.Profiles;
 using MicrosoftDocs.Domain.Entities.AppUserAggregate;
 using MicrosoftDocs.Shared.Helpers;
 using System;

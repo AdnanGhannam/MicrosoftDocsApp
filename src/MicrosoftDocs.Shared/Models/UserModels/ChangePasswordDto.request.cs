@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MicrosoftDocs.Domain.Constants;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Shared.Models.UserModels;
 
-public record ChangePasswordDto([Required] string UserName, [Required] string OldPassword, [Required] string NewPassword);
+public record ChangePasswordDto(
+    [Required, 
+        StringLength(EntitiesConstants.MaxUserNameLength, MinimumLength = EntitiesConstants.MinUserNameLength)
+    ] string UserName, 
+    [Required, 
+        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MaxPasswordLength)
+    ] string OldPassword,
+    [Required, 
+        StringLength(EntitiesConstants.MaxPasswordLength, MinimumLength = EntitiesConstants.MaxPasswordLength)
+    ] string NewPassword);

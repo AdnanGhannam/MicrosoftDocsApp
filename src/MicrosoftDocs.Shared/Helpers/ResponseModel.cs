@@ -16,7 +16,7 @@ public class ResponseModel<TData, TErrors>
     [JsonConstructor]
     public ResponseModel() { }
 
-    public ResponseModel(TData? data, TErrors? error)
+    public ResponseModel(TData? data, TErrors? error = default)
     {
         Data = data;
 
@@ -26,10 +26,12 @@ public class ResponseModel<TData, TErrors>
         Succeeded = !Equals(data, default(TData));
     }
 
-    public ResponseModel(TData? data, List<TErrors> errors)
+    public ResponseModel(TData? data, List<TErrors>? errors)
     {
         Data = data;
-        Errors = errors;
+
+        if(errors != null)
+            Errors = errors;
         Succeeded = !Equals(data, default(TData));
     }
 }
@@ -39,10 +41,10 @@ public class ResponseModel<TData> : ResponseModel<TData, ErrorModel>
     [JsonConstructor]
     public ResponseModel() : base() { }
 
-    public ResponseModel(TData? data, ErrorModel? error)
+    public ResponseModel(TData? data, ErrorModel? error = null)
         : base(data, error) { }
 
-    public ResponseModel(TData? data, List<ErrorModel> errors)
+    public ResponseModel(TData? data, List<ErrorModel>? errors)
         : base(data, errors) { }
 }
 
@@ -51,9 +53,9 @@ public class ResponseModel : ResponseModel<object, ErrorModel>
     [JsonConstructor]
     public ResponseModel() : base() { }
 
-    public ResponseModel(object? data, ErrorModel? error)
+    public ResponseModel(object? data, ErrorModel? error = null)
         : base(data, error) { }
 
-    public ResponseModel(object? data, List<ErrorModel> errors)
+    public ResponseModel(object? data, List<ErrorModel>? errors)
         : base(data, errors) { }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace MicrosoftDocs.Application.Profiles;
+namespace MicrosoftDocs.Web.Profiles;
 
 public class MappingProfile : Profile
 {
