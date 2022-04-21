@@ -1,4 +1,5 @@
 ﻿using MicrosoftDocs.Domain.Entities.SectionAggregate;
+using MicrosoftDocs.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,11 @@ public partial class AppUser
     {
         Email = email;
         CreationTime = DateTime.Now;
+    }
+
+    public void PublishEvent(IDomainEvent @event)
+    {
+        _domainEvents.Enqueue(@event);
     }
 
     public Collection AddCollection(string name)
@@ -42,6 +48,12 @@ public partial class AppUser
         _collections.SingleOrDefault(collection).RemoveArticle(article);
     }
 
+
+    public void AddProduct(Product product)
+    {
+        _products.Add(product);
+    }
+
     public void Add<T>(T item)
     {
         if (item == null)
@@ -53,13 +65,11 @@ public partial class AppUser
         {
             _products.Add(item as Product);
         }
-
-        if (typeof(T) == typeof(Section))
+        else if (typeof(T) == typeof(Section))
         {
             _sections.Add(item as Section);
         }
-
-        if (typeof(T) == typeof(Product))
+        else if (typeof(T) == typeof(Article))
         {
             _articles.Add(item as Article);
         }
@@ -76,13 +86,11 @@ public partial class AppUser
         {
             _products.Remove(item as Product);
         }
-
-        if(typeof(T) == typeof(Section))
+        else if(typeof(T) == typeof(Section))
         {
             _sections.Remove(item as Section);
         }
-
-        if(typeof(T) == typeof(Product))
+        else if(typeof(T) == typeof(Article))
         {
             _articles.Remove(item as Article);
         }

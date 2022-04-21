@@ -28,7 +28,7 @@ public class AppDbContextSeed
 
         try
         {
-            if(context is null || userManager is null || roleManager is null || logger is null)
+            if (context is null || userManager is null || roleManager is null || logger is null)
             {
                 throw new ArgumentNullException(
                     nameof(context), 

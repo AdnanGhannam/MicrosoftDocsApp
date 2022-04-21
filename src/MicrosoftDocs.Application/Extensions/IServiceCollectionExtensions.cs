@@ -19,7 +19,11 @@ public static class IServiceCollectionExtensions
     public static IServiceCollection AddSqlServer<T>(this IServiceCollection services, string connectionString)
         where T : DbContext
     {
-        services.AddDbContext<T>(options => options.UseSqlServer(connectionString));
+        services.AddDbContext<T>(options =>
+        {
+            options.UseSqlServer(connectionString)
+                    .EnableSensitiveDataLogging();
+        });
 
         return services;
     }

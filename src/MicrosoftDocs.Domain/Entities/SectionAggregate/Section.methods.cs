@@ -42,8 +42,7 @@ public partial class Section
         {
             _sections.Add(item as Section);
         }
-
-        if (typeof(T) == typeof(Product))
+        else if (typeof(T) == typeof(Article))
         {
             _articles.Add(item as Article);
         }
@@ -60,8 +59,7 @@ public partial class Section
         {
             _sections.Remove(item as Section);
         }
-
-        if (typeof(T) == typeof(Product))
+        else if (typeof(T) == typeof(Article))
         {
             _articles.Remove(item as Article);
         }

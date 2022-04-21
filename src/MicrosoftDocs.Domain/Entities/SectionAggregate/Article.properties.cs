@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
@@ -34,6 +35,7 @@ public partial class Article : ArticleBase, IAggregateRoot
 
 
     public string SectionId { get; protected set; }
+    [JsonIgnore]
     public Section Section { get; protected set; }
 
 

@@ -50,9 +50,4 @@ public partial class AppUser : IdentityUser, IAggregateRoot
 
     [NotMapped]
     public IProducerConsumerCollection<IDomainEvent> DomainEvents => _domainEvents;
-
-    public void PublishEvent(IDomainEvent @event)
-    {
-        _domainEvents.Enqueue(@event);
-    }
 }

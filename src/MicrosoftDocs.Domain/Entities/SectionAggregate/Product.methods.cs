@@ -31,13 +31,11 @@ public partial class Product
         {
             _products.Add(item as Product);
         }
-
-        if(typeof(T) == typeof(Section))
+        else if(typeof(T) == typeof(Section))
         {
             _sections.Add(item as Section);
         }
-
-        if(typeof(T) == typeof(Product))
+        else if(typeof(T) == typeof(Article))
         {
             _articles.Add(item as Article);
         }
@@ -54,13 +52,11 @@ public partial class Product
         {
             _products.Remove(item as Product);
         }
-
-        if(typeof(T) == typeof(Section))
+        else if(typeof(T) == typeof(Section))
         {
             _sections.Remove(item as Section);
         }
-
-        if(typeof(T) == typeof(Product))
+        else if(typeof(T) == typeof(Article))
         {
             _articles.Remove(item as Article);
         }
