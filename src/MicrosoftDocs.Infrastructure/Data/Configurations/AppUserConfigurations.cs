@@ -27,6 +27,16 @@ internal class AppUserConfigurations : IEntityTypeConfiguration<AppUser>
             .HasForeignKey(e => e.CreatorId);
 
 
+        builder.HasMany(e => e.Sections)
+            .WithOne(e => e.Creator)
+            .HasForeignKey(e => e.CreatorId);
+
+
+        builder.HasMany(e => e.OwnedArticles)
+            .WithOne(e => e.Creator)
+            .HasForeignKey(e => e.CreatorId);
+
+
         builder.HasMany(e => e.Articles)
             .WithMany(e => e.Contributors)
             .UsingEntity<Dictionary<string, object>>(

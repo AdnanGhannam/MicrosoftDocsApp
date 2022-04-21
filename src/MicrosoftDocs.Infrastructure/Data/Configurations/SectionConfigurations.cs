@@ -13,5 +13,19 @@ internal class SectionConfigurations : IEntityTypeConfiguration<Section>
 {
     public void Configure(EntityTypeBuilder<Section> builder)
     {
+        builder.HasKey(x => x.Id);
+
+        builder.HasOne(e => e.Language)
+            .WithMany(e => e.Sections)
+            .HasForeignKey(e => e.LanguageId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        builder.HasMany(e => e.Sections)
+            .WithOne();
+
+        builder.HasMany(e => e.Articles)
+            .WithOne(e => e.Section)
+            .HasForeignKey(e => e.SectionId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

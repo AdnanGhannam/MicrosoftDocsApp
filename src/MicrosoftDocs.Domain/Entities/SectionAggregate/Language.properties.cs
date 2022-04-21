@@ -24,4 +24,10 @@ public partial class Language : EntityBase
 
     private List<Product> _products = new();
     public IReadOnlyCollection<Product> Products => _products.AsReadOnly();
+
+    private List<Section> _sections = new();
+    public IReadOnlyCollection<Section> Sections => _sections.AsReadOnly();
+
+    private List<Article> _articles  = new();
+    public IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
 }

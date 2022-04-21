@@ -13,34 +13,56 @@ public partial class Product
 
     public Product(string title, 
         string creatorId,
-        string languageId) : base()
-    {
-        Title = title;
-        CreatorId = creatorId;
-        LanguageId = languageId;
-    }
+        string languageId) 
+        : base(title, creatorId, languageId) { }
 
     public Product(string title, AppUser creator, Language language) 
         : this(title, creator.Id, language.Id) { }
 
 
-    public virtual void AddProduct(Product product)
+    public override void Add<T>(T item)
     {
-        _products.Add(product);
+        if(item == null)
+        {
+            return;
+        }
+
+        if(typeof(T) == typeof(Product))
+        {
+            _products.Add(item as Product);
+        }
+
+        if(typeof(T) == typeof(Section))
+        {
+            _sections.Add(item as Section);
+        }
+
+        if(typeof(T) == typeof(Product))
+        {
+            _articles.Add(item as Article);
+        }
     }
 
-    public virtual void RemoveProduct(Product product)
+    public override void Remove<T>(T item)
     {
-        _products.Remove(product);
+        if(item == null)
+        {
+            return;
+        }
+
+        if(typeof(T) == typeof(Product))
+        {
+            _products.Remove(item as Product);
+        }
+
+        if(typeof(T) == typeof(Section))
+        {
+            _sections.Remove(item as Section);
+        }
+
+        if(typeof(T) == typeof(Product))
+        {
+            _articles.Remove(item as Article);
+        }
     }
-
-    //public virtual void AddArticle(Article article)
-    //{
-    //    _sections.Add(article);
-    //}
-
-    //public virtual void RemoveArticle(Article article)
-    //{
-    //    _sections.Remove(article);
-    //}
 }

@@ -21,11 +21,13 @@ public partial class Article
         IEnumerable<AppUser>? contributors = null,
         bool isApi = false,
         ContentAreas contentArea = ContentAreas.Documentation) 
-        : base(title, creatorId, languageId, isApi, contentArea)
+        : base(title, creatorId, languageId)
     {
         Content = content;
         Points = points;
         FullTitle = fullTitle;
+        IsApi = isApi;
+        ContentArea = contentArea;
 
         if(contributors != null)
         {

@@ -13,11 +13,19 @@ internal class ArticleConfigurations : IEntityTypeConfiguration<Article>
 {
     public void Configure(EntityTypeBuilder<Article> builder)
     {
+        builder.HasKey(x => x.Id);
+
         builder.Property(e => e.FullTitle)
             .HasMaxLength(40);
 
         builder.Property(e => e.Content)
             .IsRequired();
+
+
+        builder.HasOne(e => e.Language)
+            .WithMany(e => e.Articles)
+            .HasForeignKey(e => e.LanguageId)
+            .OnDelete(DeleteBehavior.NoAction);
 
 
         builder.HasMany(e => e.Feedbacks)

@@ -1,4 +1,6 @@
-﻿using MicrosoftDocs.Domain.Entities.AppUserAggregate;
+﻿using MicrosoftDocs.Domain.Base;
+using MicrosoftDocs.Domain.Entities.AppUserAggregate;
+using MicrosoftDocs.Domain.Enums;
 using MicrosoftDocs.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 
-public partial class Article : Section, IAggregateRoot
+public partial class Article : ArticleBase, IAggregateRoot
 {
     /// <summary>
     /// Max length is 40
@@ -25,6 +27,15 @@ public partial class Article : Section, IAggregateRoot
     public string Content { get; protected set; }
 
     public string Points { get; protected set; }
+
+    public bool IsApi { get; protected set; }
+
+    public ContentAreas ContentArea { get; protected set; }
+
+
+    public string SectionId { get; protected set; }
+    public Section Section { get; protected set; }
+
 
 
     private List<AppUser> _contributors = new();

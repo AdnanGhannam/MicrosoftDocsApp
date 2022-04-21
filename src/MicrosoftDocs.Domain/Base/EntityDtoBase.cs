@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Domain.Base;
 
-public class EntityDtoBase<T>
+public abstract class EntityDtoBase<T>
 {
     public T Id { get; set; }
     public DateTime CreationTime { get; set; }
 }
 
-public class EntityDtoBase 
+public abstract class EntityDtoBase 
     : EntityDtoBase<string> { }

@@ -25,6 +25,14 @@ public partial class AppUser : IdentityUser, IAggregateRoot
     public IReadOnlyCollection<Product> Products => _products.AsReadOnly();
 
 
+    private List<Section> _sections = new();
+    public IReadOnlyCollection<Section> Sections => _sections.AsReadOnly();
+
+
+    private List<Article> _ownedArticles = new();
+    public IReadOnlyCollection<Article> OwnedArticles => _ownedArticles.AsReadOnly();
+
+
     private List<Article> _articles = new();
     public IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
 

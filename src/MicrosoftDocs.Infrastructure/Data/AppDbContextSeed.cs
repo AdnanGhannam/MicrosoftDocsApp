@@ -94,15 +94,16 @@ public class AppDbContextSeed
                 context.Languages.Add(language);
 
                 // Create Product
-                var mainProduct = adminUser.AddProduct(".NET", language);
+                var mainProduct = new Product(".NET", adminUser, language);
+                adminUser.Add(mainProduct);
 
                 // Create Section 1
                 var mainSection = new Section("Web apps", adminUser, language);
-                mainProduct.AddProduct(mainSection);
+                mainProduct.Add(mainSection);
 
                 // Create Section 2
                 var secondarySection = new Section("Blazor", adminUser, language);
-                mainSection.AddProduct(secondarySection);
+                mainSection.Add(secondarySection);
 
                 // Create Article 1
                 var firstArticle = new Article(
@@ -133,7 +134,7 @@ public class AppDbContextSeed
                     language,
                     articleFullTitle);
 
-                secondarySection.AddProduct(firstArticle);
+                secondarySection.Add(firstArticle);
 
                 await context.SaveChangesAsync();
 

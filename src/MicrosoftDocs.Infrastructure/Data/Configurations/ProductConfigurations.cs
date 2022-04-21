@@ -28,5 +28,11 @@ internal class ProductConfigurations : IEntityTypeConfiguration<Product>
 
         builder.HasMany(e => e.Products)
             .WithOne();
+
+        builder.HasMany(e => e.Sections)
+            .WithOne();
+
+        builder.HasMany(e => e.Articles)
+            .WithOne();
     }
 }

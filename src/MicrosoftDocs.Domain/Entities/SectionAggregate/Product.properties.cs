@@ -9,20 +9,16 @@ using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 
-public partial class Product : EntityBase, IAggregateRoot
+public partial class Product : ArticleBase, IAggregateRoot
 {
-    public string Title { get; protected set; }
-
-
-    public string CreatorId { get; protected set; }
-    public AppUser Creator { get; protected set; }
-
-
-    public string LanguageId { get; protected set; }
-    public Language Language { get; protected set; }
-
-
-
-    protected List<Product> _products = new();
+    private List<Product> _products = new();
     public IReadOnlyCollection<Product> Products => _products.AsReadOnly();
+
+
+    private List<Section> _sections = new();
+    public IReadOnlyCollection<Section> Sections => _sections.AsReadOnly();
+
+
+    private List<Article> _articles = new();
+    public IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
 }

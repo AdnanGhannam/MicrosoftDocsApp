@@ -26,6 +26,6 @@ public class ProductsController : Controller
 
     public async Task<IActionResult> Index()
     {
-        return Ok();
+        return Ok(context.Products.ToList());
     }
 }

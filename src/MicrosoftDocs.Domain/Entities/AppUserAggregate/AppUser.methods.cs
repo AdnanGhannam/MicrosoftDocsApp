@@ -42,27 +42,49 @@ public partial class AppUser
         _collections.SingleOrDefault(collection).RemoveArticle(article);
     }
 
-    public Section AddProduct(string title, Language language)
+    public void Add<T>(T item)
     {
-        var product = new Section(title, this, language);
+        if (item == null)
+        {
+            return;
+        }
 
-        _products.Add(product);
+        if (typeof(T) == typeof(Product))
+        {
+            _products.Add(item as Product);
+        }
 
-        return product;
+        if (typeof(T) == typeof(Section))
+        {
+            _sections.Add(item as Section);
+        }
+
+        if (typeof(T) == typeof(Product))
+        {
+            _articles.Add(item as Article);
+        }
     }
 
-    public void RemoveProduct(Product product)
+    public void Remove<T>(T item)
     {
-        _products.Remove(product);
-    }
+        if(item == null)
+        {
+            return;
+        }
 
-    public void AddArticle(Article article)
-    {
-        _articles.Add(article);
-    }
+        if(typeof(T) == typeof(Product))
+        {
+            _products.Remove(item as Product);
+        }
 
-    public void RemoveArticle(Article article)
-    {
-        _articles.Remove(article);
+        if(typeof(T) == typeof(Section))
+        {
+            _sections.Remove(item as Section);
+        }
+
+        if(typeof(T) == typeof(Product))
+        {
+            _articles.Remove(item as Article);
+        }
     }
 }
