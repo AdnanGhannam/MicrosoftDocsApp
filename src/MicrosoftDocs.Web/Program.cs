@@ -15,8 +15,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services
     .AddSqlServer<AppDbContext>(builder.Configuration.GetConnectionString("DbConnection"))
+    .AddRepositories()
     .AddConfiguredIdentity<AppDbContext>()
     .AddCookieConfigurations()
+    .ConfigureAuthorization()
     .AddMappingProfiles(new MappingProfile())
     .AddConfiguredControllers()
     .AddTransient<IDomainEventDispatcher, MediatrDomainEventDispatcher>()

@@ -9,5 +9,7 @@ namespace MicrosoftDocs.Shared.ControllersRoutes;
 public static class ProductsControllerRoutes
 {
     public const string Root = "/api/[controller]";
-    public const string GetAll = "";
+    public const string GetAll = "all";
+    public const string GetById = "";
+    public const string GetArticle = "article";
 }

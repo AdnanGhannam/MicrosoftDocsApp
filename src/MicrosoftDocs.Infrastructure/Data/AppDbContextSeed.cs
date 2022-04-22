@@ -79,7 +79,7 @@ public class AppDbContextSeed
 
             #region Add Sections and a Language and an Article
 
-            if (!await context.Sections.AnyAsync())
+            if (!await context.Products.AnyAsync())
             {
                 // Get Admin User
                 var adminUser = await context.Users.FirstOrDefaultAsync(u => u.UserName == adminUserName);

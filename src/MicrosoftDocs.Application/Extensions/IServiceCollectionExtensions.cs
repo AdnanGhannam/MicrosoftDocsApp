@@ -1,10 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MicrosoftDocs.Application.AppRequirements;
+using MicrosoftDocs.Domain.Constants;
 using MicrosoftDocs.Domain.Entities.AppUserAggregate;
+using MicrosoftDocs.Domain.Interfaces;
+using MicrosoftDocs.Infrastructure.Data;
 using MicrosoftDocs.Shared.Helpers;
 using System;
 using System.Collections.Generic;
@@ -47,6 +52,12 @@ public static class IServiceCollectionExtensions
             };
         });
 
+        return services;
+    }
+
+    public static IServiceCollection AddRepositories(this IServiceCollection services)
+    {
+        services.AddTransient(typeof(IEfRepository<>), typeof(EfRepository<>));
         return services;
     }
 
@@ -100,6 +111,21 @@ public static class IServiceCollectionExtensions
                 },
             };
         });
+
+        return services;
+    }
+
+    public static IServiceCollection ConfigureAuthorization(this IServiceCollection services)
+    {
+        services.AddAuthorization(config =>
+        {
+            config.AddPolicy(PoliciesConstants.ContributorEdit, policyBuilder =>
+            {
+                policyBuilder.AddRequirements(new IsContributorRequirement());
+            });
+        });
+
+        services.AddSingleton<IAuthorizationHandler, IsContributorRequirementHandler>();
 
         return services;
     }

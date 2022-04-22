@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MicrosoftDocs.Domain\MicrosoftDocs.Domain.csproj" />
+    <ProjectReference Include="..\MicrosoftDocs.Infrastructure\MicrosoftDocs.Infrastructure.csproj" />
     <ProjectReference Include="..\MicrosoftDocs.Shared\MicrosoftDocs.Shared.csproj" />
   </ItemGroup>
 

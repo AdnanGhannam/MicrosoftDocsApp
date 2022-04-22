@@ -31,7 +31,13 @@ public partial class Article
 
         if(contributors != null)
         {
-            _contributors.AddRange(contributors);
+            foreach(var contributor in contributors)
+            {
+                if (contributor is not null && !_contributors.Contains(contributor))
+                {
+                    _contributors.Add(contributor);
+                }
+            }
         }
     }
 
@@ -44,7 +50,10 @@ public partial class Article
         IEnumerable<AppUser>? contributors = null,
         bool isApi = false,
         ContentAreas contentArea = ContentAreas.Documentation) 
-        : this(title, creator.Id, content, points, language.Id, fullTitle, contributors, isApi, contentArea) { }
+        : this(title, creator.Id, content, points, language.Id, fullTitle, contributors, isApi, contentArea) 
+    {
+        _contributors.Add(creator);
+    }
 
     public void AddContributors(AppUser contributors)
     {
