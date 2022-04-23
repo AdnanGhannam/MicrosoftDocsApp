@@ -27,4 +27,8 @@
     <ProjectReference Include="..\MicrosoftDocs.Shared\MicrosoftDocs.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Queries\ArticleQueries\" />
+  </ItemGroup>
+
 </Project>

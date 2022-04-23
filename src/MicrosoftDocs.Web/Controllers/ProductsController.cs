@@ -13,9 +13,10 @@ namespace MicrosoftDocs.Web.Controllers;
 
 [ApiController]
 [Route(ProductsControllerRoutes.Root)]
-public class ProductsController : Controller
+public class ProductsController : ControllerBase
 {
     private readonly IMediator _mediator;
+    // For Quick Tests Only
     private readonly AppDbContext _context;
 
     public ProductsController(IMediator mediator,
@@ -44,38 +45,5 @@ public class ProductsController : Controller
             ErrorModel error => BadRequest(new ResponseModel(null, error)),
             _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
         };
-    }
-
-    [HttpGet(ProductsControllerRoutes.GetArticle)]
-    public async Task<IActionResult> GetArticle([FromQuery(Name = "articleId")] string id)
-    {
-        var results = await _mediator.Send(new GetArticleByIdQuery(id));
-
-        return results switch
-        {
-            GetArticleDto dto => Ok(new ResponseModel<GetArticleDto>(dto)),
-            ErrorModel error => BadRequest(new ResponseModel(null, error)),
-            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
-        };
-    }
-
-    [HttpGet("test")]
-    [Authorize]
-    public async Task<IActionResult> Test([FromServices] IAuthorizationService _authorizationService,
-        [FromQuery] string id)
-    {
-        var article = await _context.Articles
-            .Include(e => e.Contributors)
-            .FirstOrDefaultAsync(e => e.Id == id);
-        var results = await _authorizationService.AuthorizeAsync(User, 
-                                                                article, 
-                                                                PoliciesConstants.ContributorEdit);
-
-        if (results.Succeeded)
-        {
-            return Ok("Succeeded");
-        }
-
-        return new ForbidResult();
     }
 }
