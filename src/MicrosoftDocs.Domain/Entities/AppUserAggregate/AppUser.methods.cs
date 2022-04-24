@@ -40,14 +40,16 @@ public partial class AppUser
 
     public void AddToCollection(Collection collection, Article article)
     {
-        _collections.SingleOrDefault(collection).AddArticle(article);
+        if(!collection.Articles.Contains(article))
+        {
+            collection.AddArticle(article);
+        }
     }
 
     public void RemoveFromCollection(Collection collection, Article article)
     {
-        _collections.SingleOrDefault(collection).RemoveArticle(article);
+        collection.RemoveArticle(article);
     }
-
 
     public void AddProduct(Product product)
     {

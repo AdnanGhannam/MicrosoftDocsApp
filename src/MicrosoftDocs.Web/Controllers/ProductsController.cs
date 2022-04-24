@@ -15,6 +15,8 @@ namespace MicrosoftDocs.Web.Controllers;
 [Route(ProductsControllerRoutes.Root)]
 public class ProductsController : ControllerBase
 {
+    #region DI
+
     private readonly IMediator _mediator;
     // For Quick Tests Only
     private readonly AppDbContext _context;
@@ -25,6 +27,10 @@ public class ProductsController : ControllerBase
         _mediator = mediator;
         _context = context;
     }
+
+    #endregion
+
+    #region GET
 
     [HttpGet(ProductsControllerRoutes.GetAll)]
     public async Task<IActionResult> GetAll()
@@ -46,4 +52,6 @@ public class ProductsController : ControllerBase
             _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
         };
     }
+
+    #endregion
 }

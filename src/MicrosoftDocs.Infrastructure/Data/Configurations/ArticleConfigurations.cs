@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MicrosoftDocs.Domain.Entities.AppUserAggregate;
 using MicrosoftDocs.Domain.Entities.SectionAggregate;
 using System;
 using System.Collections.Generic;
@@ -36,5 +37,12 @@ internal class ArticleConfigurations : IEntityTypeConfiguration<Article>
         builder.HasMany(e => e.Interactions)
             .WithOne(e => e.Article)
             .HasForeignKey(e => e.ArticleId);
+
+        builder.HasMany(e => e.SavedIn)
+            .WithMany(e => e.Articles)
+            .UsingEntity<Dictionary<string, object>>(
+                "CollectionsArticles",
+                e => e.HasOne<Collection>().WithMany().OnDelete(DeleteBehavior.NoAction),
+                e => e.HasOne<Article>().WithMany().OnDelete(DeleteBehavior.NoAction));
     }
 }

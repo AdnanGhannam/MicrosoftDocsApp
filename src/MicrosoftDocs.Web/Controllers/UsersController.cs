@@ -14,6 +14,8 @@ namespace MicrosoftDocs.Web.Controllers;
 [Route(UsersControllerRoutes.Root)]
 public class UsersController : Controller
 {
+    #region DI
+
     private readonly IMediator _mediator;
 
     public UsersController(IMediator mediator)
@@ -21,16 +23,49 @@ public class UsersController : Controller
         _mediator = mediator;
     }
 
+    #endregion
+
     #region GET
 
-    [HttpGet(UsersControllerRoutes.GetMyInformations)]
     [Authorize]
+    [HttpGet(UsersControllerRoutes.GetMyInformations)]
     public async Task<IActionResult> GetMyInformations()
     {
         var results = await _mediator.Send(new GetMyInformationsQuery(
             User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
         return Ok(results);
+    }
+
+    [Authorize]
+    [HttpGet(UsersControllerRoutes.GetMyCollections)]
+    public async Task<IActionResult> GetMyCollections()
+    {
+        var results = await _mediator.Send(new GetMyCollectionsQuery(
+            User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
+        return results switch
+        {
+            IEnumerable<GetMyCollectionsDto> dto
+                => Ok(new ResponseModel<IEnumerable<GetMyCollectionsDto>>(dto)),
+            null => NoContent(),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
+    [Authorize]
+    [HttpGet(UsersControllerRoutes.GetCollectionById)]
+    public async Task<IActionResult> GetCollectionById(string name)
+    {
+        var results = await _mediator.Send(new GetCollectionByIdQuery(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), name));
+
+        return results switch
+        {
+            GetCollectionByIdDto dto => Ok(new ResponseModel<GetCollectionByIdDto>(dto)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
     }
 
     #endregion
@@ -124,6 +159,38 @@ public class UsersController : Controller
             string message => Ok(new ResponseModel<string>(message)),
             ErrorModel error => BadRequest(new ResponseModel(null, error)),
             List<ErrorModel> errors => BadRequest(new ResponseModel(null, errors: errors)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
+    [Authorize]
+    [HttpPost(UsersControllerRoutes.AddToCollection)]
+    public async Task<IActionResult> AddToCollection([FromQuery] string articleId, 
+        [FromQuery] string collectionName)
+    {
+        var results = await _mediator.Send(new ActionOnCollectionCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId, collectionName, ActionOnCollection.Add));
+
+        return results switch
+        {
+            string message => Ok(new ResponseModel<string>(message)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
+    [Authorize]
+    [HttpPost(UsersControllerRoutes.RemoveFromCollection)]
+    public async Task<IActionResult> RemoveFromCollection([FromQuery] string articleId, 
+        [FromQuery] string collectionName)
+    {
+        var results = await _mediator.Send(new ActionOnCollectionCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId, collectionName, ActionOnCollection.Remove));
+
+        return results switch
+        {
+            string message => Ok(new ResponseModel<string>(message)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
             _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
         };
     }

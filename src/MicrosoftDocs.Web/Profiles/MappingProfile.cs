@@ -19,5 +19,7 @@ public class MappingProfile : Profile
                 e => e.Points, 
                 options => options.MapFrom(e => e.Points.Split(';', StringSplitOptions.None).ToList()));
         CreateMap<Article, GetArticlesDto>();
+        CreateMap<Collection, GetMyCollectionsDto>();
+        CreateMap<Collection, GetCollectionByIdDto>();
     }
 }

@@ -25,7 +25,10 @@ public class AppDbContext : IdentityDbContext<AppUser>
         _dispatcher = dispatcher;
     }
 
-
+    public object Include()
+    {
+        throw new NotImplementedException();
+    }
 
     public DbSet<Collection> Collections { get; set; }
 

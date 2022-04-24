@@ -18,6 +18,8 @@ namespace MicrosoftDocs.Web.Controllers;
 [Route(ArticlesControllerRoutes.Root)]
 public class ArticlesController : ControllerBase
 {
+    #region DI
+
     private readonly IMediator _mediator;
     // For Quick Tests Only
     private readonly AppDbContext _context;
@@ -28,6 +30,10 @@ public class ArticlesController : ControllerBase
         _mediator = mediator;
         _context = context;
     }
+
+    #endregion
+
+    #region GET
 
     [HttpGet(ArticlesControllerRoutes.GetArticle)]
     public async Task<IActionResult> GetArticle([FromQuery(Name = "articleId")] string id)
@@ -42,6 +48,10 @@ public class ArticlesController : ControllerBase
         };
     }
 
+    #endregion
+
+    #region POST
+
     [Authorize]
     [HttpPost(ArticlesControllerRoutes.AddInteraction)]
     public async Task<IActionResult> AddInteraction([FromQuery] string articleId, 
@@ -49,21 +59,6 @@ public class ArticlesController : ControllerBase
     {
         var results = await _mediator.Send(new AddInteractionCommand(
             User.FindFirstValue(ClaimTypes.NameIdentifier), articleId, interaction));
-
-        return results switch
-        {
-            string message => Ok(new ResponseModel<string>(message)),
-            ErrorModel error => BadRequest(new ResponseModel(null, error)),
-            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
-        };
-    }
-
-    [Authorize]
-    [HttpDelete(ArticlesControllerRoutes.RemoveInteraction)]
-    public async Task<IActionResult> RemoveInteraction([FromQuery] string articleId)
-    {
-        var results = await _mediator.Send(new RemoveInteractionCommand(
-            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId));
 
         return results switch
         {
@@ -88,6 +83,29 @@ public class ArticlesController : ControllerBase
         };
     }
 
+    #endregion
+
+    #region DELETE
+
+    [Authorize]
+    [HttpDelete(ArticlesControllerRoutes.RemoveInteraction)]
+    public async Task<IActionResult> RemoveInteraction([FromQuery] string articleId)
+    {
+        var results = await _mediator.Send(new RemoveInteractionCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId));
+
+        return results switch
+        {
+            string message => Ok(new ResponseModel<string>(message)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
+    #endregion
+
+    #region TEST
+
     // Return 200StatusCode When a user is one of the contributors
     [HttpGet("test")]
     [Authorize]
@@ -108,4 +126,6 @@ public class ArticlesController : ControllerBase
 
         return new ForbidResult();
     }
+
+    #endregion
 }

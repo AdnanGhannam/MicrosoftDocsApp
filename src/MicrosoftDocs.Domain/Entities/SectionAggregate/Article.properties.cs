@@ -50,4 +50,8 @@ public partial class Article : ArticleBase, IAggregateRoot
 
     private List<Interaction> _interactions = new();
     public IReadOnlyCollection<Interaction> Interactions => _interactions.AsReadOnly();
+
+
+    private List<Collection> _savedIn = new();
+    public IReadOnlyCollection<Collection> SavedIn => _savedIn.AsReadOnly();
 }

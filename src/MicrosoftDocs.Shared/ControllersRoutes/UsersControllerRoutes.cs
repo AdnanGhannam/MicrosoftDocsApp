@@ -17,4 +17,8 @@ public static class UsersControllerRoutes
     public const string ResetPassword = "password/reset";
     public const string ConfirmResetPassword = "password/reset-confirm";
     public const string GetMyInformations = "me";
+    public const string GetMyCollections = "me/collections";
+    public const string GetCollectionById = "me/collections/{name}";
+    public const string AddToCollection = "me/collections/add";
+    public const string RemoveFromCollection = "me/collections/remove";
 }
