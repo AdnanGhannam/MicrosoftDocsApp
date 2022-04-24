@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MicrosoftDocs.Domain.Enums;
 using MicrosoftDocs.Shared.ControllersRoutes;
 using MicrosoftDocs.Shared.Helpers;
 using MicrosoftDocs.Shared.Models.UserModels;
@@ -168,8 +169,8 @@ public class UsersController : Controller
     public async Task<IActionResult> AddToCollection([FromQuery] string articleId, 
         [FromQuery] string collectionName)
     {
-        var results = await _mediator.Send(new ActionOnCollectionCommand(
-            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId, collectionName, ActionOnCollection.Add));
+        var results = await _mediator.Send(new EditCollectionCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId, collectionName, CRUDActions.Create));
 
         return results switch
         {
@@ -180,16 +181,46 @@ public class UsersController : Controller
     }
 
     [Authorize]
-    [HttpPost(UsersControllerRoutes.RemoveFromCollection)]
+    [HttpDelete(UsersControllerRoutes.RemoveFromCollection)]
     public async Task<IActionResult> RemoveFromCollection([FromQuery] string articleId, 
         [FromQuery] string collectionName)
     {
-        var results = await _mediator.Send(new ActionOnCollectionCommand(
-            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId, collectionName, ActionOnCollection.Remove));
+        var results = await _mediator.Send(new EditCollectionCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId, collectionName, CRUDActions.Delete));
 
         return results switch
         {
             string message => Ok(new ResponseModel<string>(message)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
+    [Authorize]
+    [HttpPost(UsersControllerRoutes.AddCollection)]
+    public async Task<IActionResult> AddCollection([FromQuery] string name)
+    {
+        var results = await _mediator.Send(new ActionOnCollectionCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), name, CRUDActions.Create));
+
+        return results switch
+        {
+            GetCollectionByIdDto dto => Ok(new ResponseModel<GetCollectionByIdDto>(dto)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
+    [Authorize]
+    [HttpDelete(UsersControllerRoutes.RemoveCollection)]
+    public async Task<IActionResult> RemoveCollection([FromQuery] string name)
+    {
+        var results = await _mediator.Send(new ActionOnCollectionCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), name, CRUDActions.Delete));
+
+        return results switch
+        {
+            GetCollectionByIdDto dto => Ok(new ResponseModel<GetCollectionByIdDto>(dto)),
             ErrorModel error => BadRequest(new ResponseModel(null, error)),
             _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
         };

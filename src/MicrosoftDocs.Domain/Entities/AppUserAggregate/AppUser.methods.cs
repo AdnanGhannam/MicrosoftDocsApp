@@ -26,16 +26,30 @@ public partial class AppUser
 
     public Collection AddCollection(string name)
     {
-        var collection = new Collection(name, owner: this);
+        var existingCollection = _collections.FirstOrDefault(c => c.Name == name);
 
-        _collections.Add(collection);
+        if(existingCollection == null)
+        {
+            var collection = new Collection(name, owner: this);
 
-        return collection;
+            _collections.Add(collection);
+
+            return collection;
+        }
+
+        return existingCollection;
     }
 
-    public void RemoveCollection(Collection collection)
+    public Collection RemoveCollection(string name)
     {
-        _collections.Remove(collection);
+        var collection = _collections.FirstOrDefault(c => c.Name == name);
+
+        if(collection != null)
+        {
+            _collections.Remove(collection);
+        }
+
+        return collection;
     }
 
     public void AddToCollection(Collection collection, Article article)
