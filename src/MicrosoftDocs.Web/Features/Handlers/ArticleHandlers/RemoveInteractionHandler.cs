@@ -31,13 +31,13 @@ public class RemoveInteractionHandler : IRequestHandler<RemoveInteractionCommand
             return new ErrorModel("NotFound", $"Article with Id: { request.ArticleId } is not found");
         }
 
-        Enum.TryParse<InteractionTypes>(request.Interaction, true, out var interactionType);
+        var interaction = article.Interactions.FirstOrDefault(e => e.InteractorId == request.UserId);
 
-        var interaction = new Interaction(request.UserId, request.ArticleId, interactionType);
-
-        article.RemoveInteraction(interaction);
-
-        await _efRepository.SaveChangesAsync();
+        if(interaction is not null)
+        {
+            article.RemoveInteraction(interaction);
+            await _efRepository.SaveChangesAsync();
+        }
 
         return "Interaction Removed";
     }

@@ -59,11 +59,10 @@ public class ArticlesController : ControllerBase
 
     [Authorize]
     [HttpDelete(ArticlesControllerRoutes.RemoveInteraction)]
-    public async Task<IActionResult> RemoveInteraction([FromQuery] string articleId, 
-        [FromQuery] string interaction)
+    public async Task<IActionResult> RemoveInteraction([FromQuery] string articleId)
     {
         var results = await _mediator.Send(new RemoveInteractionCommand(
-            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId, interaction));
+            User.FindFirstValue(ClaimTypes.NameIdentifier), articleId));
 
         return results switch
         {

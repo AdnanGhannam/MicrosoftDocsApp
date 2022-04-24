@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using MicrosoftDocs.Application.Specifications;
 using MicrosoftDocs.Domain.Entities.SectionAggregate;
 using MicrosoftDocs.Domain.Enums;
 using MicrosoftDocs.Domain.Interfaces;
@@ -22,18 +23,31 @@ public class AddInteractionHandler : IRequestHandler<AddInteractionCommand, obje
 
     public async Task<object> Handle(AddInteractionCommand request, CancellationToken cancellationToken)
     {
-        var article = await _efRepository.GetByIdAsync(request.ArticleId);
+        var specification = new GetArticleWithInteractionsSpecification();
+        var article = await _efRepository.GetByIdAsync(request.ArticleId, specification);
 
-        if(article == null)
+        if (article == null)
         {
             return new ErrorModel("NotFound", $"Article with Id: { request.ArticleId } is not found");
         }
 
+        var oldInteraction = article.Interactions.FirstOrDefault(e => e.InteractorId == request.UserId);
+
         Enum.TryParse<InteractionTypes>(request.Interaction, true, out var interactionType);
+        var newInteraction = new Interaction(request.UserId, request.ArticleId, interactionType);
 
-        var interaction = new Interaction(request.UserId, request.ArticleId, interactionType);
-
-        article.AddInteraction(interaction);
+        if (oldInteraction == null)
+        {
+            article.AddInteraction(newInteraction);
+        }
+        else
+        {
+            if (oldInteraction.InteractionType != newInteraction.InteractionType)
+            {
+                article.RemoveInteraction(oldInteraction);
+                article.AddInteraction(newInteraction);
+            }
+        }
 
         await _efRepository.SaveChangesAsync();
 
