@@ -10,4 +10,8 @@
     <ProjectReference Include="..\MicrosoftDocs.Domain\MicrosoftDocs.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ControllersRoutes\NewFolder\" />
+  </ItemGroup>
+
 </Project>

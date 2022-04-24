@@ -6,6 +6,7 @@ using MicrosoftDocs.Domain.Constants;
 using MicrosoftDocs.Infrastructure.Data;
 using MicrosoftDocs.Shared.ControllersRoutes;
 using MicrosoftDocs.Shared.Helpers;
+using MicrosoftDocs.Shared.Models.ArticlesModels;
 using MicrosoftDocs.Shared.Models.ProductsModels;
 using MicrosoftDocs.Web.Features.Commands.ArticleCommands;
 using MicrosoftDocs.Web.Features.Queries.ProductQueries;
@@ -63,6 +64,21 @@ public class ArticlesController : ControllerBase
     {
         var results = await _mediator.Send(new RemoveInteractionCommand(
             User.FindFirstValue(ClaimTypes.NameIdentifier), articleId));
+
+        return results switch
+        {
+            string message => Ok(new ResponseModel<string>(message)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
+    [Authorize]
+    [HttpPost(ArticlesControllerRoutes.SendFeedback)]
+    public async Task<IActionResult> SendFeedback([FromBody] SendFeedbackDto requestDto)
+    {
+        var results = await _mediator.Send(new SendFeedbackCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), requestDto));
 
         return results switch
         {
