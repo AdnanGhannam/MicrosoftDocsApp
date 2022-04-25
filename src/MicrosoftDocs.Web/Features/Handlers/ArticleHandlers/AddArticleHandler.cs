@@ -51,6 +51,11 @@ public class AddArticleHandler : IRequestHandler<AddArticleCommand, object>
                 return new ErrorModel("NotFound", $"Section with Id: { requestDto.SectionId } is not found");
             }
 
+            if(section.IsApi != requestDto.IsApi)
+            {
+                return new ErrorModel("InValidData", $"Can't add an API article inside a non-API section, vice versa");
+            }
+
             article = new(requestDto.Title,
                 user.Id,
                 requestDto.Content,
