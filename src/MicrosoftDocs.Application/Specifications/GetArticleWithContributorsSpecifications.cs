@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MicrosoftDocs.Application.Specifications;
 
-public class GetArticleByIdSpecifications : Specification<Article>
+public class GetArticleWithContributorsSpecifications : Specification<Article>
 {
-    public GetArticleByIdSpecifications()
+    public GetArticleWithContributorsSpecifications()
     {
         Query
             .Include(e => e.Contributors);

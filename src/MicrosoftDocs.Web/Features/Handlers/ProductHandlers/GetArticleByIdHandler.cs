@@ -23,7 +23,7 @@ public class GetArticleByIdHandler : IRequestHandler<GetArticleByIdQuery, object
 
     public async Task<object> Handle(GetArticleByIdQuery request, CancellationToken cancellationToken)
     {
-        var specification = new GetArticleByIdSpecifications();
+        var specification = new GetArticleWithContributorsSpecifications();
         var article = await _efRepository.GetByIdAsync(request.Id, specification);
 
         if(article == null)

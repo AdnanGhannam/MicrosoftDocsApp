@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace MicrosoftDocs.Shared.Models.ArticlesModels;
 
 public record AddArticleDto([Required, MaxLength(20)] string Title,
-    [Required] string LanguageName,
     [Required] string Content,
     [Required] List<string> Points,
     string? SectionId = null,

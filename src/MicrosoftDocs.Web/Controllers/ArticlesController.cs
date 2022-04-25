@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MicrosoftDocs.Domain.Constants;
+using MicrosoftDocs.Domain.Entities.SectionAggregate;
 using MicrosoftDocs.Infrastructure.Data;
 using MicrosoftDocs.Shared.ControllersRoutes;
 using MicrosoftDocs.Shared.Helpers;
@@ -115,6 +116,31 @@ public class ArticlesController : ControllerBase
             ErrorModel error => BadRequest(new ResponseModel(null, error)),
             _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
         };
+    }
+
+    [Authorize(PoliciesConstants.ContributorPolicy)]
+    [HttpDelete(ArticlesControllerRoutes.RemoveArticle)]
+    public async Task<IActionResult> RemoveArticle([FromQuery] string articleId)
+    {
+        var byIdResults = await _mediator.Send(new GetArticleByIdQuery(articleId));
+
+        if(byIdResults is GetArticleDto)
+        {
+            var removeResults = await _mediator.Send(new RemoveArticleCommand(User, articleId));
+
+            return removeResults switch
+            {
+                GetArticleDto dto => Ok(new ResponseModel<GetArticleDto>(dto)),
+                ErrorModel => new ForbidResult(),
+                _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+            };
+        }
+        else if(byIdResults is ErrorModel error)
+        {
+            return BadRequest(new ResponseModel(null, error));
+        }
+
+        return BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error")));
     }
 
     #endregion

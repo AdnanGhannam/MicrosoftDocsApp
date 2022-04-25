@@ -55,14 +55,17 @@ public partial class Article
         _contributors.Add(creator);
     }
 
-    public void AddContributors(AppUser contributors)
+    public void AddContributors(params AppUser[] contributors)
     {
-        _contributors.Add(contributors);
+        _contributors.AddRange(contributors);
     }
 
-    public void RemoveContributors(AppUser contributors)
+    public void RemoveContributors(params AppUser[] contributors)
     {
-        _contributors.Remove(contributors);
+        foreach(var contributor in contributors)
+        {
+            _contributors.Remove(contributor);
+        }
     }
 
     public void AddFeedback(Feedback feedback)

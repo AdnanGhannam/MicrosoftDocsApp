@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MicrosoftDocs.Domain.Entities.AppUserAggregate;
 using MicrosoftDocs.Domain.Entities.SectionAggregate;
 using MicrosoftDocs.Domain.Interfaces;
 using MicrosoftDocs.Infrastructure.Data;
@@ -14,14 +16,17 @@ public class AddArticleHandler : IRequestHandler<AddArticleCommand, object>
 {
     private readonly IEfRepository<Section> _sectionRepository;
     private readonly IEfRepository<Product> _productRepository;
+    private readonly UserManager<AppUser> _userManager;
     private readonly IMapper _mapper;
 
     public AddArticleHandler(IEfRepository<Section> sectionRepository,
         IEfRepository<Product> productRepository,
+        UserManager<AppUser> userManager,
         IMapper mapper)
     {
         _sectionRepository = sectionRepository;
         _productRepository = productRepository;
+        _userManager = userManager;
         _mapper = mapper;
     }
 
@@ -35,6 +40,7 @@ public class AddArticleHandler : IRequestHandler<AddArticleCommand, object>
         }
 
         Article article;
+        var user = await _userManager.FindByIdAsync(request.UserId);
 
         if(requestDto.SectionId != null)
         {
@@ -46,13 +52,14 @@ public class AddArticleHandler : IRequestHandler<AddArticleCommand, object>
             }
 
             article = new(requestDto.Title,
-                request.UserId,
+                user.Id,
                 requestDto.Content,
                 string.Join(";", requestDto.Points),
                 section.LanguageId,
                 requestDto.FullTitle);
 
             section.Add(article);
+            user.Add(article);
         } 
         else
         {

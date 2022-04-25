@@ -181,6 +181,25 @@ public class UsersController : Controller
     }
 
     [Authorize]
+    [HttpPost(UsersControllerRoutes.AddCollection)]
+    public async Task<IActionResult> AddCollection([FromQuery] string name)
+    {
+        var results = await _mediator.Send(new ActionOnCollectionCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), name, CRUDActions.Create));
+
+        return results switch
+        {
+            GetCollectionByIdDto dto => Ok(new ResponseModel<GetCollectionByIdDto>(dto)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
+    #endregion
+
+    #region DELETE
+
+    [Authorize]
     [HttpDelete(UsersControllerRoutes.RemoveFromCollection)]
     public async Task<IActionResult> RemoveFromCollection([FromQuery] string articleId, 
         [FromQuery] string collectionName)
@@ -191,21 +210,6 @@ public class UsersController : Controller
         return results switch
         {
             string message => Ok(new ResponseModel<string>(message)),
-            ErrorModel error => BadRequest(new ResponseModel(null, error)),
-            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
-        };
-    }
-
-    [Authorize]
-    [HttpPost(UsersControllerRoutes.AddCollection)]
-    public async Task<IActionResult> AddCollection([FromQuery] string name)
-    {
-        var results = await _mediator.Send(new ActionOnCollectionCommand(
-            User.FindFirstValue(ClaimTypes.NameIdentifier), name, CRUDActions.Create));
-
-        return results switch
-        {
-            GetCollectionByIdDto dto => Ok(new ResponseModel<GetCollectionByIdDto>(dto)),
             ErrorModel error => BadRequest(new ResponseModel(null, error)),
             _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
         };
