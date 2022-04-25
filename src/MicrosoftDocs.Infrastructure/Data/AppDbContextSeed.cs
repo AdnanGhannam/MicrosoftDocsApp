@@ -93,8 +93,13 @@ public class AppDbContextSeed
                 var language = new Language(".Net", "5.0");
                 context.Languages.Add(language);
 
-                // Create Product
+                // Create Main Product
                 var mainProduct = new Product(".NET", adminUser, language);
+
+                // Create Child Product
+                var childProduct = new Product("ASP.NET Core", adminUser, language);
+                mainProduct.Add(childProduct);
+
                 adminUser.Add(mainProduct);
 
                 // Create Section 1

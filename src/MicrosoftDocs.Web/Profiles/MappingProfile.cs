@@ -26,5 +26,6 @@ public class MappingProfile : Profile
                 options => options.MapFrom(e => string.Join(";", e.Points)));
         CreateMap<Collection, GetMyCollectionsDto>();
         CreateMap<Collection, GetCollectionByIdDto>();
+        CreateMap<Language, GetLanguageDto>();
     }
 }

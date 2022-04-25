@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using MicrosoftDocs.Application.Specifications;
 using MicrosoftDocs.Domain.Entities.SectionAggregate;
 using MicrosoftDocs.Domain.Interfaces;
 using MicrosoftDocs.Shared.Models.ProductsModels;
@@ -23,7 +24,8 @@ public class GetAllProductsHandler
     public async Task<List<GetProductDto>> Handle(GetAllProductsQuery request, 
         CancellationToken cancellationToken)
     {
-        var products = await _efRepository.GetListAsync();
+        var specification = new GetProductsTreeSpecifications();
+        var products = await _efRepository.GetListAsync(specification);
 
         var dtos = products
             .Select(product => _mapper.Map<GetProductDto>(product))

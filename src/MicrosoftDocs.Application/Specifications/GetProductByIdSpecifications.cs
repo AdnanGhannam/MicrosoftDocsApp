@@ -14,6 +14,7 @@ public class GetProductByIdSpecifications : Specification<Product>
     {
         Query
             .AsNoTracking()
+            .Include(e => e.Language)
             .Include(e => e.Articles)
             .Include(e => e.Sections)
                 .ThenInclude(e => e.Articles)

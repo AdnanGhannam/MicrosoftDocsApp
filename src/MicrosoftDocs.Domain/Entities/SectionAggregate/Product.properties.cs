@@ -11,6 +11,10 @@ namespace MicrosoftDocs.Domain.Entities.SectionAggregate;
 
 public partial class Product : ArticleBase, IAggregateRoot
 {
+    public string? ParentId { get; set; }
+
+
+
     private List<Product> _products = new();
     public IReadOnlyCollection<Product> Products => _products.AsReadOnly();
 

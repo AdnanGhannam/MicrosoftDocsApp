@@ -27,7 +27,8 @@ internal class ProductConfigurations : IEntityTypeConfiguration<Product>
             .OnDelete(DeleteBehavior.NoAction);
 
         builder.HasMany(e => e.Products)
-            .WithOne();
+            .WithOne()
+            .HasForeignKey(e => e.ParentId);
 
         builder.HasMany(e => e.Sections)
             .WithOne();
