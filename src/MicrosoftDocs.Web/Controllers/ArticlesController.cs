@@ -52,6 +52,21 @@ public class ArticlesController : ControllerBase
 
     #region POST
 
+    [Authorize(PoliciesConstants.ContributorPolicy)]
+    [HttpPost(ArticlesControllerRoutes.AddArticle)]
+    public async Task<IActionResult> AddArticle([FromBody] AddArticleDto request)
+    {
+        var results = await _mediator.Send(new AddArticleCommand(
+            User.FindFirstValue(ClaimTypes.NameIdentifier), request));
+
+        return results switch
+        {
+            GetArticleDto dto => Ok(new ResponseModel<GetArticleDto>(dto)),
+            ErrorModel error => BadRequest(new ResponseModel(null, error)),
+            _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
     [Authorize]
     [HttpPost(ArticlesControllerRoutes.AddInteraction)]
     public async Task<IActionResult> AddInteraction([FromQuery] string articleId, 

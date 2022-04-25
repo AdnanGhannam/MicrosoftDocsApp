@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MicrosoftDocs.Application.AppRequirements;
 using MicrosoftDocs.Domain.Constants;
 using MicrosoftDocs.Domain.Entities.AppUserAggregate;
+using MicrosoftDocs.Domain.Enums;
 using MicrosoftDocs.Domain.Interfaces;
 using MicrosoftDocs.Infrastructure.Data;
 using MicrosoftDocs.Shared.Helpers;
@@ -119,6 +120,24 @@ public static class IServiceCollectionExtensions
     {
         services.AddAuthorization(config =>
         {
+            config.AddPolicy(PoliciesConstants.AdminPolicy, policyBuilder =>
+            {
+                policyBuilder.RequireRole(Roles.Admin.ToString());
+            });
+
+            config.AddPolicy(PoliciesConstants.ContributorPolicy, policyBuilder =>
+            {
+                policyBuilder.RequireRole(Roles.Admin.ToString(),
+                    Roles.Contributor.ToString());
+            });
+
+            config.AddPolicy(PoliciesConstants.NormalUserPolicy, policyBuilder =>
+            {
+                policyBuilder.RequireRole(Roles.Admin.ToString(),
+                    Roles.Contributor.ToString(),
+                    Roles.NormalUser.ToString());
+            });
+
             config.AddPolicy(PoliciesConstants.ContributorEdit, policyBuilder =>
             {
                 policyBuilder.AddRequirements(new IsContributorRequirement());

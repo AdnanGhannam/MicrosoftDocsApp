@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MicrosoftDocs.Domain.Entities.AppUserAggregate;
 using MicrosoftDocs.Domain.Entities.SectionAggregate;
+using MicrosoftDocs.Shared.Models.ArticlesModels;
 using MicrosoftDocs.Shared.Models.ProductsModels;
 using MicrosoftDocs.Shared.Models.UserModels;
 
@@ -19,6 +20,10 @@ public class MappingProfile : Profile
                 e => e.Points, 
                 options => options.MapFrom(e => e.Points.Split(';', StringSplitOptions.None).ToList()));
         CreateMap<Article, GetArticlesDto>();
+        CreateMap<AddArticleDto, Article>()
+            .ForMember(
+                e => e.Points,
+                options => options.MapFrom(e => string.Join(";", e.Points)));
         CreateMap<Collection, GetMyCollectionsDto>();
         CreateMap<Collection, GetCollectionByIdDto>();
     }
