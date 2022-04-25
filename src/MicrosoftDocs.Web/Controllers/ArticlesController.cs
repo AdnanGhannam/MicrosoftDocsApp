@@ -10,6 +10,7 @@ using MicrosoftDocs.Shared.Helpers;
 using MicrosoftDocs.Shared.Models.ArticlesModels;
 using MicrosoftDocs.Shared.Models.ProductsModels;
 using MicrosoftDocs.Web.Features.Commands.ArticleCommands;
+using MicrosoftDocs.Web.Features.Queries.ArticleQueries;
 using MicrosoftDocs.Web.Features.Queries.ProductQueries;
 using System.Security.Claims;
 
@@ -46,6 +47,18 @@ public class ArticlesController : ControllerBase
             GetArticleDto dto => Ok(new ResponseModel<GetArticleDto>(dto)),
             ErrorModel error => BadRequest(new ResponseModel(null, error)),
             _ => BadRequest(new ResponseModel(null, new ErrorModel("Error", "Unknown error"))),
+        };
+    }
+
+    [HttpGet(ArticlesControllerRoutes.GetApiArticles)]
+    public async Task<IActionResult> GetApiArticles()
+    {
+        var results = await _mediator.Send(new GetApiArticlesQuery());
+
+        return results switch
+        {
+            { Count: > 0 } => Ok(new ResponseModel<List<GetArticlesDto>>(results)),
+            _ => NoContent(),
         };
     }
 

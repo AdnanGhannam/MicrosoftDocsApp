@@ -25,7 +25,6 @@ internal class SectionConfigurations : IEntityTypeConfiguration<Section>
 
         builder.HasMany(e => e.Articles)
             .WithOne(e => e.Section)
-            .HasForeignKey(e => e.SectionId)
-            .OnDelete(DeleteBehavior.NoAction);
+            .HasForeignKey(e => e.SectionId);
     }
 }

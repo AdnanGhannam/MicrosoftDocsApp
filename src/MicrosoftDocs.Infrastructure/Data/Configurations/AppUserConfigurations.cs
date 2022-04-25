@@ -24,17 +24,19 @@ internal class AppUserConfigurations : IEntityTypeConfiguration<AppUser>
 
         builder.HasMany(e => e.Products)
             .WithOne(e => e.Creator)
-            .HasForeignKey(e => e.CreatorId);
-
+            .HasForeignKey(e => e.CreatorId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         builder.HasMany(e => e.Sections)
             .WithOne(e => e.Creator)
-            .HasForeignKey(e => e.CreatorId);
+            .HasForeignKey(e => e.CreatorId)
+            .OnDelete(DeleteBehavior.NoAction);
 
 
         builder.HasMany(e => e.OwnedArticles)
             .WithOne(e => e.Creator)
-            .HasForeignKey(e => e.CreatorId);
+            .HasForeignKey(e => e.CreatorId)
+            .OnDelete(DeleteBehavior.NoAction);
 
 
         builder.HasMany(e => e.Articles)
