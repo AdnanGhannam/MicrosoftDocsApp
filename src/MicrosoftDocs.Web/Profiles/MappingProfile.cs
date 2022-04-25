@@ -14,6 +14,7 @@ public class MappingProfile : Profile
         CreateMap<AppUser, GetMyInformationsDto>();
         CreateMap<AppUser, GetUserDto>();
         CreateMap<Product, GetProductDto>();
+        CreateMap<AddProductDto, Product>();
         CreateMap<Section, GetSectionDto>();
         CreateMap<Article, GetArticleDto>()
             .ForMember(
